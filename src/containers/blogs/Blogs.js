@@ -40,7 +40,7 @@ export default function Blogs() {
             blogSection.displayMediumBlogs = "false";
           });
       };
-      getProfileData();
+      // getProfileData();
     }
   }, []);
   if (!blogSection.display) {

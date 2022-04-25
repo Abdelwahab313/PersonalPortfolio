@@ -9,12 +9,26 @@ import Button from "../../components/button/Button";
 
 import {illustration, greeting} from "../../portfolio";
 import StyleContext from "../../contexts/StyleContext";
+import {GoogleAnalytics} from "../../services/logging";
 
 export default function Greeting() {
   const {isDark} = useContext(StyleContext);
   if (!greeting.displayGreeting) {
     return null;
   }
+  const onClickContact = () => {
+    GoogleAnalytics.logContactReached();
+    const href = "#contact";
+    window.location.href = href;
+  };
+  const onClickCV = () => {
+    console.log("---> before onClickCV");
+    GoogleAnalytics.logCVReached();
+    console.log("---> onClickCV");
+    const href = greeting.resumeLink;
+    window.open(href, "_blank");
+  };
+
   return (
     <Fade bottom duration={1000} distance="40px">
       <div className="greet-main" id="greeting">
@@ -39,13 +53,9 @@ export default function Greeting() {
               </p>
               <SocialMedia />
               <div className="button-greeting-div">
-                <Button text="Contact me" href="#contact" />
+                <Button text="Contact me" onClick={onClickContact} />
                 {greeting.resumeLink && (
-                  <Button
-                    text="See my resume"
-                    newTab={true}
-                    href={greeting.resumeLink}
-                  />
+                  <Button text="See my resume" onClick={onClickCV} />
                 )}
               </div>
             </div>

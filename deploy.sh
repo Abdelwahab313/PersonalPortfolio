@@ -8,12 +8,12 @@ buildScript="yarn build"
 site="abdelwahab.dev"
 
 rm -rf build.zip build/   
-$buildScript    
+$buildScript    p
 zip -vr build.zip build/
 
-ssh -i $sshKey  ubuntu@$serverIp "sudo rm -rf /var/www/$site/build.zip"
+ssh -i $sshKey  $sshUser@$serverIp "rm -rf /var/www/$site/build.zip"
 
 scp -i $sshKey build.zip $sshUser@$serverIp:/var/www/$site
 
-ssh -i $sshKey ubuntu@$serverIp "cd /var/www/$site && unzip build.zip && mv html html-old && mv build html && rm -rf html-old"
+ssh -i $sshKey $sshUser@$serverIp "cd /var/www/$site && unzip build.zip && mv html html-old && mv build html && rm -rf html-old"
 

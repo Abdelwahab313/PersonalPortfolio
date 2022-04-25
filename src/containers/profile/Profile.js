@@ -33,7 +33,7 @@ export default function Profile() {
             openSource.showGithubProfile = "false";
           });
       };
-      getProfileData();
+      // getProfileData();
     }
   }, []);
   if (

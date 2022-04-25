@@ -1,12 +1,10 @@
 import React from "react";
 import "./App.scss";
 import Main from "./containers/Main";
-import ReactGA from "react-ga4";
-import { GOOGLE_TRACKING_ID } from "./constants";
+import {GoogleAnalytics} from "./services/logging";
 
 function App() {
-  ReactGA.initialize(GOOGLE_TRACKING_ID);
-  ReactGA.send("pageview");
+  GoogleAnalytics.initialize();
 
   return (
     <div>

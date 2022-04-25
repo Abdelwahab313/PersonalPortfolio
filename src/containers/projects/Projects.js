@@ -33,12 +33,18 @@ export default function Projects() {
           setrepoFunction("Error");
         });
     };
-    getRepoData();
+    // getRepoData();
   }, []);
 
   function setrepoFunction(array) {
     setrepo(array);
   }
+
+  function onClickMore() {
+    const href = socialMediaLinks.github;
+    window.open(href, "_blank");
+  }
+
   if (
     !(typeof repo === "string" || repo instanceof String) &&
     openSource.display
@@ -62,8 +68,7 @@ export default function Projects() {
           <Button
             text={"More Projects"}
             className="project-button"
-            href={socialMediaLinks.github}
-            newTab={true}
+            onClick={onClickMore}
           />
         </div>
       </Suspense>
