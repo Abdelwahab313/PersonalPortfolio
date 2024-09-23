@@ -14,7 +14,7 @@ const greeting = {
   username: "Abdelwahab",
   title: "Hi, I'm Abdelwahab",
   subTitle: emoji(
-    "A passionate Full Stack Software Developer 🚀 having an experience of building Web and Mobile applications with JavaScript / Reactjs / Nodejs / React Native and some other cool libraries and frameworks."
+    `Full stack developer 🚀 with 7+ years of building cool stuff. I speak fluent React, Node.js, Laravel, Ruby on Rails and DevOps and lots of other languages. Led teams to slash delivery times and boost app performance. Always up for a coding challenge or a tech chat. `
   ),
   resumeLink:
     "https://drive.google.com/file/d/1vHl-dLYdT35yFkSiE0RiGss61iSB-Wws/view?usp=sharing", // Set to empty to hide the button
@@ -39,21 +39,71 @@ const socialMediaLinks = {
 
 const skillsSection = {
   title: "What I do",
-  subTitle: "PASSIONATE FULL STACK DEVELOPER WHO WANTS TO EXPLORE EVERY TECH STACK",
+  subTitle:
+    "I'm all about React and React Native on the front end, and I can switch gears to Node.js, Ruby on Rails, or Java Spring when it's time to dive into the back end. And don't get me started on my love affair with DevOps – I'm that guy who gets excited about Automation and Infrastructure as Code.",
   skills: [
+    emoji("⚡ Leading dev teams to crush goals and ship awesome products 🏆"),
+    emoji("⚡ Juggling full-stack projects like a pro 🤹‍♂️"),
+    emoji("⚡ Whipping up slick frontends with React and React Native 📱✨"),
     emoji(
-      "⚡ Develop highly interactive Front end / User Interfaces for your web and mobile applications"
+      "⚡ Crafting robust backends using Node.js, Ruby on Rails, and Java Spring 🛠️"
     ),
-    emoji("⚡ Progressive Web Applications ( PWA ) in normal and SPA Stacks"),
-    emoji(
-      "⚡ Integration of third party services such as Firebase/ AWS / Digital Ocean"
-    )
+    emoji("⚡ Automating all the things for silky-smooth CI/CD pipelines 🤖"),
+    emoji("⚡ Always leveling up and learning the latest tech tricks 📚🆙")
   ],
 
   /* Make Sure to include correct Font Awesome Classname to view your icon
 https://fontawesome.com/icons?d=gallery */
 
   softwareSkills: [
+    {
+      skillName: "Nodejs",
+      fontAwesomeClassname: "fab fa-node"
+    },
+    {
+      skillName: "Laravel",
+      fontAwesomeClassname: "fab fa-laravel"
+    },
+    {
+      skillName: "Ruby on Rails",
+      fontAwesomeClassname: "fas fa-gem"
+    },
+    {
+      skillName: "Java Spring",
+      fontAwesomeClassname: "fab fa-java"
+    },
+    {
+      skillName: "Reactjs",
+      fontAwesomeClassname: "fab fa-react"
+    },
+    {
+      skillName: "JavaScript",
+      fontAwesomeClassname: "fab fa-js"
+    },
+    {
+      skillName: "React Native",
+      fontAwesomeClassname: "fab fa-react"
+    },
+    {
+      skillName: "Database",
+      fontAwesomeClassname: "fas fa-database"
+    },
+    {
+      skillName: "AWS",
+      fontAwesomeClassname: "fab fa-aws"
+    },
+    {
+      skillName: "Firebase",
+      fontAwesomeClassname: "fas fa-fire"
+    },
+    {
+      skillName: "Python",
+      fontAwesomeClassname: "fab fa-python"
+    },
+    {
+      skillName: "Docker",
+      fontAwesomeClassname: "fab fa-docker"
+    },
     {
       skillName: "html-5",
       fontAwesomeClassname: "fab fa-html5"
@@ -65,46 +115,6 @@ https://fontawesome.com/icons?d=gallery */
     {
       skillName: "sass",
       fontAwesomeClassname: "fab fa-sass"
-    },
-    {
-      skillName: "JavaScript",
-      fontAwesomeClassname: "fab fa-js"
-    },
-    {
-      skillName: "reactjs",
-      fontAwesomeClassname: "fab fa-react"
-    },
-    {
-      skillName: "nodejs",
-      fontAwesomeClassname: "fab fa-node"
-    },
-    {
-      skillName: "swift",
-      fontAwesomeClassname: "fab fa-swift"
-    },
-    {
-      skillName: "npm",
-      fontAwesomeClassname: "fab fa-npm"
-    },
-    {
-      skillName: "sql-database",
-      fontAwesomeClassname: "fas fa-database"
-    },
-    {
-      skillName: "aws",
-      fontAwesomeClassname: "fab fa-aws"
-    },
-    {
-      skillName: "firebase",
-      fontAwesomeClassname: "fas fa-fire"
-    },
-    {
-      skillName: "python",
-      fontAwesomeClassname: "fab fa-python"
-    },
-    {
-      skillName: "docker",
-      fontAwesomeClassname: "fab fa-docker"
     }
   ],
   display: true // Set false to hide this section, defaults to true
@@ -120,11 +130,8 @@ const educationInfo = {
       logo: require("./assets/images/CairoUniversity.png"),
       subHeader: "Bsc of Science in Geophysics",
       duration: "2012 - 2016",
-      desc: "Specialized in geophysical data processing and interpretations.",
-      descBullets: [
-        // "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
-        // "Lorem ipsum dolor sit amet, consectetur adipiscing elit"
-      ]
+      desc: "Leveraged strong analytical skills from Geophysics to solve complex problems in software development.",
+      descBullets: []
     }
   ]
 };
@@ -140,11 +147,15 @@ const techStack = {
     },
     {
       Stack: "Backend",
-      progressPercentage: "70%"
+      progressPercentage: "91%"
     },
     {
-      Stack: "Programming",
-      progressPercentage: "60%"
+      Stack: "DevOps",
+      progressPercentage: "65%"
+    },
+    {
+      Stack: "Testing",
+      progressPercentage: "70%"
     }
   ],
   displayCodersrank: false // Set true to display codersrank badges section need to changes your username in src/containers/skillProgress/skillProgress.js:17:62, defaults to false
@@ -156,7 +167,7 @@ const workExperiences = {
   display: true, //Set it to true to show workExperiences Section
   experience: [
     {
-      role: "Full-stack Engineer",
+      role: "Senior Full-stack Engineer",
       company: "DailyMealz",
       companylogo: require("./assets/images/dailymealzLogo.png"),
       date: "December 2021 – Present",
@@ -169,7 +180,7 @@ const workExperiences = {
     {
       role: "Software Engineer",
       company: "nformacy",
-      companylogo: require("./assets/images/nformacyMobile.svg"),
+      companylogo: require("./assets/images/nformacy.png"),
       date: "Oct 2020 – Dec 2021",
       desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
     },
@@ -217,7 +228,7 @@ const bigProjects = {
       ]
     },
     {
-      image: require("./assets/images/nformacy.svg"),
+      image: require("./assets/images/nformacy.png"),
       projectName: "nformacy",
       projectDesc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
       footerLink: [
