@@ -14,7 +14,7 @@ const greeting = {
   username: "Abdelwahab",
   title: "Hi, I'm Abdelwahab",
   subTitle: emoji(
-    `Full stack developer 🚀 with 7+ years of building cool stuff. I speak fluent React, Node.js, Laravel, Ruby on Rails and DevOps and lots of other languages. Led teams to slash delivery times and boost app performance. Always up for a coding challenge or a tech chat. `
+    `Senior Full-stack Engineer 🚀 with 8+ years of building cool stuff. I speak fluent React, Node.js, Laravel and Ruby on Rails, and I get way too excited about DevOps. Led teams to slash delivery times and boost app performance. Always up for a coding challenge or a tech chat. `
   ),
   resumeLink:
     "https://drive.google.com/file/d/1vHl-dLYdT35yFkSiE0RiGss61iSB-Wws/view?usp=sharing", // Set to empty to hide the button
@@ -167,14 +167,27 @@ const workExperiences = {
   display: true, //Set it to true to show workExperiences Section
   experience: [
     {
+      role: "Senior Software Engineer",
+      company: "OnTheGoSystems",
+      companylogo: require("./assets/images/otgsLogo.png"),
+      date: "December 2024 – Present",
+      desc: "I work on Private Translation Cloud (PTC), an AI translation platform from the team behind WPML, the multilingual plugin that powers over a million WordPress sites.",
+      descBullets: [
+        "Build full-stack features across the translation pipeline with Ruby on Rails, React and AWS ECS",
+        "Keep production healthy: monitoring, digging through logs and handling incidents on AWS",
+        "Use product analytics (PostHog) to learn what users actually need before building it"
+      ]
+    },
+    {
       role: "Senior Full-stack Engineer",
       company: "DailyMealz",
       companylogo: require("./assets/images/dailymealzLogo.png"),
-      date: "December 2021 – Present",
-      desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+      date: "December 2021 – December 2024",
+      desc: "Built and scaled a meal subscription platform serving customers across Saudi Arabia.",
       descBullets: [
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit"
+        "Led development of the customer apps and internal operations dashboards (React, React Native, Node.js)",
+        "Mentored engineers and streamlined our delivery process, cutting release cycle time",
+        "Improved app performance and automated CI/CD pipelines and infrastructure (Docker, AWS)"
       ]
     },
     {
@@ -182,21 +195,21 @@ const workExperiences = {
       company: "nformacy",
       companylogo: require("./assets/images/nformacy.png"),
       date: "Oct 2020 – Dec 2021",
-      desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+      desc: "Built nformacy, a knowledge marketplace that connects business advisors with companies that need their expertise. Full-stack work with React and Ruby on Rails, from the first MVP to the beta launch."
     },
     {
       role: "Software Engineer",
       company: "Devsquads",
       companylogo: require("./assets/images/devsquads.webp"),
       date: "Sep 2018 – Oct 2020",
-      desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+      desc: "Worked at an agile consultancy that takes XP seriously: TDD, pair programming and continuous delivery. Delivered products for international clients, including Shapa, a US health tech platform (React, React Native, Node.js)."
     },
     {
       role: "Jr Software Engineer",
       company: "Fikrlabs",
       companylogo: require("./assets/images/fikrlabs.jpeg"),
       date: "Jan 2018 – Sep 2018",
-      desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+      desc: "My first job in tech. Built web apps for early stage products at a Cairo based venture studio (Laravel, JavaScript) and learned how to ship fast."
     }
   ]
 };
@@ -216,21 +229,46 @@ const bigProjects = {
   subtitle: "SOME STARTUPS AND COMPANIES THAT I HELPED TO CREATE THEIR TECH",
   projects: [
     {
+      image: require("./assets/images/ptcLogo.png"),
+      projectName: "Private Translation Cloud",
+      projectDesc:
+        "AI translation service from the team behind WPML. I work on the platform that translates websites automatically while keeping the quality close to human translators.",
+      footerLink: [
+        {
+          name: "Visit Website",
+          url: "https://ptc.wpml.org/"
+        }
+      ]
+    },
+    {
+      image: require("./assets/images/dailymealzLogo.png"),
+      projectName: "DailyMealz",
+      projectDesc:
+        "Meal subscription service in Saudi Arabia. I spent three years building its apps, dashboards and the infrastructure behind them.",
+      footerLink: [
+        {
+          name: "Visit Website",
+          url: "https://dailymealz.com/"
+        }
+      ]
+    },
+    {
       image: require("./assets/images/shapa.png"),
-      projectName: "Shapahealth",
-      projectDesc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
+      projectName: "Shapa",
+      projectDesc:
+        "US health product built around a numberless smart scale and a behavior change program. I worked on the mobile app and the backend behind it.",
       footerLink: [
         {
           name: "Visit Website",
           url: "https://shapahealth.com/"
         }
-        //  you can add extra buttons here.
       ]
     },
     {
       image: require("./assets/images/nformacy.png"),
       projectName: "nformacy",
-      projectDesc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
+      projectDesc:
+        "Knowledge marketplace that connects business advisors with companies that need their expertise. I built it from the first MVP to the beta launch.",
       footerLink: [
         {
           name: "Visit Website",
@@ -250,28 +288,7 @@ const achievementSection = {
   subtitle:
     "Achievements, Certifications, Award Letters and Some Cool Stuff that I have done !",
 
-  achievementsCards: [
-    {
-      title: "Google Code-In Finalist",
-      subtitle:
-        "First Pakistani to be selected as Google Code-in Finalist from 4000 students from 77 different countries.",
-      image: require("./assets/images/codeInLogo.webp"),
-      footerLink: [
-        {
-          name: "Certification",
-          url: "https://drive.google.com/file/d/0B7kazrtMwm5dYkVvNjdNWjNybWJrbndFSHpNY2NFV1p4YmU0/view?usp=sharing"
-        },
-        {
-          name: "Award Letter",
-          url: "https://drive.google.com/file/d/0B7kazrtMwm5dekxBTW5hQkg2WXUyR3QzQmR0VERiLXlGRVdF/view?usp=sharing"
-        },
-        {
-          name: "Google Code-in Blog",
-          url: "https://opensource.googleblog.com/2019/01/google-code-in-2018-winners.html"
-        }
-      ]
-    }
-  ],
+  achievementsCards: [],
   display: false // Set false to hide this section, defaults to true
 };
 
@@ -282,20 +299,7 @@ const blogSection = {
   subtitle:
     "With Love for Developing cool stuff, I love to write and teach others what I have learnt.",
   displayMediumBlogs: "true", // Set true to display fetched medium blogs instead of hardcoded ones
-  blogs: [
-    {
-      url: "https://blog.usejournal.com/create-a-google-assistant-action-and-win-a-google-t-shirt-and-cloud-credits-4a8d86d76eae",
-      title: "Win a Google Assistant Tshirt and $200 in Google Cloud Credits",
-      description:
-        "Do you want to win $200 and Google Assistant Tshirt by creating a Google Assistant Action in less then 30 min?"
-    },
-    {
-      url: "https://medium.com/@saadpasta/why-react-is-the-best-5a97563f423e",
-      title: "Why REACT is The Best?",
-      description:
-        "React is a JavaScript library for building User Interface. It is maintained by Facebook and a community of individual developers and companies."
-    }
-  ],
+  blogs: [],
   display: false // Set false to hide this section, defaults to true
 };
 
@@ -307,14 +311,7 @@ const talkSection = {
     "I LOVE TO SHARE MY LIMITED KNOWLEDGE AND GET A SPEAKER BADGE 😅"
   ),
 
-  talks: [
-    {
-      title: "Build Actions For Google Assistant",
-      subtitle: "Codelab at GDG DevFest Karachi 2019",
-      slides_url: "https://bit.ly/saadpasta-slides",
-      event_url: "https://www.facebook.com/events/2339906106275053/"
-    }
-  ],
+  talks: [],
   display: false // Set false to hide this section, defaults to true
 };
 
@@ -325,9 +322,7 @@ const podcastSection = {
   subtitle: "I LOVE TO TALK ABOUT MYSELF AND TECHNOLOGY",
 
   // Please Provide with Your Podcast embeded Link
-  podcast: [
-    "https://anchor.fm/codevcast/embed/episodes/DevStory---Saad-Pasta-from-Karachi--Pakistan-e9givv/a-a15itvo"
-  ],
+  podcast: [],
   display: false // Set false to hide this section, defaults to true
 };
 
