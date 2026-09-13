@@ -1,7 +1,28 @@
+@import "../../_globalColor";
+
+$timelineDateCol: 15.5rem;
+$timelineRailCol: 3rem;
+
 .experience-cards-div {
+  position: relative;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
-  gap: 1rem 1rem;
+  grid-template-columns: $timelineDateCol $timelineRailCol minmax(0, 1fr);
+  row-gap: 2.75rem;
+  max-width: 62rem;
+}
+
+.experience-cards-div::before {
+  content: "";
+  position: absolute;
+  top: 0.6rem;
+  bottom: 0.6rem;
+  left: calc(#{$timelineDateCol} + #{$timelineRailCol} / 2 - 1px);
+  width: 2px;
+  background: $lightBorder1;
+}
+
+.experience-timeline-dark::before {
+  background: rgba(255, 255, 255, 0.14);
 }
 
 .experience-heading {
@@ -26,6 +47,16 @@
 @media (max-width: 1380px) {
   .experience-heading {
     font-size: 40px;
+  }
+}
+
+@media (max-width: 900px) {
+  .experience-cards-div {
+    grid-template-columns: 2.25rem minmax(0, 1fr);
+    row-gap: 2.25rem;
+  }
+  .experience-cards-div::before {
+    left: calc(1.125rem - 1px);
   }
 }
 
