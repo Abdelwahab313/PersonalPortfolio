@@ -13,7 +13,8 @@
 
 .experience-date time {
   display: block;
-  font-size: 14px;
+  font-family: $fontMono;
+  font-size: 13px;
   font-weight: 500;
   color: $subTitle;
   line-height: 1.4;
@@ -131,10 +132,12 @@
 }
 
 .experience-tags span {
+  font-family: $fontMono;
   font-size: 12px;
   font-weight: 500;
-  color: $skillsColor;
-  background: rgba(100, 91, 235, 0.12);
+  color: $accent;
+  background: $accentSoft;
+  border: 1px solid transparent;
   border-radius: 999px;
   padding: 0.2rem 0.6rem;
 }
@@ -173,7 +176,8 @@
 }
 
 .experience-timeline-dark .experience-tags span {
-  background: rgba(170, 165, 255, 0.16);
+  background: $accentSoftDark;
+  border-color: transparent;
 }
 
 /* Media Query */

@@ -17,6 +17,17 @@
   font-size: 17px;
   line-height: 1.5rem;
 }
+.dark-mode .card-title {
+  color: $titleColor;
+}
+.dark-mode .card-title,
+.dark-mode.card-title {
+  color: $textColorDark;
+}
+.dark-mode .card-subtitle,
+.dark-mode.card-subtitle {
+  color: $bodyDark;
+}
 .project-card {
   display: flex;
   flex-direction: column;
@@ -64,22 +75,29 @@
   gap: 1rem 1rem;
 }
 
-.project-card-footer span.project-tag {
-  background: $buttonColor;
-  color: $lightBackground3;
+.project-card-footer span.project-tag,
+.project-card-footer a.project-tag {
+  background: $accentSoft;
+  color: $accent;
+  text-decoration: none;
   vertical-align: middle;
   align-items: center;
   border-radius: 4px;
   display: inline-flex;
   font-size: 0.75rem;
+  font-weight: 500;
   height: 2em;
   justify-content: center;
   white-space: nowrap;
   line-height: 1.5;
   margin: 0 0.5rem 0.5rem 0;
   padding: 0 0.75em;
-  cursor: pointer;
-  transition: 0.2s ease-in;
+  transition: background-color 0.2s ease;
+}
+
+.project-card-footer a.project-tag:hover {
+  background: $accent;
+  color: #fff;
 }
 
 @media (max-width: 768px) {

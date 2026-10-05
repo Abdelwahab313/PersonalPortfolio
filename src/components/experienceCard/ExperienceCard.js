@@ -27,7 +27,14 @@ export default function ExperienceCard({cardInfo}) {
       </div>
       <div className="experience-body">
         <div className="experience-head">
-          <img className="experience-logo" src={cardInfo.companylogo} alt="" />
+          <img
+            className="experience-logo"
+            src={cardInfo.companylogo}
+            alt=""
+            width={cardInfo.logoWidth}
+            height={cardInfo.logoHeight}
+            loading="lazy"
+          />
           <div>
             <h2 className="experience-company">{cardInfo.company}</h2>
             <p className="experience-role">{cardInfo.role}</p>

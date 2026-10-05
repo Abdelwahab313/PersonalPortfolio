@@ -1,90 +1,72 @@
-/* Change colors in this file to style to your needs on a global level. 
-Certain colors are used for different and multiply types of elements. 
-For greater control over colors visit each components .scss file. */
+/* Global palette and type tokens. Ink on paper, one accent, mono for numbers. */
 
-// button colors
-$buttonColor: #55198b;
-$buttonHover: #8c43ce;
-$topButtonHover: #000;
+// type
+$fontSans:
+  "IBM Plex Sans",
+  -apple-system,
+  BlinkMacSystemFont,
+  "Segoe UI",
+  Helvetica,
+  Arial,
+  sans-serif;
+$fontMono: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, Consolas,
+  monospace;
 
-// text colors light theme
-$titleColor: #000000;
-$textColor: #000000;
-$subTitle: #868e96;
-$cardSubtitle: #666666;
-$talkCardSubTitle: #7f8287;
-$blogCardTitleColor: #262626;
+// palette: light (paper)
+$paper: #f7f6f2;
+$surface: #fffdf9;
+$ink: #1c1f24;
+$muted: #5d636a;
+$body: #3f454c;
+$border: #e2dfd6;
+$accent: #0f766e;
+$accentHover: #0b5d56;
+$accentSoft: rgba(15, 118, 110, 0.1);
 
-// text color dark theme
-$textColorDark: #ffffff;
+// palette: dark
+$paperDark: #13161a;
+$surfaceDark: #1a1e23;
+$inkDark: #e9e7e2;
+$mutedDark: #9aa1a8;
+$bodyDark: #c3c8cd;
+$borderDark: #2b3036;
+$accentDark: #4ac0b4;
+$accentSoftDark: rgba(74, 192, 180, 0.12);
 
-// toggle switch colors
-$toggleCheck: #2196f3;
-$toggleSwitchSliderBG: #ccc;
+// legacy names kept for the sections that still reference them
+$buttonColor: $accent;
+$buttonHover: $accentHover;
+$topButtonHover: $ink;
 
-// githubRepo specific colors
-$githubRepoCardLanguageColorBG: #0000ff;
-$githubRepoCardColor: rgb(88, 96, 105);
-$githubRepoCardRepoCardStatsColor: rgb(106, 115, 125);
-$githubRepoCardRepoNameColor: rgb(36, 41, 46);
-$githubProfileCardLocationTS: #ffebcd;
-$githubProfileCardBorder: #6c63ff;
+$titleColor: $ink;
+$textColor: $ink;
+$subTitle: $muted;
+$cardSubtitle: $body;
 
-// light background colors
-$lightBackground1: #fff;
-$lightBackground2: rgb(255, 255, 255);
-$lightBackground3: #f5f2f4;
-$blogCardContainerColor: #586069;
-// dark background colors
-$darkBackground: #171c28;
+$textColorDark: $inkDark;
 
-// light theme box shadows
-$lightBoxShadowDark: rgba(0, 0, 0, 0.2);
-$lightBoxShadow: rgba(0, 0, 0, 0.1);
-$lightBoxShadowDarker: rgba(0, 0, 0, 0.3);
+$toggleCheck: $accent;
+$toggleSwitchSliderBG: #c9c5bb;
 
-// dark theme box shadows
-$darkBoxShadow: #d9dbdf;
-$darkBoxShadow2: #ffffff;
+$lightBackground1: $paper;
+$lightBackground2: $surface;
+$lightBackground3: $paper;
+$darkBackground: $paperDark;
 
-// linear gradients
-$experienceCardBlurredDivLG: linear-gradient(
-  rgba(0, 0, 0, 0.4),
-  rgba(0, 0, 0, 0.2)
-);
-$experienceCardBannerLG: linear-gradient(
-  rgba(0, 0, 0, 0.7),
-  rgba(0, 0, 0, 0.5)
-);
+$lightBorder1: $border;
+$educationCardBorder: $accent;
 
-// borders
-$progressBarBackground: rgb(243, 239, 239);
-$lightBorder1: rgba(211, 211, 211, 0.397);
-$educationCardBorder: #a9a7f9;
+$headerHoverBG: $accentSoft;
+$contactDetailHoverTS: rgba(0, 0, 0, 0);
 
-// hovers
-$achievementCertificateCardHoverDark: rgba(255, 255, 255, 0.2);
-$blogCardHoverSmallColor: rgba(255, 255, 255, 0.8);
-$headerHoverBG: #f4f4f4;
-$contactDetailHoverTS: #b5b5b5;
+$progressBarBackground: $border;
+$progressBarSpanBG: $accentDark;
 
-// misc backgrounds
-$progressBarSpanBG: #aaa5ff;
-$iconBackground: #333;
-$appHeaderBG: #282c34;
+$skillsColor: $accent;
+$appLink: $accent;
+$iconBackground: $ink;
 
-// misc colors
-$skillsColor: #645beb;
-$appLink: #09d3ac;
-
-// social media icons
-$faceBook: #3b5998;
-$linkedin: #0e76a8;
-$github: #333;
-$gitlab: #fca326;
-$google: #ea4335;
-$twitter: #1da1f2;
-$medium: #000;
-$stackoverflow: #f48024;
-$instagram: #c13584;
-$kaggle: #20beff;
+// shadows
+$lightBoxShadowDark: rgba(28, 31, 36, 0.18);
+$lightBoxShadowDarker: rgba(28, 31, 36, 0.28);
+$darkBoxShadow: rgba(0, 0, 0, 0.5);

@@ -1,7 +1,18 @@
 @import "../_globalColor";
 
+.main {
+  width: 90%;
+  max-width: 62rem;
+  padding: 20px 10px;
+  margin: 0px auto;
+  margin-top: 4rem;
+}
+
 .dark-mode {
   background-color: $darkBackground;
-  color: white;
-  transition: "0.1s";
+  color: $textColorDark;
+}
+
+.dark-mode .subTitle {
+  color: $mutedDark;
 }

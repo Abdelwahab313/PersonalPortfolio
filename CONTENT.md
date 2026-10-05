@@ -7,7 +7,7 @@ first, then this file, then `src/portfolio.js` and `public/index.html`.
 CV source: `~/projects/playground/Awesome-CV`, branch `cv/post-ptc`, files under
 `examples/resume/`. Built PDF: `examples/resume.pdf`.
 
-Last aligned: 2026-09-12.
+Last aligned: 2026-10-05.
 
 ---
 
@@ -138,12 +138,19 @@ Bullets (replace all six):
 > WPML, the multilingual plugin that powers over a million WordPress sites. Product work in
 > Rails and React, and the AWS platform underneath it.
 
-- Moved the product off a single EC2 host onto ECS Fargate, sizing the worker fleet from a capacity study of 12,500 jobs across 12 configurations, then wrote the Terraform and the deploy pipeline.
-- Replaced ECS autoscaling with a queue-depth autoscaler on Lambda that drains workers instead of stopping them, because these jobs run from 30 seconds to 2 hours.
-- Built the provider-agnostic engine layer over Claude on Bedrock, OpenAI and Gemini, with ordered fallback chains and rate limits treated as reschedules, not failures.
-- Owned credits and billing for a metered LLM product, and found the 7 millisecond check-then-act race that had been silently pausing work.
-- Traced an Aurora CPU saturation to a query plan examining 7.33M rows per call, and throttled the caller from 1,013 calls to about 100.
-- Shipped an agent-driven triage platform for production exceptions.
+- Built the Rails translation engine across Claude on Bedrock, OpenAI and Gemini: ordered fallback chains when a provider fails, JSON repair, Langfuse tracing, and rate-limit retries for the errors behind 65% of review failures.
+- Moved the product off a single EC2 host onto ECS Fargate, then owned that platform and its Terraform for 16 months, running the worker fleet 90% on Spot.
+- Replaced ECS autoscaling with a queue-depth autoscaler on Lambda that drains workers instead of stopping them, because scale-in kills tasks abruptly and these jobs run from 30 seconds to 2 hours.
+- Owned credits and billing correctness for a metered LLM product, found the 7 millisecond check-then-act race that had been silently pausing work, and replaced the scattered credit checks with one authorization architecture, written up across four ADRs.
+- Traced Aurora at 100% CPU to a status broadcast whose query plan examined 7.33M rows per call, dropped the join and throttled the caller from 1,013 calls to about 100.
+- Shipped an agent-driven triage platform for production exceptions, with the pass and fail call in code rather than the prompt. Replayed on past incidents, it caught three false passes.
+- Wrote the ISO 27001 audit checklist and the risk profiles behind it, then built the disaster recovery and data loss prevention programs to a documented 30-minute RTO and 15-minute RPO.
+
+Source: bullets 1, 2, 4 (in part), 5 and 6 follow `cv/post-ptc` enriched with the
+2026-10-05 CV branch (`cv/procore-senior-backend-cairo`); the 12,500-job
+capacity study bullet is dropped (in no current CV branch); the ISO 27001 bullet
+uses the 30-minute RTO figure from the 2026-10-05 branch. "Solo in 12 weeks"
+and "first shipping step merged" stay off the site by decision.
 
 **Dailymealz**, Senior Software Engineer, December 2021 – December 2024
 
@@ -187,7 +194,122 @@ entry's own description or bullets.
 
 Entries with more than three bullets show three and a "Show N more" toggle.
 
-### Big projects (`bigProjects.subtitle`, `bigProjects.projects`)
+### Case studies (`caseStudies`, new section)
+
+Title: `Case studies`
+
+Subtitle:
+
+> Four systems from the last two years. What was there, what I decided, what it
+> cost, and what changed.
+
+Each case has a system diagram, four labeled parts (Situation, Decision,
+Trade-off, Outcome) and, where public, a product link. Paste-ready parts below.
+
+**Draining, not stopping** (diagram: queue, autoscaler loop, worker fleet)
+
+Situation:
+
+> The product ran on a single EC2 host. Translation jobs run from 30 seconds to
+> 2 hours, and ECS scale-in kills tasks abruptly, so a naive autoscaler can
+> throw away up to two hours of work per worker.
+
+Decision:
+
+> Move onto ECS Fargate, and replace ECS autoscaling with a queue-depth
+> autoscaler on Lambda that tells workers to drain before they stop.
+
+Trade-off:
+
+> Draining costs a few idle minutes per shutdown. Stopping costs the whole job,
+> because a killed job re-runs from the start. For jobs this long, draining wins.
+
+Outcome:
+
+> I owned that platform and its Terraform for 16 months, and ran the worker
+> fleet 90% on Spot.
+
+**One engine, three providers** (diagram: request, engine, ordered provider
+chain, metering)
+
+Situation:
+
+> A metered LLM product behind one provider is at that provider's mercy. Rate
+> limit errors were responsible for 65% of review failures.
+
+Decision:
+
+> A provider-agnostic engine layer over Claude on Bedrock, OpenAI and Gemini,
+> with ordered fallback chains. Rate limits are treated as reschedules, not
+> failures. Responses get JSON repair before anything downstream sees them, and
+> Langfuse traces every hop.
+
+Trade-off:
+
+> The abstraction means no provider's unique features come for free, and cost
+> varies by which branch of the chain runs. In exchange, a provider outage
+> stops being our outage.
+
+Outcome:
+
+> I owned credits and billing correctness on top of the engine, found a 7
+> millisecond check-then-act race that had been silently pausing work, and
+> replaced the scattered credit checks with one authorization architecture,
+> written up across four ADRs.
+
+**7.33M rows per call** (diagram: status broadcast, client fan-out, database)
+
+Situation:
+
+> Aurora hit 100% CPU. The suspect was a status broadcast that pushes state to
+> clients, called 1,013 times.
+
+Decision:
+
+> Read the plan before touching the query. It examined 7.33M rows per call,
+> which is a scan, not a lookup. Drop the join rather than tune it, and throttle
+> the caller.
+
+Trade-off:
+
+> The throttle means some clients see state less often than they did. The
+> instance staying up is worth more than broadcast freshness.
+
+Outcome:
+
+> CPU back to baseline, the caller down from 1,013 calls to about 100.
+
+**The verdict lives in code, not the prompt** (diagram: exceptions, triage
+agents, verdict gate, audit log)
+
+Situation:
+
+> Production exceptions needed triage before a human looked at them. An agent
+> that only explains an incident is easy to trust and easy to fool.
+
+Decision:
+
+> An agent-driven triage platform where the pass and fail call lives in code,
+> not in the prompt. Agents run behind production tooling: read-only data access
+> with a rollback wrapper, an audit log, and a human-only write gate.
+
+Trade-off:
+
+> Code verdicts mean maintaining a test harness instead of a clever prompt.
+> Deterministic checks are worth that maintenance, because a false pass is
+> worse than no answer.
+
+Outcome:
+
+> Replayed on past incidents, it caught three false passes. It now also
+> adjudicates support claims.
+
+Numbers in this section trace to the CV branches as recorded in SPEC.md
+section 8.
+
+### Big projects (`bigProjects.title`, `bigProjects.subtitle`, `bigProjects.projects`)
+
+Title: `Products`
 
 Subtitle: `Products I helped build`
 
@@ -202,7 +324,11 @@ Other three cards unchanged except names per section 1.
 
 subHeader: `BSc in Geophysics`. duration: `2012 – 2016`. desc: empty.
 
-### Contact (`contactInfo.subtitle`, `contactInfo.email_address`)
+### Contact (`contactInfo.title`, `contactInfo.subtitle`, `contactInfo.email_address`)
+
+Title: `Contact me` (plain text, no emoji)
+
+Subtitle:
 
 > Hiring for a senior backend or platform role, or stuck on a production problem? Email me.
 
@@ -235,12 +361,18 @@ build, copy `examples/resume.pdf` from the CV repo over `public/resume.pdf` and 
 
 ---
 
-## 5. Open items against the live site (2026-09-12)
+## 5. Open items against the live site (2026-10-05)
 
-- No `og:image`.
-- OnTheGoSystems bullets on the site include the 12,500-job capacity study and the Aurora
-  7.33M rows / 1,013 calls bullets. Current CV HEAD dropped those for an ISO 27001 / disaster
-  recovery bullet. Pick one side and mirror it.
-- Everything else in this list as of the morning of 2026-09-12 (present tense, email, titles
-  and dates, hero and meta, skill icons, proficiency bars, font preloads) is applied in the
-  working tree and awaits deploy.
+- `og:image` added with the 2026-10-05 refresh (typographic, identity palette;
+  see SPEC.md).
+- OTGS bullets discrepancy (capacity study vs ISO 27001) resolved 2026-10-05:
+  capacity study bullet dropped, Aurora bullet kept, ISO 27001 bullet added with
+  the 30-minute RTO figure. Mirrored above.
+- Nformacy product link is `https://nformacy.com/` (the old
+  `https://beta.nformacy.com/` origin is down, returns 522).
+- `public/resume.pdf` was rebuilt 2026-10-05 from `cv/post-ptc` with the same
+  resolved OTGS bullet set, so PDF and site copy agree. Committed to the CV
+  repo as `f08eb3a` on `cv/post-ptc`.
+- The 2026-10-05 refresh adds the Case studies section and a visual identity
+  rework (ink on paper, one accent, system diagrams). SPEC.md records the
+  decisions.

@@ -3,26 +3,29 @@
 .main-button {
   background-color: $buttonColor;
   border: solid 1px $buttonColor;
-  color: $textColorDark;
-  font-weight: 700;
+  color: #fff;
+  font-family: inherit;
+  font-weight: 600;
   width: max-content;
-  padding: 13px 22px;
+  padding: 11px 20px;
   margin-right: 50px;
-  text-transform: uppercase;
-  border-radius: 6px;
+  border-radius: 4px;
   text-align: center;
   text-decoration: none;
   display: block;
   margin-top: 20px;
-  font-size: 16px;
+  font-size: 15px;
   cursor: pointer;
-  transition: all 0.3s ease-in-out 0s;
+  transition:
+    background-color 0.2s ease,
+    border-color 0.2s ease;
 }
 .main-button:hover {
-  background-color: $darkBoxShadow2;
-  color: $buttonColor;
-  transition: all 0.3s ease 0s;
-  transform: translateY(-3px);
+  background-color: $buttonHover;
+  border-color: $buttonHover;
+  transition:
+    background-color 0.2s ease,
+    border-color 0.2s ease;
 }
 .project-button {
   display: flex;
@@ -35,13 +38,8 @@
 /* Media Query */
 @media (max-width: 768px) {
   .main-button {
-    font-size: 15px;
-    padding: 12px 18px;
+    font-size: 14px;
+    padding: 10px 16px;
     margin-right: 0px;
-  }
-}
-@media (max-width: 320px) {
-  .main-button {
-    font-size: 12px;
   }
 }

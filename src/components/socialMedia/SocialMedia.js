@@ -14,8 +14,9 @@ export default function socialMedia() {
           className="icon-button github"
           target="_blank"
           rel="noopener noreferrer"
+          aria-label="GitHub profile"
         >
-          <i className="fab fa-github"></i>
+          <i className="fab fa-github" aria-hidden="true"></i>
           <span></span>
         </a>
       ) : null}
@@ -26,8 +27,9 @@ export default function socialMedia() {
           className="icon-button linkedin"
           target="_blank"
           rel="noopener noreferrer"
+          aria-label="LinkedIn profile"
         >
-          <i className="fab fa-linkedin-in"></i>
+          <i className="fab fa-linkedin-in" aria-hidden="true"></i>
           <span></span>
         </a>
       ) : null}
@@ -38,8 +40,9 @@ export default function socialMedia() {
           className="icon-button google"
           target="_blank"
           rel="noopener noreferrer"
+          aria-label="Email"
         >
-          <i className="fas fa-envelope"></i>
+          <i className="fas fa-envelope" aria-hidden="true"></i>
           <span></span>
         </a>
       ) : null}
@@ -50,8 +53,9 @@ export default function socialMedia() {
           className="icon-button gitlab"
           target="_blank"
           rel="noopener noreferrer"
+          aria-label="GitLab profile"
         >
-          <i className="fab fa-gitlab"></i>
+          <i className="fab fa-gitlab" aria-hidden="true"></i>
           <span></span>
         </a>
       ) : null}
@@ -86,8 +90,9 @@ export default function socialMedia() {
           className="icon-button twitter"
           target="_blank"
           rel="noopener noreferrer"
+          aria-label="Twitter profile"
         >
-          <i className="fab fa-twitter"></i>
+          <i className="fab fa-twitter" aria-hidden="true"></i>
           <span></span>
         </a>
       ) : null}
@@ -110,8 +115,9 @@ export default function socialMedia() {
           className="icon-button stack-overflow"
           target="_blank"
           rel="noopener noreferrer"
+          aria-label="Stack Overflow profile"
         >
-          <i className="fab fa-stack-overflow"></i>
+          <i className="fab fa-stack-overflow" aria-hidden="true"></i>
           <span></span>
         </a>
       ) : null}
