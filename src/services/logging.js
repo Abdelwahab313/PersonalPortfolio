@@ -8,6 +8,10 @@ export class GoogleAnalytics {
     ReactGA.send("pageview");
   }
 
+  static pageview(path) {
+    ReactGA.send({hitType: "pageview", page: path});
+  }
+
   static logCVReached() {
     ReactGA.event({
       category: "Reached",

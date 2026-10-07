@@ -2,18 +2,19 @@ import React from "react";
 import "./Greeting.scss";
 import SocialMedia from "../../components/socialMedia/SocialMedia";
 import Button from "../../components/button/Button";
+import {useRouter} from "../../router/Router";
 
 import {greeting} from "../../portfolio";
 import {GoogleAnalytics} from "../../services/logging";
 
 export default function Greeting() {
+  const {navigate} = useRouter();
   if (!greeting.displayGreeting) {
     return null;
   }
   const onClickContact = () => {
     GoogleAnalytics.logContactReached();
-    const href = "#contact";
-    window.location.href = href;
+    navigate("/#contact");
   };
   const onClickCV = () => {
     GoogleAnalytics.logCVReached();

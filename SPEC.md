@@ -1,5 +1,18 @@
 # Portfolio refresh spec
 
+**Status update 2026-10-08.** CV `cv/automattic-experienced-swe` @ `a0103b9`
+is the source of truth and has moved on from the 2026-10-05 alignment:
+positioning is `Senior Software Engineer · Full-stack & Platform`, OTGS is
+current (`Dec 2024 – Present`), there are four employment entries not five
+(Fikr Labs folded into `DevSquads (formerly Fikr Labs)`), skills are ten rows,
+and the summary leads with AWS production systems and scale. Section 3 below
+records the older reconciliation and is kept as history.
+
+Same day: case studies left the home page for `/blog`, alongside future
+articles. One file per post under `src/content/blog/`, auto-discovered by
+`scripts/gen-blog-index.js`, contract in `docs/BLOG.md`. Home page and header
+updated; routing is the hand-rolled `src/router/Router.js`.
+
 Status: implemented 2026-10-05, one commit. Decisions: RTO figure is
 30-minute, four case studies (Aurora and triage platform both), enrichment
 conservative (no "solo in 12 weeks", no "first shipping step merged"
@@ -40,8 +53,11 @@ Canonical inputs: `CONTEXT.md`, `CONTENT.md`, CV repo at
 
 - No framework migration. The site stays on `react-scripts` (CRA). A Vite move is
   a possible later follow-up only if a measured benefit justifies it.
-- No trend sections: no blogs, talks, podcast, twitter timeline, achievements,
-  open-source grid, "Ask AI". All are already `display: false`.
+- No trend sections: no talks, podcast, twitter timeline, achievements,
+  open-source grid, "Ask AI". All are already `display: false`. Blogs are in
+  scope from 2026-10-08: one `/blog` stream holding the case studies plus
+  future notes, authored one file at a time under `src/content/blog/`
+  (contract: `docs/BLOG.md`).
 - No generic terminal or dashboard decoration. No Lottie. No badges from
   third parties. No cityscapes or desk illustrations.
 - No claims about performance problems until measured (section 6).
@@ -78,30 +94,31 @@ Conflicts found in the CV branches, resolved by canonical rules:
 
 ## 4. Information architecture
 
-One page, anchor nav. Order:
+Home page with anchor nav, plus two routes off it. Home order:
 
-1. **Header.** Name, anchor links, dark mode toggle. No hamburger maze on
-   desktop.
+1. **Header.** Name, section links, a Blog link to `/blog`, dark mode toggle.
+   No hamburger maze on desktop.
 2. **Hero.** Canonical `greeting.title` and `subTitle` from CONTENT.md, resume
    button, contact button, social row. Text only. The Lottie person goes.
-3. **Case studies** (new, the core of the refresh). Three cases, each with:
-   - a real system diagram, hand-authored inline SVG, styled like an engineering
-     doc (boxes, arrows, small mono labels, measured numbers as annotations);
-   - a short narrative in a fixed shape: Situation, Decision, Trade-off, Outcome.
-     Borrowed from hassanrazanini.com, where the trade-off honesty is the
-     clearest seniority signal among the references;
-   - only verified facts from the CV branches (section 3 and the table in
-     section 8 of this spec).
-4. **Career history.** The existing vertical timeline, kept. OTGS bullets
+3. **Career history.** The existing vertical timeline, kept. OTGS bullets
    resolved per section 3. Durations, locations, tags and the "Show N more"
    toggle stay.
-5. **Products I helped build.** The four cards, copy unchanged.
-6. **What I do.** Skills copy and icon subset unchanged.
-7. **Education.** One entry, unchanged.
-8. **Contact.** Canonical copy, email, timezone.
-9. **Footer.** Theme credit, one small line.
+4. **Products I helped build.** The four cards, copy unchanged.
+5. **What I do.** Skills copy and icon subset unchanged.
+6. **Education.** One entry, unchanged.
+7. **Contact.** Canonical copy, email, timezone.
+8. **Footer.** Theme credit, one small line.
 
-The three case studies:
+`/blog` lists every post: date, kind, title, lede, tags, newest first.
+`/blog/<slug>` renders one post, case studies as a diagram plus Situation /
+Decision / Trade-off / Outcome, notes as sections. Unknown paths render the
+not-found page. Routing is the hand-rolled history router in
+`src/router/Router.js`, because three routes do not justify a dependency.
+
+Case studies came off the home page on 2026-10-08 and now live as posts in
+`src/content/blog/`. The four of them are described below, unchanged.
+
+The four case studies:
 
 **A. Draining, not stopping.** The move off a single EC2 host onto ECS Fargate,
 and the queue-depth autoscaler on Lambda that drains workers instead of stopping
@@ -167,8 +184,10 @@ Reference lessons applied, one line each:
 
 Content:
 
-- Every number on the page traces to a CV branch. The bullet-level trace table
-  lives in this spec (section 8) and stays true through review.
+- Every number on the page traces to a CV branch, to CV history before
+  2026-10-08, or to the source column in the fact-trace table (section 8).
+  The four case studies keep numbers the CV retired on 2026-10-06 by
+  explicit decision. The bullet-level trace table stays true through review.
 - All copy obeys CONTENT.md tone rules: past tense, no em dashes, no template
   voice, no emoji in prose, no self-assessment percentages.
 - Names, titles, dates exactly per CONTENT.md section 1.
@@ -213,6 +232,10 @@ No commits unless asked. Deploy stays manual (`gh-pages`) and out of scope
 unless requested.
 
 ## 8. Fact trace (case studies and OTGS bullets)
+
+Every row below predates the 2026-10-08 CV alignment and none of them are in
+the current `experience.tex`. They stay on the site by the decision recorded
+in section 6; `Source branch` names where they were last verified.
 
 | Fact | Source branch |
 |---|---|

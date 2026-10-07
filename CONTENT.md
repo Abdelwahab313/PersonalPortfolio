@@ -4,10 +4,10 @@ Single source for what the site says and how it says it. The CV is the source of
 facts; this file is the source of truth for site wording. When the two disagree, fix the CV
 first, then this file, then `src/portfolio.js` and `public/index.html`.
 
-CV source: `~/projects/playground/Awesome-CV`, branch `cv/post-ptc`, files under
-`examples/resume/`. Built PDF: `examples/resume.pdf`.
+CV source: `~/projects/playground/Awesome-CV`, branch `cv/automattic-experienced-swe`, files under
+`examples/resume/`. Built with LuaLaTeX via `make resume.pdf`. Built PDF: `examples/resume.pdf`.
 
-Last aligned: 2026-10-05.
+Last aligned: 2026-10-08.
 
 ---
 
@@ -19,7 +19,7 @@ or titles.
 | Field | Value |
 |---|---|
 | Name | Abdelwahab Mahmoud |
-| Title | Senior Software Engineer · Backend & Platform |
+| Title | Senior Software Engineer · Full-stack & Platform |
 | Location | Cairo, Egypt (UTC+3) |
 | Email | abdelwahabahmed93@gmail.com |
 | Phone | +20 114 778 4094 |
@@ -33,29 +33,32 @@ or titles.
 
 | Company | Location | Title | Dates |
 |---|---|---|---|
-| OnTheGoSystems | Remote (Hong Kong) | Senior Software Engineer | Dec 2024 – Sep 2026 |
+| OnTheGoSystems (WPML — WordPress plugins) | Remote (Hong Kong) | Senior Software Engineer | Dec 2024 – Present |
 | Dailymealz | Riyadh, Saudi Arabia | Senior Software Engineer | Dec 2021 – Dec 2024 |
 | Nformacy | Cairo, Egypt | Full-Stack Developer | Oct 2020 – Dec 2021 |
-| DevSquads | Cairo, Egypt | Software Engineer | Aug 2018 – Oct 2020 |
-| Fikr Labs | Cairo, Egypt | Software Engineer | Jan 2018 – Aug 2018 |
+| DevSquads (formerly Fikr Labs) | Cairo, Egypt | Software Engineer | Jan 2018 – Oct 2020 |
 
-No job is current. Every entry is past tense.
+Four entries, not five. OnTheGoSystems is current; every earlier entry is past tense.
 
 ### Skills (same rows as the CV)
 
 | Row | Skills |
 |---|---|
-| Languages | Ruby, JavaScript, TypeScript, Python, PHP, Java |
-| Backend | Ruby on Rails, Node.js, FastAPI, Delayed Job, REST APIs, Laravel, Java Spring |
-| Frontend | React, Next.js, Redux, Hotwire (Turbo & Stimulus), React Native, Tailwind CSS |
-| AI & LLM | AWS Bedrock, OpenAI, Gemini, Claude Agent SDK, MCP, prompt versioning, evaluation harnesses |
-| Cloud & Infrastructure | AWS (ECS Fargate, Lambda, Step Functions, CloudWatch, S3, IAM), Terraform, Docker, GitLab CI |
-| Databases | MySQL, Aurora, PostgreSQL, DynamoDB, Redis |
-| Testing | RSpec, Capybara, Playwright, Cypress, Jest, VCR |
+| Languages | PHP, TypeScript, JavaScript, Go, Ruby, Java (Spring), Python, SQL |
+| Backend | Ruby on Rails, Node.js, REST API design, service-oriented architecture, SQS, Kafka |
+| Frontend | Next.js, React, Redux, Hotwire (Turbo & Stimulus), React Native, Tailwind CSS |
+| AI & LLM | AWS Bedrock, OpenAI, Gemini, agentic workflows, Claude Agent SDK, MCP, Langfuse, evals |
+| Cloud & Infrastructure | AWS (ECS Fargate, Lambda, SQS, Step Functions, CloudWatch, S3, IAM), Kubernetes, Terraform, Docker, GitHub Actions, GitLab CI |
+| Observability | Datadog, OpenTelemetry, AWS CloudWatch, Langfuse tracing |
+| Databases | PostgreSQL, MySQL, Aurora, Redis, DynamoDB, ClickHouse |
+| Testing | TDD, Spec-driven development, RSpec, Capybara, Playwright, Cypress, Jest, VCR |
+| WordPress & Compatibility | WPML ecosystem, plugin update safety, backwards compatibility, i18n |
+| Spoken Languages | English, Arabic (native) |
 
 Site skill icons are a subset of this table, in this order: Ruby on Rails, AWS, Terraform,
 Docker, MySQL, PostgreSQL, Redis, Python, React, JavaScript, React Native, Node.js. Anything
-not in the table above does not get an icon (drops Laravel, Firebase, html-5, css3, sass).
+not in the table above does not get an icon (drops Kubernetes, GitHub Actions, ClickHouse,
+Laravel, Firebase, html-5, css3, sass).
 
 ---
 
@@ -67,18 +70,20 @@ frontend last.
 
 Rules, in priority order:
 
-1. **Past tense for every job.** None is current.
+1. **Past tense for every job.** OnTheGoSystems is current, so its present-tense bullets stay
+   present. Every earlier entry is past tense.
 2. **Concrete over abstract.** A bullet names a system, a change, and why. "Built full-stack
    features across the translation pipeline" says nothing. "Moved the product off a single EC2
    host onto ECS Fargate" says something.
-3. **Numbers only when defensible in an interview.** Odd, specific numbers (7.33M rows, 1,013
-   calls, 7 milliseconds) are fine. Round percentages with no source ("30% faster") are not.
+3. **Every number comes from the CV.** The CV is the defensible set. Do not add a number it does
+   not carry, and do not restate a CV number at a different precision.
 4. **No template voice.** Banned: "cool stuff", "like a pro", "whipping up", "slick",
    "silky-smooth", "crush goals", "all the things", "leveling up", "tech tricks", "love affair",
    "I'm that guy". No exclamation marks.
 5. **No emoji in prose.** Emoji may remain only where the template uses them as icons
    (section headings), not inside sentences.
-6. **No em dashes.** Use a full stop or a comma.
+6. **No em dashes in site prose.** Use a full stop or a comma. Company and product names taken
+   verbatim from the CV are exempt (for example `OnTheGoSystems (WPML — WordPress plugins)`).
 7. **No self-assessment numbers.** Proficiency bars off (`viewSkillBars: false`).
 8. **One sentence on availability**, in the hero. Location, timezone, what roles.
 9. **No filler lines.** The Geophysics "leveraged strong analytical skills" sentence goes.
@@ -97,14 +102,15 @@ Title: `Hi, I'm Abdelwahab`
 
 Subtitle:
 
-> Senior software engineer, eight years in. I write the feature and then own the platform
-> under it. The last two years went to a Rails translation product: its LLM engine layer, its
-> move onto ECS Fargate, and the credits that meter it. I am usually the one who finds out why
-> production broke. Cairo, UTC+3. Open to remote senior backend, platform and AI-platform roles.
+> Senior software engineer, eight years in. I build production AWS systems and own them from
+> architecture through deployment to reliability: Node.js and TypeScript services, a delivery
+> platform serving 100K daily users, and WPML's LLM translation and agent platform on 1.5M+
+> WordPress sites. I am usually the one who finds out why production broke. Cairo, UTC+3. Open
+> to remote senior backend, platform and AI-platform roles.
 
 ### Meta (`public/index.html` title, description, og, twitter)
 
-Title: `Abdelwahab Mahmoud | Senior Software Engineer, Backend & Platform`
+Title: `Abdelwahab Mahmoud | Senior Software Engineer, Full-stack & Platform`
 
 Description:
 
@@ -132,33 +138,38 @@ Bullets (replace all six):
 
 ### Work experience (`workExperiences.experience`)
 
-**OnTheGoSystems**, Senior Software Engineer, December 2024 – September 2026
+**OnTheGoSystems (WPML — WordPress plugins)**, Senior Software Engineer, December 2024 – Present
 
 > I worked on Private Translation Cloud (PTC), an AI translation platform from the team behind
 > WPML, the multilingual plugin that powers over a million WordPress sites. Product work in
 > Rails and React, and the AWS platform underneath it.
 
-- Built the Rails translation engine across Claude on Bedrock, OpenAI and Gemini: ordered fallback chains when a provider fails, JSON repair, Langfuse tracing, and rate-limit retries for the errors behind 65% of review failures.
-- Moved the product off a single EC2 host onto ECS Fargate, then owned that platform and its Terraform for 16 months, running the worker fleet 90% on Spot.
-- Replaced ECS autoscaling with a queue-depth autoscaler on Lambda that drains workers instead of stopping them, because scale-in kills tasks abruptly and these jobs run from 30 seconds to 2 hours.
-- Owned credits and billing correctness for a metered LLM product, found the 7 millisecond check-then-act race that had been silently pausing work, and replaced the scattered credit checks with one authorization architecture, written up across four ADRs.
-- Traced Aurora at 100% CPU to a status broadcast whose query plan examined 7.33M rows per call, dropped the join and throttled the caller from 1,013 calls to about 100.
-- Shipped an agent-driven triage platform for production exceptions, with the pass and fail call in code rather than the prompt. Replayed on past incidents, it caught three false passes.
-- Wrote the ISO 27001 audit checklist and the risk profiles behind it, then built the disaster recovery and data loss prevention programs to a documented 30-minute RTO and 15-minute RPO.
+- Built the multi-provider translation LLM engine behind WPML (Bedrock, OpenAI, Gemini): fallback chains, JSON repair and rate-limit retries keep translations flowing when a provider degrades.
+- Built the guardrails agents run behind: an MCP server exposing live databases, logs and selected APIs through authenticated, monitored access, adopted as the team's standard agent integration path.
+- Owned credits and billing correctness for a metered LLM product; one authorization architecture to replace scattered permission checks.
+- Own an agentic triage platform that handles first-line incident and support inquiries, cutting Mean Time To Resolve.
+- Cleared Aurora MySQL's worst-query backlog query by query: rewritten plans, covering indexes and restructured hot reads, until CPU pressure stopped turning into incidents.
+- Replaced ECS autoscaling with a queue-depth Lambda autoscaler that drains long-running jobs instead of killing them.
+- Owned the GitLab CI/CD pipelines: build, e2e test, SAST and deploy gates for every service in the product.
+- Kept plugin APIs backwards compatible across releases with deprecation paths and contract tests.
+- Migrated the product onto AWS ECS Fargate running Docker containers, and own the platform and its Terraform.
 
-Source: bullets 1, 2, 4 (in part), 5 and 6 follow `cv/post-ptc` enriched with the
-2026-10-05 CV branch (`cv/procore-senior-backend-cairo`); the 12,500-job
-capacity study bullet is dropped (in no current CV branch); the ISO 27001 bullet
-uses the 30-minute RTO figure from the 2026-10-05 branch. "Solo in 12 weeks"
-and "first shipping step merged" stay off the site by decision.
+Source: all nine bullets follow `examples/resume/experience.tex` on
+`cv/automattic-experienced-swe` (aligned 2026-10-08). Bullets 4 and 9 stay present tense
+because the job is current.
 
 **Dailymealz**, Senior Software Engineer, December 2021 – December 2024
 
-> Built and scaled a meal subscription platform serving customers across Saudi Arabia.
+> Built and scaled a meal subscription platform serving customers across Saudi Arabia, with a
+> React Native driver app and the Node.js services behind it.
 
-- Led a team of five on the driver app's background location check-in system (React Native, Node.js).
-- Built the App Center pipeline for store deployment and internal testing.
-- Added Datadog and OpenTelemetry monitors on the main flows, and automated CI/CD and infrastructure on Docker and AWS.
+- Built the real-time order service behind a 100,000 daily-user delivery product: kitchen, driver and delivery status pushed to mobile and web clients over Node.js and Socket.IO.
+- Cut Mean Time To Resolve by 30% by instrumenting order, driver and kitchen flows with Datadog and OpenTelemetry.
+- Decomposed the fulfillment component out of the PHP/Laravel monolith into a standalone service in a distributed event-driven architecture, passing state changes over AWS SQS behind a REST API contract.
+- Chose incremental extraction over a full event-driven rewrite, because a team of six could not freeze features for months to run two partially consistent systems.
+- Served hot order state from Redis in a write-behind cache pattern with MySQL behind it, keeping status fan-out off the transactional path.
+- Migrated the real-time order service from JavaScript to TypeScript so event and message payload mismatches fail at compile time, not at runtime in front of customers.
+- Led a team of five building a driver location check-in system: planning, reviews and pairing across the driver app.
 
 **Nformacy**, Full-Stack Developer, October 2020 – December 2021
 
@@ -166,16 +177,22 @@ and "first shipping step merged" stay off the site by decision.
 > need their expertise. Full-stack work in React and Ruby on Rails, from the first MVP to the
 > beta launch, plus the cloud infrastructure and deploy pipelines.
 
-**DevSquads**, Software Engineer, August 2018 – October 2020
+- Led full-stack features from requirements to deployment, and moved the web apps to a SaaS model.
+- Built mentor calendar booking with Zoom, ClickUp and calendar integrations.
+- Wrote BDD tests and managed CI/CD pipelines.
 
-> Worked at an agile consultancy that takes XP seriously: TDD, pair programming and continuous
-> delivery. Delivered products for international clients, including Shapa, a US health tech
-> platform (React, React Native, Node.js, Java Spring).
+**DevSquads (formerly Fikr Labs)**, Software Engineer, January 2018 – October 2020
 
-**Fikr Labs**, Software Engineer, January 2018 – August 2018
+> My first job in tech, at a Cairo venture studio that became DevSquads, an agile consultancy
+> that takes XP seriously: TDD, pair programming and continuous delivery. Delivered products for
+> international clients, including Shapa, a US health tech platform (React, React Native, Node.js,
+> Java Spring).
 
-> My first job in tech. Built web apps for early stage products at a Cairo based venture studio
-> and learned how to ship thin vertical slices with tests.
+- Built software in self-organizing Extreme Programming teams with TDD, thin vertical slices and test-covered refactoring of legacy code, across React Native, Ruby on Rails, Java Spring and React.
+- Mentored teams adopting XP and Agile practices: pairing, code review discipline and iterative planning.
+
+Four entries. The old separate Fikr Labs entry is gone: Fikr Labs is the earlier name inside
+the DevSquads entry, exactly as the CV states it.
 
 #### Timeline metadata (`duration`, `location`, `tags` on each entry)
 
@@ -186,126 +203,38 @@ entry's own description or bullets.
 
 | Company | duration | location | tags |
 |---|---|---|---|
-| OnTheGoSystems | 1 yr 9 mo | Remote | Ruby on Rails, React, ECS Fargate, Lambda, Terraform, Aurora, Bedrock |
-| Dailymealz | 3 yrs | Riyadh | React Native, Node.js, Docker, AWS, Datadog |
+| OnTheGoSystems (WPML — WordPress plugins) | 1 yr 10 mo | Remote (Hong Kong) | Ruby on Rails, React, ECS Fargate, Lambda, Terraform, Aurora, Bedrock |
+| Dailymealz | 3 yrs | Riyadh | React Native, Node.js, AWS, Datadog, Redis |
 | Nformacy | 1 yr 2 mo | Cairo | React, Ruby on Rails |
-| DevSquads | 2 yrs 2 mo | Cairo | React, React Native, Node.js, Java Spring, TDD |
-| Fikr Labs | 7 mo | Cairo | none |
+| DevSquads (formerly Fikr Labs) | 2 yrs 9 mo | Cairo | React, React Native, Node.js, Java Spring, TDD |
 
-Entries with more than three bullets show three and a "Show N more" toggle.
+`duration` for OnTheGoSystems counts from December 2024 to the current month, so recompute it
+whenever this file is updated. Entries with more than three bullets show three and a
+"Show N more" toggle.
 
-### Case studies (`caseStudies`, new section)
+### Blog posts (`src/content/blog/`, replaces the old `caseStudies` section)
 
-Title: `Case studies`
+Case-study copy no longer lives in `portfolio.js` or in this file. Each post is exactly one
+file in `src/content/blog/{slug}.js`, discovered automatically by
+`scripts/gen-blog-index.js`. Never edit a registry.
+
+Authoring contract, field table and copy-paste template: `docs/BLOG.md`. Tone rules still
+come from section 2 above.
+
+Index page (`/blog`) chrome, owned by `src/containers/blog/BlogIndex.js`:
+
+Title: `Blog`
 
 Subtitle:
 
-> Four systems from the last two years. What was there, what I decided, what it
-> cost, and what changed.
+> Four systems from the last two years, plus whatever comes next. What was there, what
+> I decided, what it cost, and what changed.
 
-Each case has a system diagram, four labeled parts (Situation, Decision,
-Trade-off, Outcome) and, where public, a product link. Paste-ready parts below.
+The four migrated case studies keep their copy verbatim from the 2026-10-05 refresh:
+`fargate` (Draining, not stopping), `engine` (One engine, three providers), `aurora`
+(7.33M rows per call), `triage` (The verdict lives in code, not the prompt).
 
-**Draining, not stopping** (diagram: queue, autoscaler loop, worker fleet)
-
-Situation:
-
-> The product ran on a single EC2 host. Translation jobs run from 30 seconds to
-> 2 hours, and ECS scale-in kills tasks abruptly, so a naive autoscaler can
-> throw away up to two hours of work per worker.
-
-Decision:
-
-> Move onto ECS Fargate, and replace ECS autoscaling with a queue-depth
-> autoscaler on Lambda that tells workers to drain before they stop.
-
-Trade-off:
-
-> Draining costs a few idle minutes per shutdown. Stopping costs the whole job,
-> because a killed job re-runs from the start. For jobs this long, draining wins.
-
-Outcome:
-
-> I owned that platform and its Terraform for 16 months, and ran the worker
-> fleet 90% on Spot.
-
-**One engine, three providers** (diagram: request, engine, ordered provider
-chain, metering)
-
-Situation:
-
-> A metered LLM product behind one provider is at that provider's mercy. Rate
-> limit errors were responsible for 65% of review failures.
-
-Decision:
-
-> A provider-agnostic engine layer over Claude on Bedrock, OpenAI and Gemini,
-> with ordered fallback chains. Rate limits are treated as reschedules, not
-> failures. Responses get JSON repair before anything downstream sees them, and
-> Langfuse traces every hop.
-
-Trade-off:
-
-> The abstraction means no provider's unique features come for free, and cost
-> varies by which branch of the chain runs. In exchange, a provider outage
-> stops being our outage.
-
-Outcome:
-
-> I owned credits and billing correctness on top of the engine, found a 7
-> millisecond check-then-act race that had been silently pausing work, and
-> replaced the scattered credit checks with one authorization architecture,
-> written up across four ADRs.
-
-**7.33M rows per call** (diagram: status broadcast, client fan-out, database)
-
-Situation:
-
-> Aurora hit 100% CPU. The suspect was a status broadcast that pushes state to
-> clients, called 1,013 times.
-
-Decision:
-
-> Read the plan before touching the query. It examined 7.33M rows per call,
-> which is a scan, not a lookup. Drop the join rather than tune it, and throttle
-> the caller.
-
-Trade-off:
-
-> The throttle means some clients see state less often than they did. The
-> instance staying up is worth more than broadcast freshness.
-
-Outcome:
-
-> CPU back to baseline, the caller down from 1,013 calls to about 100.
-
-**The verdict lives in code, not the prompt** (diagram: exceptions, triage
-agents, verdict gate, audit log)
-
-Situation:
-
-> Production exceptions needed triage before a human looked at them. An agent
-> that only explains an incident is easy to trust and easy to fool.
-
-Decision:
-
-> An agent-driven triage platform where the pass and fail call lives in code,
-> not in the prompt. Agents run behind production tooling: read-only data access
-> with a rollback wrapper, an audit log, and a human-only write gate.
-
-Trade-off:
-
-> Code verdicts mean maintaining a test harness instead of a clever prompt.
-> Deterministic checks are worth that maintenance, because a false pass is
-> worse than no answer.
-
-Outcome:
-
-> Replayed on past incidents, it caught three false passes. It now also
-> adjudicates support claims.
-
-Numbers in this section trace to the CV branches as recorded in SPEC.md
-section 8.
+Numbers in those four trace to pre-2026-10-08 CV history; see SPEC.md section 8.
 
 ### Big projects (`bigProjects.title`, `bigProjects.subtitle`, `bigProjects.projects`)
 
@@ -322,7 +251,7 @@ Other three cards unchanged except names per section 1.
 
 ### Education (`educationInfo.schools[0]`)
 
-subHeader: `BSc in Geophysics`. duration: `2012 – 2016`. desc: empty.
+subHeader: `BSc in Geophysics`. duration: `Sep 2012 – Jun 2016`. desc: empty.
 
 ### Contact (`contactInfo.title`, `contactInfo.subtitle`, `contactInfo.email_address`)
 
@@ -346,7 +275,7 @@ Where each fact lives, so an edit in one place is mirrored in the others.
 
 | Fact | CV (`examples/resume/`) | Site |
 |---|---|---|
-| Title line | `../resume.tex` position field | `greeting.subTitle`, meta description |
+| Title line | `../resume.tex` position field | `greeting.subTitle`, meta description, `CONTEXT.md` Positioning |
 | Summary | `summary.tex` | `greeting.subTitle` |
 | Jobs, titles, dates | `experience.tex` | `workExperiences.experience[]` |
 | OTGS bullets | `experience.tex` first `cventry` | `workExperiences.experience[0].descBullets` |
@@ -354,25 +283,29 @@ Where each fact lives, so an edit in one place is mirrored in the others.
 | Email, phone | `../resume.tex` header | `socialMediaLinks.gmail`, `contactInfo` |
 | Education | `education.tex` | `educationInfo` |
 | Years figure | `summary.tex` | `greeting.subTitle`, `CONTEXT.md` Positioning |
+| Case-study and note copy | pre-2026-10-08 CV branches (SPEC.md section 8) | `src/content/blog/{slug}.js` |
 
 Resume button (`greeting.resumeLink`) points at `/resume.pdf`, which is `public/resume.pdf`
 in this repo and ships with every build as `https://abdelwahab.dev/resume.pdf`. On every CV
 build, copy `examples/resume.pdf` from the CV repo over `public/resume.pdf` and redeploy.
+Build the CV with `make resume.pdf` (LuaLaTeX), then re-run the extraction assertions in
+SPEC.md section 7 before shipping.
 
 ---
 
-## 5. Open items against the live site (2026-10-05)
+## 5. Open items against the live site (2026-10-08)
 
-- `og:image` added with the 2026-10-05 refresh (typographic, identity palette;
-  see SPEC.md).
-- OTGS bullets discrepancy (capacity study vs ISO 27001) resolved 2026-10-05:
-  capacity study bullet dropped, Aurora bullet kept, ISO 27001 bullet added with
-  the 30-minute RTO figure. Mirrored above.
+- 2026-10-08 alignment: CV branch `cv/automattic-experienced-swe` @ `a0103b9` is the source
+  of truth. Positioning is now `Full-stack & Platform`; OTGS is current (`Dec 2024 – Present`);
+  there are four entries, not five; skills are ten rows; the summary leads with AWS production
+  systems and scale. Everything above mirrors it.
+- The 2026-10-05 case-study numbers (65%, 16 months, 90% Spot, 7.33M, 1,013, 7 ms, four ADRs,
+  ISO 27001) were retired from the CV on 2026-10-06. The four case studies keep them by
+  decision; see SPEC.md section 6 and section 8.
+- Case studies moved off the homepage into `/blog` on 2026-10-08, alongside future articles.
+  Authoring contract: `docs/BLOG.md`.
+- `public/resume.pdf` resynced 2026-10-08 (`d875cdf9`, CV `a0103b9`).
 - Nformacy product link is `https://nformacy.com/` (the old
   `https://beta.nformacy.com/` origin is down, returns 522).
-- `public/resume.pdf` was rebuilt 2026-10-05 from `cv/post-ptc` with the same
-  resolved OTGS bullet set, so PDF and site copy agree. Committed to the CV
-  repo as `f08eb3a` on `cv/post-ptc`.
-- The 2026-10-05 refresh adds the Case studies section and a visual identity
-  rework (ink on paper, one accent, system diagrams). SPEC.md records the
-  decisions.
+- The 2026-10-05 refresh added the visual identity rework (ink on paper, one accent, system
+  diagrams). SPEC.md records those decisions.

@@ -8,7 +8,7 @@ const greeting = {
   username: "Abdelwahab",
   title: "Hi, I'm Abdelwahab",
   subTitle:
-    "Senior software engineer, eight years in. I write the feature and then own the platform under it. The last two years went to a Rails translation product: its LLM engine layer, its move onto ECS Fargate, and the credits that meter it. I am usually the one who finds out why production broke. Cairo, UTC+3. Open to remote senior backend, platform and AI-platform roles.",
+    "Senior software engineer, eight years in. I build production AWS systems and own them from architecture through deployment to reliability: Node.js and TypeScript services, a delivery platform serving 100K daily users, and WPML's LLM translation and agent platform on 1.5M+ WordPress sites. I am usually the one who finds out why production broke. Cairo, UTC+3. Open to remote senior backend, platform and AI-platform roles.",
   resumeLink: "/resume.pdf", // Set to empty to hide the button
   displayGreeting: true // Set false to hide this section, defaults to true
 };
@@ -145,13 +145,13 @@ const workExperiences = {
   experience: [
     {
       role: "Senior Software Engineer",
-      company: "OnTheGoSystems",
+      company: "OnTheGoSystems (WPML — WordPress plugins)",
       companylogo: require("./assets/images/otgsLogo.png"),
       logoWidth: 180,
       logoHeight: 180,
-      date: "December 2024 – September 2026",
-      duration: "1 yr 9 mo",
-      location: "Remote",
+      date: "December 2024 – Present",
+      duration: "1 yr 10 mo",
+      location: "Remote (Hong Kong)",
       tags: [
         "Ruby on Rails",
         "React",
@@ -163,13 +163,15 @@ const workExperiences = {
       ],
       desc: "I worked on Private Translation Cloud (PTC), an AI translation platform from the team behind WPML, the multilingual plugin that powers over a million WordPress sites. Product work in Rails and React, and the AWS platform underneath it.",
       descBullets: [
-        "Built the Rails translation engine across Claude on Bedrock, OpenAI and Gemini: ordered fallback chains when a provider fails, JSON repair, Langfuse tracing, and rate-limit retries for the errors behind 65% of review failures.",
-        "Moved the product off a single EC2 host onto ECS Fargate, then owned that platform and its Terraform for 16 months, running the worker fleet 90% on Spot.",
-        "Replaced ECS autoscaling with a queue-depth autoscaler on Lambda that drains workers instead of stopping them, because scale-in kills tasks abruptly and these jobs run from 30 seconds to 2 hours.",
-        "Owned credits and billing correctness for a metered LLM product, found the 7 millisecond check-then-act race that had been silently pausing work, and replaced the scattered credit checks with one authorization architecture, written up across four ADRs.",
-        "Traced Aurora at 100% CPU to a status broadcast whose query plan examined 7.33M rows per call, dropped the join and throttled the caller from 1,013 calls to about 100.",
-        "Shipped an agent-driven triage platform for production exceptions, with the pass and fail call in code rather than the prompt. Replayed on past incidents, it caught three false passes.",
-        "Wrote the ISO 27001 audit checklist and the risk profiles behind it, then built the disaster recovery and data loss prevention programs to a documented 30-minute RTO and 15-minute RPO."
+        "Built the multi-provider translation LLM engine behind WPML (Bedrock, OpenAI, Gemini): fallback chains, JSON repair and rate-limit retries keep translations flowing when a provider degrades.",
+        "Built the guardrails agents run behind: an MCP server exposing live databases, logs and selected APIs through authenticated, monitored access, adopted as the team's standard agent integration path.",
+        "Owned credits and billing correctness for a metered LLM product; one authorization architecture to replace scattered permission checks.",
+        "Own an agentic triage platform that handles first-line incident and support inquiries, cutting Mean Time To Resolve.",
+        "Cleared Aurora MySQL's worst-query backlog query by query: rewritten plans, covering indexes and restructured hot reads, until CPU pressure stopped turning into incidents.",
+        "Replaced ECS autoscaling with a queue-depth Lambda autoscaler that drains long-running jobs instead of killing them.",
+        "Owned the GitLab CI/CD pipelines: build, e2e test, SAST and deploy gates for every service in the product.",
+        "Kept plugin APIs backwards compatible across releases with deprecation paths and contract tests.",
+        "Migrated the product onto AWS ECS Fargate running Docker containers, and own the platform and its Terraform."
       ]
     },
     {
@@ -181,12 +183,16 @@ const workExperiences = {
       date: "December 2021 – December 2024",
       duration: "3 yrs",
       location: "Riyadh",
-      tags: ["React Native", "Node.js", "Docker", "AWS", "Datadog"],
-      desc: "Built and scaled a meal subscription platform serving customers across Saudi Arabia.",
+      tags: ["React Native", "Node.js", "AWS", "Datadog", "Redis"],
+      desc: "Built and scaled a meal subscription platform serving customers across Saudi Arabia, with a React Native driver app and the Node.js services behind it.",
       descBullets: [
-        "Led a team of five on the driver app's background location check-in system (React Native, Node.js).",
-        "Built the App Center pipeline for store deployment and internal testing.",
-        "Added Datadog and OpenTelemetry monitors on the main flows, and automated CI/CD and infrastructure on Docker and AWS."
+        "Built the real-time order service behind a 100,000 daily-user delivery product: kitchen, driver and delivery status pushed to mobile and web clients over Node.js and Socket.IO.",
+        "Cut Mean Time To Resolve by 30% by instrumenting order, driver and kitchen flows with Datadog and OpenTelemetry.",
+        "Decomposed the fulfillment component out of the PHP/Laravel monolith into a standalone service in a distributed event-driven architecture, passing state changes over AWS SQS behind a REST API contract.",
+        "Chose incremental extraction over a full event-driven rewrite, because a team of six could not freeze features for months to run two partially consistent systems.",
+        "Served hot order state from Redis in a write-behind cache pattern with MySQL behind it, keeping status fan-out off the transactional path.",
+        "Migrated the real-time order service from JavaScript to TypeScript so event and message payload mismatches fail at compile time, not at runtime in front of customers.",
+        "Led a team of five building a driver location check-in system: planning, reviews and pairing across the driver app."
       ]
     },
     {
@@ -199,111 +205,33 @@ const workExperiences = {
       duration: "1 yr 2 mo",
       location: "Cairo",
       tags: ["React", "Ruby on Rails"],
-      desc: "Built Nformacy, a knowledge marketplace that connects business advisors with companies that need their expertise. Full-stack work in React and Ruby on Rails, from the first MVP to the beta launch, plus the cloud infrastructure and deploy pipelines."
+      desc: "Built Nformacy, a knowledge marketplace that connects business advisors with companies that need their expertise. Full-stack work in React and Ruby on Rails, from the first MVP to the beta launch, plus the cloud infrastructure and deploy pipelines.",
+      descBullets: [
+        "Led full-stack features from requirements to deployment, and moved the web apps to a SaaS model.",
+        "Built mentor calendar booking with Zoom, ClickUp and calendar integrations.",
+        "Wrote BDD tests and managed CI/CD pipelines."
+      ]
     },
     {
       role: "Software Engineer",
-      company: "DevSquads",
+      company: "DevSquads (formerly Fikr Labs)",
       companylogo: require("./assets/images/devsquads.webp"),
       logoWidth: 170,
       logoHeight: 170,
-      date: "August 2018 – October 2020",
-      duration: "2 yrs 2 mo",
+      date: "January 2018 – October 2020",
+      duration: "2 yrs 9 mo",
       location: "Cairo",
       tags: ["React", "React Native", "Node.js", "Java Spring", "TDD"],
-      desc: "Worked at an agile consultancy that takes XP seriously: TDD, pair programming and continuous delivery. Delivered products for international clients, including Shapa, a US health tech platform (React, React Native, Node.js, Java Spring)."
-    },
-    {
-      role: "Software Engineer",
-      company: "Fikr Labs",
-      companylogo: require("./assets/images/fikrlabs.jpeg"),
-      logoWidth: 280,
-      logoHeight: 280,
-      date: "January 2018 – August 2018",
-      duration: "7 mo",
-      location: "Cairo",
-      desc: "My first job in tech. Built web apps for early stage products at a Cairo based venture studio and learned how to ship thin vertical slices with tests."
+      desc: "My first job in tech, at a Cairo venture studio that became DevSquads, an agile consultancy that takes XP seriously: TDD, pair programming and continuous delivery. Delivered products for international clients, including Shapa, a US health tech platform (React, React Native, Node.js, Java Spring).",
+      descBullets: [
+        "Built software in self-organizing Extreme Programming teams with TDD, thin vertical slices and test-covered refactoring of legacy code, across React Native, Ruby on Rails, Java Spring and React.",
+        "Mentored teams adopting XP and Agile practices: pairing, code review discipline and iterative planning."
+      ]
     }
   ]
 };
 
-// Case studies section
-
-const caseStudies = {
-  title: "Case studies",
-  subtitle:
-    "Four systems from the last two years. What was there, what I decided, what it cost, and what changed.",
-  cases: [
-    {
-      id: "fargate",
-      title: "Draining, not stopping",
-      product: "Private Translation Cloud",
-      link: "https://ptc.wpml.org/",
-      diagram: "fargate",
-      diagramCaption:
-        "Queue depth drives the autoscaler. Workers drain, then stop.",
-      situation:
-        "The product ran on a single EC2 host. Translation jobs run from 30 seconds to 2 hours, and ECS scale-in kills tasks abruptly, so a naive autoscaler can throw away up to two hours of work per worker.",
-      decision:
-        "Move onto ECS Fargate, and replace ECS autoscaling with a queue-depth autoscaler on Lambda that tells workers to drain before they stop.",
-      tradeoff:
-        "Draining costs a few idle minutes per shutdown. Stopping costs the whole job, because a killed job re-runs from the start. For jobs this long, draining wins.",
-      outcome:
-        "I owned that platform and its Terraform for 16 months, and ran the worker fleet 90% on Spot."
-    },
-    {
-      id: "engine",
-      title: "One engine, three providers",
-      product: "Private Translation Cloud",
-      link: "https://ptc.wpml.org/",
-      diagram: "engine",
-      diagramCaption:
-        "One request path through the engine, ordered providers with fallback, credits metered on the side.",
-      situation:
-        "A metered LLM product behind one provider is at that provider's mercy. Rate limit errors were responsible for 65% of review failures.",
-      decision:
-        "A provider-agnostic engine layer over Claude on Bedrock, OpenAI and Gemini, with ordered fallback chains. Rate limits are treated as reschedules, not failures. Responses get JSON repair before anything downstream sees them, and Langfuse traces every hop.",
-      tradeoff:
-        "The abstraction means no provider's unique features come for free, and cost varies by which branch of the chain runs. In exchange, a provider outage stops being our outage.",
-      outcome:
-        "I owned credits and billing correctness on top of the engine, found a 7 millisecond check-then-act race that had been silently pausing work, and replaced the scattered credit checks with one authorization architecture, written up across four ADRs."
-    },
-    {
-      id: "aurora",
-      title: "7.33M rows per call",
-      product: "Private Translation Cloud",
-      link: "https://ptc.wpml.org/",
-      diagram: "aurora",
-      diagramCaption:
-        "One broadcast, many clients, one query plan doing the damage.",
-      situation:
-        "Aurora hit 100% CPU. The suspect was a status broadcast that pushes state to clients, called 1,013 times.",
-      decision:
-        "Read the plan before touching the query. It examined 7.33M rows per call, which is a scan, not a lookup. Drop the join rather than tune it, and throttle the caller.",
-      tradeoff:
-        "The throttle means some clients see state less often than they did. The instance staying up is worth more than broadcast freshness.",
-      outcome:
-        "CPU back to baseline, the caller down from 1,013 calls to about 100."
-    },
-    {
-      id: "triage",
-      title: "The verdict lives in code, not the prompt",
-      product: "Private Translation Cloud",
-      link: "https://ptc.wpml.org/",
-      diagram: "triage",
-      diagramCaption:
-        "Agents investigate inside guardrails. The verdict gate is code. Writes stay human.",
-      situation:
-        "Production exceptions needed triage before a human looked at them. An agent that only explains an incident is easy to trust and easy to fool.",
-      decision:
-        "An agent-driven triage platform where the pass and fail call lives in code, not in the prompt. Agents run behind production tooling: read-only data access with a rollback wrapper, an audit log, and a human-only write gate.",
-      tradeoff:
-        "Code verdicts mean maintaining a test harness instead of a clever prompt. Deterministic checks are worth that maintenance, because a false pass is worse than no answer.",
-      outcome:
-        "Replayed on past incidents, it caught three false passes. It now also adjudicates support claims."
-    }
-  ]
-};
+// Blog posts live in src/content/blog/ (see docs/BLOG.md). Nothing to register here.
 
 /* Your Open Source Section to View Your Github Pinned Projects
 To know how to get github key look at readme.md */
@@ -394,7 +322,6 @@ export {
   educationInfo,
   techStack,
   workExperiences,
-  caseStudies,
   openSource,
   bigProjects,
   contactInfo
