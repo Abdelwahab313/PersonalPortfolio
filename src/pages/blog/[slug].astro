@@ -1,0 +1,121 @@
+---
+import Base from "../../layouts/Base.astro";
+import Diagram from "../../components/Diagrams.jsx";
+import {getCollection} from "astro:content";
+
+export async function getStaticPaths() {
+  const posts = (
+    await getCollection("blog", ({data}) =>
+      import.meta.env.PROD ? data.status === "published" : true
+    )
+  ).sort(
+    (a, b) =>
+      b.data.date.valueOf() - a.data.date.valueOf() ||
+      a.data.order - b.data.order
+  );
+
+  return posts.map(post => ({params: {slug: post.id}, props: {post, posts}}));
+}
+
+const {post, posts} = Astro.props;
+const data = post.data;
+const date = data.date.toISOString().slice(0, 10);
+const KIND_LABEL = {"case-study": "Case study", note: "Note"};
+const CASE_PARTS = [
+  {key: "situation", label: "Situation"},
+  {key: "decision", label: "Decision"},
+  {key: "tradeoff", label: "Trade-off"},
+  {key: "outcome", label: "Outcome"}
+];
+
+const index = posts.findIndex(item => item.id === post.id);
+const previous = posts[index - 1];
+const next = posts[index + 1];
+
+const title = `${data.title} | Abdelwahab Mahmoud`;
+const description = data.lede;
+---
+
+<Base {title} {description}>
+  <article class="post">
+    <a class="post-back" href="/blog">← All posts</a>
+
+    <header class="post-head">
+      <div class="post-meta">
+        <time datetime={date}>{date}</time>
+        <span class="post-kind">{KIND_LABEL[data.kind]}</span>
+        {data.status === "draft" && <span class="post-draft">Draft</span>}
+      </div>
+      <h1 class="post-title">{data.title}</h1>
+      {
+        data.product && data.link && (
+          <a
+            class="post-product"
+            href={data.link}
+            target="_blank"
+            rel="noreferrer"
+          >
+            {data.product} ↗
+          </a>
+        )
+      }
+      <p class="post-lede">{data.lede}</p>
+      <ul class="post-tags">
+        {data.tags.map(tag => <li class="post-tag">{tag}</li>)}
+      </ul>
+    </header>
+
+    <div class="post-body">
+      {
+        data.kind === "case-study" ? (
+          <>
+            <figure class="case-figure">
+              {data.diagram && <Diagram name={data.diagram} />}
+              <figcaption class="case-figure-caption">
+                {data.diagramCaption}
+              </figcaption>
+            </figure>
+            <dl class="case-parts">
+              {CASE_PARTS.map(part => (
+                <div class="case-part">
+                  <dt class="case-part-label">{part.label}</dt>
+                  <dd class="case-part-text">{data[part.key]}</dd>
+                </div>
+              ))}
+            </dl>
+          </>
+        ) : (
+          <div class="post-body">
+            {data.sections.map(section => (
+              <section class="post-section">
+                <h2 class="post-section-title">{section.heading}</h2>
+                {section.paragraphs.map(paragraph => (
+                  <p>{paragraph}</p>
+                ))}
+              </section>
+            ))}
+          </div>
+        )
+      }
+    </div>
+
+    <nav class="post-nav">
+      {
+        previous ? (
+          <a class="post-nav-prev" href={`/blog/${previous.id}`} rel="prev">
+            ← {previous.data.title}
+          </a>
+        ) : (
+          <span />
+        )
+      }
+      {
+        next && (
+          <a class="post-nav-next" href={`/blog/${next.id}`} rel="next">
+            {next.data.title} →
+          </a>
+        )
+      }
+    </nav>
+  </article>
+</Base>

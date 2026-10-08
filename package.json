@@ -1,55 +1,33 @@
 {
-  "homepage": "https://abdelwahab.dev/",
-  "name": "developerfolio",
-  "version": "0.1.0",
+  "name": "portfolio",
+  "version": "2.0.0",
   "private": true,
+  "homepage": "https://abdelwahab.dev/",
+  "type": "module",
+  "scripts": {
+    "dev": "astro dev",
+    "prebuild": "astro sync",
+    "build": "astro build",
+    "preview": "astro preview",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist",
+    "format": "prettier --write \"./**/*.{js,jsx,ts,astro,css,json}\"",
+    "check-format": "prettier -c \"./**/*.{js,jsx,ts,astro,css,json}\""
+  },
   "dependencies": {
+    "@astrojs/react": "^4.2.0",
     "@fontsource/ibm-plex-mono": "^5.3.0",
     "@fontsource/ibm-plex-sans": "^5.3.0",
+    "astro": "^5.12.0",
     "gh-pages": "^6.0.0",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "react-ga4": "^2.1.0",
-    "react-scripts": "^5.0.1",
-    "sass": "^1.66.1"
-  },
-  "scripts": {
-    "predeploy": "npm run build",
-    "prestart": "node scripts/gen-blog-index.js",
-    "start": "node fetch.js && react-scripts start",
-    "prebuild": "node scripts/gen-blog-index.js",
-    "build": "node fetch.js && react-scripts build",
-    "postbuild": "node scripts/static-routes.js",
-    "deploy": "gh-pages -b master -d build",
-    "pretest": "node scripts/gen-blog-index.js",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "format": "prettier --write \"./**/*.{js,css,json,scss}\"",
-    "check-format": "prettier -c \"./**/*.{js,css,json,scss}\""
-  },
-  "eslintConfig": {
-    "extends": "react-app"
-  },
-  "browserslist": {
-    "production": [
-      ">0.3%",
-      "not ie 11",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      ">0.3%",
-      "not ie 11",
-      "not dead",
-      "not op_mini all",
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "shiki": "^3.4.0"
   },
   "devDependencies": {
-    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
-    "dotenv": "^16.3.1",
-    "prettier": "^3.0.3"
+    "@types/react": "^18.3.3",
+    "@types/react-dom": "^18.3.0",
+    "prettier": "^3.3.3",
+    "prettier-plugin-astro": "^0.14.1"
   }
 }

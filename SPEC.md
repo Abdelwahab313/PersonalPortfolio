@@ -1,5 +1,14 @@
 # Portfolio refresh spec
 
+**Superseded in part by the Astro rebuild, 2026-10-08 (see docs/adr/0001-astro-rebrand.md).**
+Sections 4 and 5 below describe the pre-rebuild information architecture and visual
+direction. What changed: the site moved from the CRA fork (react-scripts) to Astro 5;
+the ink-on-paper palette survives as the light theme behind a terminal identity; skill
+icons were replaced by a `stack.json` card; the hero gained the Code card (one profile in
+four CV-listed languages); the blog became an Astro content collection (`.md` posts,
+schema in `src/content.config.ts`). URLs, domain and `/resume.pdf` are unchanged. The
+fact-trace table (section 8) and the case-study copies remain authoritative.
+
 **Status update 2026-10-08.** CV `cv/automattic-experienced-swe` @ `a0103b9`
 is the source of truth and has moved on from the 2026-10-05 alignment:
 positioning is `Senior Software Engineer · Full-stack & Platform`, OTGS is
@@ -51,8 +60,9 @@ Canonical inputs: `CONTEXT.md`, `CONTENT.md`, CV repo at
 
 ## 2. Non-goals
 
-- No framework migration. The site stays on `react-scripts` (CRA). A Vite move is
-  a possible later follow-up only if a measured benefit justifies it.
+- ~~No framework migration. The site stays on `react-scripts` (CRA). A Vite move is
+  a possible later follow-up only if a measured benefit justifies it.~~ **Reversed by ADR
+  0001 (2026-10-08): the site is Astro, rebuilt on `astro-rebrand`.**
 - No trend sections: no talks, podcast, twitter timeline, achievements,
   open-source grid, "Ask AI". All are already `display: false`. Blogs are in
   scope from 2026-10-08: one `/blog` stream holding the case studies plus

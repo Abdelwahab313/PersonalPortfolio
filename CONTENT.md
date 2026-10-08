@@ -2,7 +2,8 @@
 
 Single source for what the site says and how it says it. The CV is the source of truth for
 facts; this file is the source of truth for site wording. When the two disagree, fix the CV
-first, then this file, then `src/portfolio.js` and `public/index.html`.
+first, then this file, then `src/data/portfolio.ts` and the page meta in the Astro layout
+(`src/layouts/Base.astro`).
 
 CV source: `~/projects/playground/Awesome-CV`, branch `cv/automattic-experienced-swe`, files under
 `examples/resume/`. Built with LuaLaTeX via `make resume.pdf`. Built PDF: `examples/resume.pdf`.
@@ -89,6 +90,9 @@ Rules, in priority order:
 9. **No filler lines.** The Geophysics "leveraged strong analytical skills" sentence goes.
 10. **Company and product names exactly as in section 1.** Not "DailyMealz", "nformacy",
     "Devsquads", "Fikrlabs".
+11. **CV stays canonical until told otherwise.** Never "fix" the site by inventing a fact the
+    CV lacks (Shell scripting is the standing example: real, but not on the CV, so not on the
+    site). The only way to add such a fact is to update the CV first.
 
 ---
 
@@ -214,14 +218,14 @@ whenever this file is updated. Entries with more than three bullets show three a
 
 ### Blog posts (`src/content/blog/`, replaces the old `caseStudies` section)
 
-Case-study copy no longer lives in `portfolio.js` or in this file. Each post is exactly one
-file in `src/content/blog/{slug}.js`, discovered automatically by
-`scripts/gen-blog-index.js`. Never edit a registry.
+Case-study copy no longer lives in the data module or in this file. Each post is exactly one
+file in `src/content/blog/{slug}.md`, discovered automatically by Astro content collections
+and validated against the Zod schema in `src/content.config.ts`. Never edit a registry.
 
 Authoring contract, field table and copy-paste template: `docs/BLOG.md`. Tone rules still
 come from section 2 above.
 
-Index page (`/blog`) chrome, owned by `src/containers/blog/BlogIndex.js`:
+Index page (`/blog`) chrome, owned by `src/pages/blog/index.astro`:
 
 Title: `Blog`
 
@@ -249,6 +253,13 @@ Subtitle: `Products I helped build`
 
 Other three cards unchanged except names per section 1.
 
+### Code card (hero, `src/data/portfolio.ts` `codeSnippets`)
+
+One profile, translated into four CV-listed languages. Rendered once at build time by
+Shiki, switched by Language tabs in the hero. The code must state no fact the CV does not
+carry (added 2026-10-08: TypeScript, Ruby, Go, SQL). Languages come from the CV languages
+row only. Filenames: `engineer.ts`, `engineer.rb`, `engineer.go`, `query.sql`.
+
 ### Education (`educationInfo.schools[0]`)
 
 subHeader: `BSc in Geophysics`. duration: `Sep 2012 – Jun 2016`. desc: empty.
@@ -265,7 +276,8 @@ Email per section 1.
 
 ### Footer
 
-Keep the theme credit as a single small line. Remove "Made with ❤️ by DeveloperFolio Team".
+Footer line, mono, small: `© 2026 Abdelwahab Mahmoud · built with astro · hosted on github pages`.
+No developerFolio credit remains.
 
 ---
 
@@ -279,11 +291,12 @@ Where each fact lives, so an edit in one place is mirrored in the others.
 | Summary | `summary.tex` | `greeting.subTitle` |
 | Jobs, titles, dates | `experience.tex` | `workExperiences.experience[]` |
 | OTGS bullets | `experience.tex` first `cventry` | `workExperiences.experience[0].descBullets` |
-| Skills | `skills.tex` | `skillsSection.softwareSkills`, `skillsSection.skills` |
+| Skills | `skills.tex` | `skillsSection.skills`, `cvStack` (the `stack.json` card) |
 | Email, phone | `../resume.tex` header | `socialMediaLinks.gmail`, `contactInfo` |
 | Education | `education.tex` | `educationInfo` |
 | Years figure | `summary.tex` | `greeting.subTitle`, `CONTEXT.md` Positioning |
-| Case-study and note copy | pre-2026-10-08 CV branches (SPEC.md section 8) | `src/content/blog/{slug}.js` |
+| Code card | languages row of `skills.tex` | `codeSnippets` (four translations, no new facts) |
+| Case-study and note copy | pre-2026-10-08 CV branches (SPEC.md section 8) | `src/content/blog/{slug}.md` |
 
 Resume button (`greeting.resumeLink`) points at `/resume.pdf`, which is `public/resume.pdf`
 in this repo and ships with every build as `https://abdelwahab.dev/resume.pdf`. On every CV
@@ -299,6 +312,12 @@ SPEC.md section 7 before shipping.
   of truth. Positioning is now `Full-stack & Platform`; OTGS is current (`Dec 2024 – Present`);
   there are four entries, not five; skills are ten rows; the summary leads with AWS production
   systems and scale. Everything above mirrors it.
+- 2026-10-08 Astro rebuild (branch `astro-rebrand`, ADR 0001): the site moved from the CRA
+  fork to Astro. The hero gained the Code card in four CV-listed languages (TS, Ruby, Go,
+  SQL); skill icons were replaced by the `stack.json` card in `src/data/portfolio.ts`.
+  Blog posts are `.md` files in a content collection. URLs (`/`, `/blog`, `/blog/{slug}`),
+  the domain and `/resume.pdf` are unchanged. Deploy is `FOLDER: dist` on the `gh-pages`
+  branch, triggered from `main`.
 - The 2026-10-05 case-study numbers (65%, 16 months, 90% Spot, 7.33M, 1,013, 7 ms, four ADRs,
   ISO 27001) were retired from the CV on 2026-10-06. The four case studies keep them by
   decision; see SPEC.md section 6 and section 8.

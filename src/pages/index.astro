@@ -1,0 +1,216 @@
+---
+import Base from "../layouts/Base.astro";
+import CodeCard from "../components/CodeCard.jsx";
+import {codeToHtml} from "shiki";
+import {
+  greeting,
+  socialMediaLinks,
+  cvStack,
+  skillsSection,
+  educationInfo,
+  workExperiences,
+  bigProjects,
+  contactInfo,
+  codeSnippets
+} from "../data/portfolio";
+
+const title =
+  "Abdelwahab Mahmoud | Senior Software Engineer, Full-stack & Platform";
+const description =
+  "Abdelwahab Mahmoud, senior software engineer in Cairo. Ruby on Rails, AWS (ECS Fargate, Lambda, Terraform) and LLM platforms over Bedrock, OpenAI and Gemini. Eight years building and operating production systems.";
+
+const snippets = codeSnippets.map(snippet => ({
+  filename: snippet.filename,
+  label: snippet.label,
+  html: codeToHtml(snippet.code, {
+    lang: snippet.lang,
+    themes: {light: "vitesse-light", dark: "vitesse-dark"},
+    defaultColor: false
+  })
+}));
+
+const socialRow = [
+  {label: "github", href: socialMediaLinks.github},
+  {label: "linkedin", href: socialMediaLinks.linkedin},
+  {label: "gitlab", href: socialMediaLinks.gitlab},
+  {label: "stackoverflow", href: socialMediaLinks.stackoverflow},
+  {label: "email", href: `mailto:${socialMediaLinks.gmail}`}
+];
+
+const jobs = workExperiences.experience.map(job => ({
+  job,
+  shown: job.descBullets.slice(0, 3),
+  rest: job.descBullets.slice(3)
+}));
+
+const stackHtml = `{
+  ${Object.entries(cvStack)
+    .map(
+      ([key, values]) =>
+        `<span class="json-key">"${key}"</span>: [${values
+          .map(value => `"${value.replace(/"/g, '\\"')}"`)
+          .join(", ")}]`
+    )
+    .join(",\n  ")}
+}`;
+
+const education = educationInfo.schools[0];
+---
+
+<Base {title} {description}>
+  <!-- hero -->
+  <section class="container hero" id="home">
+    <p class="preamble">
+      $ whoami <span class="comment"># a working senior engineer</span>
+    </p>
+    <h1>{greeting.title}</h1>
+    <p class="hero-subtitle">{greeting.subTitle}</p>
+    <div class="hero-actions">
+      <a class="btn btn-primary" href={greeting.resumeLink} data-track="cv"
+        >resume.pdf ↓</a
+      >
+      <a class="btn" href="#contact" data-track="contact">contact →</a>
+    </div>
+    <div class="hero-social">
+      {
+        socialRow.map(item => (
+          <a
+            href={item.href}
+            target={item.href.startsWith("http") ? "_blank" : undefined}
+            rel="noreferrer"
+          >
+            {item.label}
+          </a>
+        ))
+      }
+    </div>
+    <CodeCard client:visible snippets={snippets} />
+  </section>
+
+  <!-- career -->
+  <section class="container section" id="experience">
+    <h2 class="section-head">
+      <span class="prompt">$</span>
+      <span class="cmd">git log --career</span>
+      <span class="comment"># four roles, newest first</span>
+    </h2>
+    <ol class="jobs">
+      {
+        jobs.map(({job, shown, rest}) => (
+          <li class="job">
+            <p class="job-meta">
+              {job.date} · {job.duration} · {job.location}
+            </p>
+            <h3 class="job-company">
+              <img src={job.companylogo} alt="" width="26" height="26" />
+              {job.company}
+            </h3>
+            <p class="job-role">{job.role}</p>
+            <p class="job-desc">{job.desc}</p>
+            <ol class="job-bullets">
+              {shown.map(bullet => (
+                <li>{bullet}</li>
+              ))}
+            </ol>
+            {rest.length > 0 && (
+              <details class="job-more">
+                <summary>Show {rest.length} more</summary>
+                <ol class="job-bullets">
+                  {rest.map(bullet => (
+                    <li>{bullet}</li>
+                  ))}
+                </ol>
+              </details>
+            )}
+            <ul class="job-tags" aria-label="Tech at job">
+              {job.tags.map(tag => (
+                <li class="job-tag">{tag}</li>
+              ))}
+            </ul>
+          </li>
+        ))
+      }
+    </ol>
+  </section>
+
+  <!-- products -->
+  <section class="container section" id="products">
+    <h2 class="section-head">
+      <span class="prompt">$</span>
+      <span class="cmd">ls ./products</span>
+      <span class="comment"># four, all in production</span>
+    </h2>
+    <div class="product-grid">
+      {
+        bigProjects.projects.map(product => (
+          <article class="product-card">
+            <img src={product.image} alt={`${product.projectName} logo`} />
+            <h3>{product.projectName}</h3>
+            <p>{product.projectDesc}</p>
+            <div class="product-link">
+              {product.footerLink.map(link => (
+                <a href={link.url} target="_blank" rel="noreferrer">
+                  {link.name} ↗
+                </a>
+              ))}
+            </div>
+          </article>
+        ))
+      }
+    </div>
+  </section>
+
+  <!-- stack -->
+  <section class="container section" id="stack">
+    <h2 class="section-head">
+      <span class="prompt">$</span>
+      <span class="cmd">cat stack.json</span>
+      <span class="comment"># ten rows, straight from the cv</span>
+    </h2>
+    <p class="hero-subtitle">{skillsSection.subTitle}</p>
+    <ul class="skill-list">
+      {skillsSection.skills.map(skill => <li>{skill}</li>)}
+    </ul>
+    <pre
+      class="stack-json"
+      aria-label="Full technology stack"
+      set:html={stackHtml}
+    />
+  </section>
+
+  <!-- education -->
+  <section class="container section" id="education">
+    <h2 class="section-head">
+      <span class="prompt">$</span>
+      <span class="cmd">cat education.txt</span>
+    </h2>
+    <div class="edu-row">
+      <img src={education.logo} alt={`${education.schoolName} logo`} />
+      <div>
+        <h3 class="edu-name">{education.schoolName}</h3>
+        <p class="edu-sub">{education.subHeader}</p>
+      </div>
+      <span class="edu-duration">{education.duration}</span>
+    </div>
+  </section>
+
+  <!-- contact -->
+  <section class="container section" id="contact">
+    <h2 class="section-head">
+      <span class="prompt">$</span>
+      <span class="cmd">zsh · contact</span>
+      <span class="comment"># reachable within a day</span>
+    </h2>
+    <a
+      class="contact-email"
+      href={`mailto:${contactInfo.email_address}`}
+      data-track="contact">{contactInfo.email_address}</a
+    >
+    <p class="contact-sub">{contactInfo.subtitle}</p>
+    <div class="contact-row">
+      <span>github → {socialMediaLinks.github}</span>
+      <span>linkedin → {socialMediaLinks.linkedin}</span>
+      <span>timezone → UTC+3</span>
+    </div>
+  </section>
+</Base>

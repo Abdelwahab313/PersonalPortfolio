@@ -1,4 +1,3 @@
-src/serviceWorker.js
+dist/
+.astro/
 package-lock.json
-src/assets/lottie
-
