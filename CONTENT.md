@@ -238,6 +238,10 @@ The four migrated case studies keep their copy verbatim from the 2026-10-05 refr
 `fargate` (Draining, not stopping), `engine` (One engine, three providers), `aurora`
 (7.33M rows per call), `triage` (The verdict lives in code, not the prompt).
 
+Anonymized 2026-10-08: no product, company, or `*.wpml.org` link in any post.
+Bodies and diagrams keep only the names of public tooling (AWS services, OpenAI,
+Bedrock, Gemini, Langfuse). Rule of posting: docs/BLOG.md rule 3.
+
 Numbers in those four trace to pre-2026-10-08 CV history; see SPEC.md section 8.
 
 ### Big projects (`bigProjects.title`, `bigProjects.subtitle`, `bigProjects.projects`)

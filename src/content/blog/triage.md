@@ -8,8 +8,6 @@ lede: >-
   An agent that only explains an incident is easy to fool, so the pass and fail
   call lives in code, not in the prompt.
 tags: [agents, reliability]
-product: Private Translation Cloud
-link: https://ptc.wpml.org/
 diagram: triage
 diagramCaption: >-
   Agents investigate inside guardrails. The verdict gate is code. Writes stay

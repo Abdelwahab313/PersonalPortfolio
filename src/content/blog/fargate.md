@@ -8,8 +8,6 @@ lede: >-
   ECS scale-in kills tasks mid-job, and these jobs run up to two hours. So the
   autoscaler drains workers before it stops them.
 tags: [aws, ecs, terraform]
-product: Private Translation Cloud
-link: https://ptc.wpml.org/
 diagram: fargate
 diagramCaption: >-
   Queue depth drives the autoscaler. Workers drain, then stop.

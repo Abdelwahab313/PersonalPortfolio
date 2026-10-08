@@ -56,6 +56,11 @@ Tone rules live in `CONTENT.md` section 2. The two that catch most drafts:
 
 1. Every number has to be in the CV. No new figures.
 2. No em dashes in site prose. Full stops and commas only.
+3. Anonymous unless agreed. No product or company names in a post, and no
+   `product` / `link` frontmatter. The four migrated case studies were
+   anonymized 2026-10-08: bodies and diagrams keep only the names of public
+   tooling (AWS services, OpenAI, Bedrock, Gemini, Langfuse), never the
+   product, the employer, or a `*.wpml.org` URL.
 
 Case studies may be deeper than the two-page CV. That is the point of the
 section: the CV is the summary, the case study is the reasoning.

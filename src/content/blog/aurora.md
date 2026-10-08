@@ -8,8 +8,6 @@ lede: >-
   Aurora at 100% CPU, traced to a status broadcast whose query plan examined
   7.33M rows per call.
 tags: [aurora, mysql, performance]
-product: Private Translation Cloud
-link: https://ptc.wpml.org/
 diagram: aurora
 diagramCaption: >-
   One broadcast, many clients, one query plan doing the damage.

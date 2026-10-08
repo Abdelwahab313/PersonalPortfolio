@@ -8,8 +8,6 @@ lede: >-
   One provider means being at its mercy. An engine over Bedrock, OpenAI and
   Gemini treats rate limits as reschedules, not failures.
 tags: [llm, rails, aws]
-product: Private Translation Cloud
-link: https://ptc.wpml.org/
 diagram: engine
 diagramCaption: >-
   One request path through the engine, ordered providers with fallback, credits
