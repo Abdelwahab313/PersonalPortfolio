@@ -6,13 +6,11 @@ export default function CodeCard({snippets}) {
   return (
     <div className="code-card">
       <div className="code-card-window">
-        <div className="code-card-tabs" role="tablist" aria-label="Languages">
+        <div className="code-card-tabs">
           {snippets.map((snippet, index) => (
             <button
               key={snippet.filename}
               type="button"
-              role="tab"
-              aria-selected={index === active}
               className={index === active ? "code-tab active" : "code-tab"}
               onClick={() => setActive(index)}
             >
@@ -23,7 +21,11 @@ export default function CodeCard({snippets}) {
         </div>
         <div className="code-card-panels">
           {snippets.map((snippet, index) => (
-            <div className="code-card-panel" hidden={index !== active}>
+            <div
+              key={snippet.filename}
+              className="code-card-panel"
+              hidden={index !== active}
+            >
               <span className="code-card-lang">{snippet.label}</span>
               <div
                 className="code-card-code"

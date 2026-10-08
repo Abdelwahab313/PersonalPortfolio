@@ -1,28 +1,22 @@
 ---
 title: Draining, not stopping
-kind: case-study
+kind: note
 status: published
 date: 2026-10-05
 order: 1
 lede: >-
-  ECS scale-in kills tasks mid-job, and these jobs run up to two hours. So the
-  autoscaler drains workers before it stops them.
+  ECS scale-in was killing 2-hour translation jobs. So workers drain before they stop.
 tags: [aws, ecs, terraform]
 diagram: fargate
 diagramCaption: >-
-  Queue depth drives the autoscaler. Workers drain, then stop.
-situation: >-
-  The product ran on a single EC2 host. Translation jobs run from 30 seconds to
-  2 hours, and ECS scale-in kills tasks abruptly, so a naive autoscaler can
-  throw away up to two hours of work per worker.
-decision: >-
-  Move onto ECS Fargate, and replace ECS autoscaling with a queue-depth
-  autoscaler on Lambda that tells workers to drain before they stop.
-tradeoff: >-
-  Draining costs a few idle minutes per shutdown. Stopping costs the whole job,
-  because a killed job re-runs from the start. For jobs this long, draining
-  wins.
-outcome: >-
-  I owned that platform and its Terraform for 16 months, and ran the worker
-  fleet 90% on Spot.
+  Queue depth drives autoscaling. Drain, then stop.
 ---
+TL;DR: For long-running work, scale-in must drain first.
+
+The product ran on one EC2 host. Translation jobs ran 30 seconds to 2 hours. ECS scale-in would just stop tasks mid-job. Kill one, lose up to 2 hours of work.
+
+We moved to ECS Fargate and swapped the default ECS autoscaler for a queue-depth autoscaler on Lambda. The key change: tell workers to drain before they stop. A few idle minutes on shutdown beat restarting a multi-hour job.
+
+I owned that platform and its Terraform for 16 months and ran the worker fleet 90% on Spot.
+
+Rule: if shutdown can throw away non-trivial work, add a drain-before-stop path to your scaler.

@@ -13,9 +13,6 @@ export const socialMediaLinks = {
   github: "https://github.com/abdelwahab313",
   linkedin: "https://www.linkedin.com/in/abdelwahab313/",
   gmail: "abdelwahabahmed93@gmail.com",
-  gitlab: "https://gitlab.com/abdelwahab313",
-  twitter: "https://twitter.com/Abdelwahab313",
-  stackoverflow: "https://stackoverflow.com/users/6846745/abdelwahab-mahmoud"
 };
 
 // Same rows as the CV (CONTENT.md section 1).
@@ -113,10 +110,10 @@ export const skillsSection = {
 export const educationInfo = {
   schools: [
     {
-      schoolName: "Cairo University",
+      schoolName: "Faculty of Science Cairo University",
       logo: "/img/CairoUniversity.png",
       subHeader: "BSc in Geophysics",
-      duration: "2012 – 2016"
+      duration: "Sep 2012 – Jun 2016"
     }
   ]
 };
@@ -140,7 +137,7 @@ export const workExperiences = {
         "Aurora",
         "Bedrock"
       ],
-      desc: "I worked on Private Translation Cloud (PTC), an AI translation platform from the team behind WPML, the multilingual plugin that powers over a million WordPress sites. Product work in Rails and React, and the AWS platform underneath it.",
+      desc: "Worked on Private Translation Cloud (PTC), an AI translation platform from the team behind WPML, the multilingual plugin that powers over a million WordPress sites. Product work in Rails and React, and the AWS platform underneath it.",
       descBullets: [
         "Built the multi-provider translation LLM engine behind WPML (Bedrock, OpenAI, Gemini): fallback chains, JSON repair and rate-limit retries keep translations flowing when a provider degrades.",
         "Built the guardrails agents run behind: an MCP server exposing live databases, logs and selected APIs through authenticated, monitored access, adopted as the team's standard agent integration path.",
@@ -195,7 +192,7 @@ export const workExperiences = {
       duration: "2 yrs 9 mo",
       location: "Cairo",
       tags: ["React", "React Native", "Node.js", "Java Spring", "TDD"],
-      desc: "My first job in tech, at a Cairo venture studio that became DevSquads, an agile consultancy that takes XP seriously: TDD, pair programming and continuous delivery. Delivered products for international clients, including Shapa, a US health tech platform (React, React Native, Node.js, Java Spring).",
+      desc: "First job in tech, at a Cairo venture studio that became DevSquads, an agile consultancy that takes XP seriously: TDD, pair programming and continuous delivery. Delivered products for international clients, including Shapa, a US health tech platform (React, React Native, Node.js, Java Spring).",
       descBullets: [
         "Built software in self-organizing Extreme Programming teams with TDD, thin vertical slices and test-covered refactoring of legacy code, across React Native, Ruby on Rails, Java Spring and React.",
         "Mentored teams adopting XP and Agile practices: pairing, code review discipline and iterative planning."
