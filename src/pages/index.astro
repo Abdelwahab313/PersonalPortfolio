@@ -19,15 +19,17 @@ const title =
 const description =
   "Abdelwahab Mahmoud, senior software engineer in Cairo. Ruby on Rails, AWS (ECS Fargate, Lambda, Terraform) and LLM platforms over Bedrock, OpenAI and Gemini. Eight years building and operating production systems.";
 
-const snippets = codeSnippets.map(snippet => ({
-  filename: snippet.filename,
-  label: snippet.label,
-  html: codeToHtml(snippet.code, {
-    lang: snippet.lang,
-    themes: {light: "vitesse-light", dark: "vitesse-dark"},
-    defaultColor: false
-  })
-}));
+const snippets = await Promise.all(
+  codeSnippets.map(async snippet => ({
+    filename: snippet.filename,
+    label: snippet.label,
+    html: await codeToHtml(snippet.code, {
+      lang: snippet.lang,
+      themes: {light: "vitesse-light", dark: "vitesse-dark"},
+      defaultColor: false
+    })
+  }))
+);
 
 const socialRow = [
   {label: "github", href: socialMediaLinks.github},
@@ -107,19 +109,19 @@ const education = educationInfo.schools[0];
             </h3>
             <p class="job-role">{job.role}</p>
             <p class="job-desc">{job.desc}</p>
-            <ol class="job-bullets">
+            <ul class="job-bullets">
               {shown.map(bullet => (
                 <li>{bullet}</li>
               ))}
-            </ol>
+            </ul>
             {rest.length > 0 && (
               <details class="job-more">
                 <summary>Show {rest.length} more</summary>
-                <ol class="job-bullets">
+                <ul class="job-bullets">
                   {rest.map(bullet => (
                     <li>{bullet}</li>
                   ))}
-                </ol>
+                </ul>
               </details>
             )}
             <ul class="job-tags" aria-label="Tech at job">
