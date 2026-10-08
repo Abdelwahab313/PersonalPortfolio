@@ -1,6 +1,6 @@
 {
-  "short_name": "DeveloperFolio",
-  "name": "DeveloperFolio",
+  "short_name": "abdelwahab.dev",
+  "name": "Abdelwahab Mahmoud",
   "icons": [
     {
       "src": "/favicon.ico",
@@ -20,6 +20,6 @@
   ],
   "start_url": ".",
   "display": "standalone",
-  "theme_color": "#6c63ff",
-  "background_color": "#ffffff"
+  "theme_color": "#0f766e",
+  "background_color": "#f7f6f2"
 }

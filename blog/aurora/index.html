@@ -1,0 +1,48 @@
+<!DOCTYPE html><html lang="en"> <head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>7.33M rows per call | Abdelwahab Mahmoud</title><meta name="title" content="7.33M rows per call | Abdelwahab Mahmoud"><meta name="description" content="Aurora at 100% CPU, traced to a status broadcast whose query plan examined 7.33M rows per call."><meta name="theme-color" id="theme-color" content="#13161a"><link rel="canonical" href="https://abdelwahab.dev/blog/aurora/"><meta property="og:type" content="website"><meta property="og:url" content="https://abdelwahab.dev/blog/aurora/"><meta property="og:title" content="7.33M rows per call | Abdelwahab Mahmoud"><meta property="og:description" content="Aurora at 100% CPU, traced to a status broadcast whose query plan examined 7.33M rows per call."><meta property="og:image" content="https://abdelwahab.dev/og.png"><meta property="twitter:card" content="summary_large_image"><meta property="twitter:url" content="https://abdelwahab.dev/blog/aurora/"><meta property="twitter:title" content="7.33M rows per call | Abdelwahab Mahmoud"><meta property="twitter:description" content="Aurora at 100% CPU, traced to a status broadcast whose query plan examined 7.33M rows per call."><meta property="twitter:image" content="https://abdelwahab.dev/og.png"><link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="shortcut icon" href="/favicon.ico"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="manifest" href="/manifest.json"><script>
+      (function () {
+        var theme = localStorage.getItem("theme");
+        if (theme !== "light" && theme !== "dark") theme = "dark";
+        document.documentElement.dataset.theme = theme;
+      })();
+    </script><script async src="https://www.googletagmanager.com/gtag/js?id=G-PNVK2LGZM4"></script><script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+      gtag("config", "G-PNVK2LGZM4");
+    </script><link rel="stylesheet" href="/_astro/_slug_.Dvx0OjJ9.css"></head> <body> <header class="site-header"> <div class="container"> <a class="cwd" href="/">~/abdelwahab</a> <nav class="site-nav" aria-label="Primary"> <a href="/#experience">./experience</a> <a href="/#products">./products</a> <a href="/#stack">./stack</a> <a class="nav-blog" href="/blog">./blog</a> <a href="/#contact">./contact</a> <button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme"> <span class="toggle-dark">[light]</span> <span class="toggle-light">[dark]</span> </button> </nav> </div> </header> <main>  <article class="post"> <a class="post-back" href="/blog">← All posts</a> <header class="post-head"> <div class="post-meta"> <time datetime="2026-10-05">2026-10-05</time> <span class="post-kind">Case study</span>  </div> <h1 class="post-title">7.33M rows per call</h1>  <p class="post-lede">Aurora at 100% CPU, traced to a status broadcast whose query plan examined 7.33M rows per call.</p> <ul class="post-tags"> <li class="post-tag">aurora</li><li class="post-tag">mysql</li><li class="post-tag">performance</li> </ul> </header> <div class="post-body">  <figure class="case-figure"> <svg viewBox="0 0 720 300" role="img" aria-labelledby="dgm-aurora-title"><title id="dgm-aurora-title">One broadcast, many clients, one query plan doing the damage.</title><defs><marker id="dgm-aa" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" class="dgm-arrowhead"></path></marker></defs><rect class="dgm-box dgm-box-accent" x="30" y="40" width="190" height="64"></rect><text class="dgm-text" x="125" y="66" text-anchor="middle">status broadcast</text><text class="dgm-sub" x="125" y="86" text-anchor="middle">1,013 calls</text><path class="dgm-line" d="M220,64 H540 V46" marker-end="url(#dgm-aa)"></path><rect class="dgm-box" x="544" y="24" width="150" height="48"></rect><text class="dgm-text" x="619" y="44" text-anchor="middle">client</text><text class="dgm-sub" x="619" y="62" text-anchor="middle">fan-out</text><path class="dgm-line" d="M220,84 H540 V122" marker-end="url(#dgm-aa)"></path><rect class="dgm-box" x="544" y="100" width="150" height="48"></rect><text class="dgm-text" x="619" y="128" text-anchor="middle">client</text><path class="dgm-line" d="M220,104 H540 V198" marker-end="url(#dgm-aa)"></path><rect class="dgm-box" x="544" y="176" width="150" height="48"></rect><text class="dgm-text" x="619" y="204" text-anchor="middle">client</text><path class="dgm-line" d="M125,104 V186" marker-end="url(#dgm-aa)"></path><rect class="dgm-box" x="30" y="190" width="190" height="64"></rect><text class="dgm-text" x="125" y="216" text-anchor="middle">Aurora</text><text class="dgm-sub" x="125" y="236" text-anchor="middle">100% CPU</text><text class="dgm-sub" x="150" y="160">query plan: 7.33M rows / call</text><text class="dgm-note" x="30" y="288">dropped the join · throttled the caller: 1,013 → ~100</text></svg> <figcaption class="case-figure-caption"> One broadcast, many clients, one query plan doing the damage. </figcaption> </figure> <dl class="case-parts"> <div class="case-part"> <dt class="case-part-label">Situation</dt> <dd class="case-part-text">Aurora hit 100% CPU. The suspect was a status broadcast that pushes state to clients, called 1,013 times.</dd> </div><div class="case-part"> <dt class="case-part-label">Decision</dt> <dd class="case-part-text">Read the plan before touching the query. It examined 7.33M rows per call, which is a scan, not a lookup. Drop the join rather than tune it, and throttle the caller.</dd> </div><div class="case-part"> <dt class="case-part-label">Trade-off</dt> <dd class="case-part-text">The throttle means some clients see state less often than they did. The instance staying up is worth more than broadcast freshness.</dd> </div><div class="case-part"> <dt class="case-part-label">Outcome</dt> <dd class="case-part-text">CPU back to baseline, the caller down from 1,013 calls to about 100.</dd> </div> </dl>  </div> <nav class="post-nav"> <a class="post-nav-prev" href="/blog/engine" rel="prev">
+← One engine, three providers </a> <a class="post-nav-next" href="/blog/triage" rel="next"> The verdict lives in code, not the prompt →
+</a> </nav> </article>  </main> <footer class="site-footer"> <div class="container"> <span>© 2026 Abdelwahab Mahmoud</span> <span>built with astro · hosted on github pages</span> </div> </footer> <script data-track-target="theme-toggle">
+      function applyThemeColor(theme) {
+        var meta = document.getElementById("theme-color");
+        if (meta)
+          meta.setAttribute(
+            "content",
+            theme === "dark" ? "#13161a" : "#f7f6f2"
+          );
+      }
+      applyThemeColor(document.documentElement.dataset.theme);
+      var toggle = document.getElementById("theme-toggle");
+      if (toggle) {
+        toggle.addEventListener("click", function () {
+          var theme =
+            document.documentElement.dataset.theme === "dark"
+              ? "light"
+              : "dark";
+          document.documentElement.dataset.theme = theme;
+          localStorage.setItem("theme", theme);
+          applyThemeColor(theme);
+        });
+      }
+      document.addEventListener("click", function (event) {
+        var el = event.target.closest("[data-track]");
+        if (!el) return;
+        window.gtag &&
+          window.gtag("event", "click", {
+            hitType: "event",
+            event_category: "Reached",
+            event_label: el.getAttribute("data-track")
+          });
+      });
+    </script> </body> </html>

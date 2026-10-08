@@ -1,0 +1,9 @@
+import{r as j,a as R}from"./index._OACqPSs.js";var m={exports:{}},i={};/**
+ * @license React
+ * react-jsx-runtime.production.min.js
+ *
+ * Copyright (c) Facebook, Inc. and its affiliates.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */var _;function b(){if(_)return i;_=1;var o=j(),n=Symbol.for("react.element"),l=Symbol.for("react.fragment"),t=Object.prototype.hasOwnProperty,s=o.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED.ReactCurrentOwner,h={key:!0,ref:!0,__self:!0,__source:!0};function f(c,r,p){var a,d={},u=null,x=null;p!==void 0&&(u=""+p),r.key!==void 0&&(u=""+r.key),r.ref!==void 0&&(x=r.ref);for(a in r)t.call(r,a)&&!h.hasOwnProperty(a)&&(d[a]=r[a]);if(c&&c.defaultProps)for(a in r=c.defaultProps,r)d[a]===void 0&&(d[a]=r[a]);return{$$typeof:n,type:c,key:u,ref:x,props:d,_owner:s.current}}return i.Fragment=l,i.jsx=f,i.jsxs=f,i}var v;function y(){return v||(v=1,m.exports=b()),m.exports}var e=y();function E({snippets:o}){const[n,l]=R.useState(0);return e.jsx("div",{className:"code-card",children:e.jsxs("div",{className:"code-card-window",children:[e.jsx("div",{className:"code-card-tabs",role:"tablist","aria-label":"Languages",children:o.map((t,s)=>e.jsxs("button",{type:"button",role:"tab","aria-selected":s===n,className:s===n?"code-tab active":"code-tab",onClick:()=>l(s),children:[e.jsx("span",{className:"code-tab-dot","aria-hidden":"true"}),t.filename]},t.filename))}),e.jsx("div",{className:"code-card-panels",children:o.map((t,s)=>e.jsxs("div",{className:"code-card-panel",hidden:s!==n,children:[e.jsx("span",{className:"code-card-lang",children:t.label}),e.jsx("div",{className:"code-card-code","aria-live":"polite",dangerouslySetInnerHTML:{__html:t.html}})]}))}),e.jsxs("div",{className:"code-card-status",children:[e.jsx("span",{children:"one profile, four languages"}),e.jsx("span",{children:"static · shiki at build"})]})]})})}export{E as default};

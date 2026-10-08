@@ -1,0 +1,47 @@
+<!DOCTYPE html><html lang="en"> <head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Draining, not stopping | Abdelwahab Mahmoud</title><meta name="title" content="Draining, not stopping | Abdelwahab Mahmoud"><meta name="description" content="ECS scale-in kills tasks mid-job, and these jobs run up to two hours. So the autoscaler drains workers before it stops them."><meta name="theme-color" id="theme-color" content="#13161a"><link rel="canonical" href="https://abdelwahab.dev/blog/fargate/"><meta property="og:type" content="website"><meta property="og:url" content="https://abdelwahab.dev/blog/fargate/"><meta property="og:title" content="Draining, not stopping | Abdelwahab Mahmoud"><meta property="og:description" content="ECS scale-in kills tasks mid-job, and these jobs run up to two hours. So the autoscaler drains workers before it stops them."><meta property="og:image" content="https://abdelwahab.dev/og.png"><meta property="twitter:card" content="summary_large_image"><meta property="twitter:url" content="https://abdelwahab.dev/blog/fargate/"><meta property="twitter:title" content="Draining, not stopping | Abdelwahab Mahmoud"><meta property="twitter:description" content="ECS scale-in kills tasks mid-job, and these jobs run up to two hours. So the autoscaler drains workers before it stops them."><meta property="twitter:image" content="https://abdelwahab.dev/og.png"><link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="shortcut icon" href="/favicon.ico"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="manifest" href="/manifest.json"><script>
+      (function () {
+        var theme = localStorage.getItem("theme");
+        if (theme !== "light" && theme !== "dark") theme = "dark";
+        document.documentElement.dataset.theme = theme;
+      })();
+    </script><script async src="https://www.googletagmanager.com/gtag/js?id=G-PNVK2LGZM4"></script><script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+      gtag("config", "G-PNVK2LGZM4");
+    </script><link rel="stylesheet" href="/_astro/_slug_.Dvx0OjJ9.css"></head> <body> <header class="site-header"> <div class="container"> <a class="cwd" href="/">~/abdelwahab</a> <nav class="site-nav" aria-label="Primary"> <a href="/#experience">./experience</a> <a href="/#products">./products</a> <a href="/#stack">./stack</a> <a class="nav-blog" href="/blog">./blog</a> <a href="/#contact">./contact</a> <button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme"> <span class="toggle-dark">[light]</span> <span class="toggle-light">[dark]</span> </button> </nav> </div> </header> <main>  <article class="post"> <a class="post-back" href="/blog">← All posts</a> <header class="post-head"> <div class="post-meta"> <time datetime="2026-10-05">2026-10-05</time> <span class="post-kind">Case study</span>  </div> <h1 class="post-title">Draining, not stopping</h1>  <p class="post-lede">ECS scale-in kills tasks mid-job, and these jobs run up to two hours. So the autoscaler drains workers before it stops them.</p> <ul class="post-tags"> <li class="post-tag">aws</li><li class="post-tag">ecs</li><li class="post-tag">terraform</li> </ul> </header> <div class="post-body">  <figure class="case-figure"> <svg viewBox="0 0 720 300" role="img" aria-labelledby="dgm-fargate-title"><title id="dgm-fargate-title">Queue depth drives the autoscaler. Workers drain, then stop.</title><defs><marker id="dgm-fa" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" class="dgm-arrowhead"></path></marker></defs><rect class="dgm-box" x="20" y="115" width="130" height="72"></rect><text class="dgm-text" x="85" y="143" text-anchor="middle">translation jobs</text><text class="dgm-sub" x="85" y="163" text-anchor="middle">queue</text><line class="dgm-line" x1="150" y1="151" x2="242" y2="151" marker-end="url(#dgm-fa)"></line><text class="dgm-sub" x="196" y="141" text-anchor="middle">pop</text><text class="dgm-sub" x="320" y="30" text-anchor="middle">ECS Fargate · 90% Spot</text><rect class="dgm-box" x="250" y="44" width="140" height="46"></rect><text class="dgm-text" x="320" y="72" text-anchor="middle">worker</text><rect class="dgm-box" x="250" y="128" width="140" height="46"></rect><text class="dgm-text" x="320" y="156" text-anchor="middle">worker</text><rect class="dgm-box" x="250" y="212" width="140" height="46"></rect><text class="dgm-text" x="320" y="240" text-anchor="middle">worker</text><line class="dgm-line" x1="390" y1="151" x2="482" y2="151" marker-end="url(#dgm-fa)"></line><text class="dgm-sub" x="436" y="141" text-anchor="middle">translations</text><rect class="dgm-box dgm-box-accent" x="500" y="115" width="200" height="72"></rect><text class="dgm-text" x="600" y="143" text-anchor="middle">queue-depth autoscaler</text><text class="dgm-sub" x="600" y="163" text-anchor="middle">Lambda</text><path class="dgm-line dgm-dash" d="M500,117 H300 V92" marker-end="url(#dgm-fa)"></path><text class="dgm-sub" x="380" y="108" text-anchor="middle">measure depth</text><path class="dgm-line dgm-dash" d="M600,115 V76 H470" marker-end="url(#dgm-fa)"></path><text class="dgm-sub" x="534" y="66" text-anchor="middle">drain, then stop</text><text class="dgm-note" x="20" y="288">jobs run 30 s to 2 h · a killed job re-runs from the start</text></svg> <figcaption class="case-figure-caption"> Queue depth drives the autoscaler. Workers drain, then stop. </figcaption> </figure> <dl class="case-parts"> <div class="case-part"> <dt class="case-part-label">Situation</dt> <dd class="case-part-text">The product ran on a single EC2 host. Translation jobs run from 30 seconds to 2 hours, and ECS scale-in kills tasks abruptly, so a naive autoscaler can throw away up to two hours of work per worker.</dd> </div><div class="case-part"> <dt class="case-part-label">Decision</dt> <dd class="case-part-text">Move onto ECS Fargate, and replace ECS autoscaling with a queue-depth autoscaler on Lambda that tells workers to drain before they stop.</dd> </div><div class="case-part"> <dt class="case-part-label">Trade-off</dt> <dd class="case-part-text">Draining costs a few idle minutes per shutdown. Stopping costs the whole job, because a killed job re-runs from the start. For jobs this long, draining wins.</dd> </div><div class="case-part"> <dt class="case-part-label">Outcome</dt> <dd class="case-part-text">I owned that platform and its Terraform for 16 months, and ran the worker fleet 90% on Spot.</dd> </div> </dl>  </div> <nav class="post-nav"> <span></span> <a class="post-nav-next" href="/blog/engine" rel="next"> One engine, three providers →
+</a> </nav> </article>  </main> <footer class="site-footer"> <div class="container"> <span>© 2026 Abdelwahab Mahmoud</span> <span>built with astro · hosted on github pages</span> </div> </footer> <script data-track-target="theme-toggle">
+      function applyThemeColor(theme) {
+        var meta = document.getElementById("theme-color");
+        if (meta)
+          meta.setAttribute(
+            "content",
+            theme === "dark" ? "#13161a" : "#f7f6f2"
+          );
+      }
+      applyThemeColor(document.documentElement.dataset.theme);
+      var toggle = document.getElementById("theme-toggle");
+      if (toggle) {
+        toggle.addEventListener("click", function () {
+          var theme =
+            document.documentElement.dataset.theme === "dark"
+              ? "light"
+              : "dark";
+          document.documentElement.dataset.theme = theme;
+          localStorage.setItem("theme", theme);
+          applyThemeColor(theme);
+        });
+      }
+      document.addEventListener("click", function (event) {
+        var el = event.target.closest("[data-track]");
+        if (!el) return;
+        window.gtag &&
+          window.gtag("event", "click", {
+            hitType: "event",
+            event_category: "Reached",
+            event_label: el.getAttribute("data-track")
+          });
+      });
+    </script> </body> </html>

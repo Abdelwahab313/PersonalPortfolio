@@ -1,0 +1,46 @@
+<!DOCTYPE html><html lang="en"> <head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>404 | Abdelwahab Mahmoud</title><meta name="title" content="404 | Abdelwahab Mahmoud"><meta name="description" content="Page not found."><meta name="theme-color" id="theme-color" content="#13161a"><link rel="canonical" href="https://abdelwahab.dev/404/"><meta property="og:type" content="website"><meta property="og:url" content="https://abdelwahab.dev/404/"><meta property="og:title" content="404 | Abdelwahab Mahmoud"><meta property="og:description" content="Page not found."><meta property="og:image" content="https://abdelwahab.dev/og.png"><meta property="twitter:card" content="summary_large_image"><meta property="twitter:url" content="https://abdelwahab.dev/404/"><meta property="twitter:title" content="404 | Abdelwahab Mahmoud"><meta property="twitter:description" content="Page not found."><meta property="twitter:image" content="https://abdelwahab.dev/og.png"><link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="shortcut icon" href="/favicon.ico"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="manifest" href="/manifest.json"><script>
+      (function () {
+        var theme = localStorage.getItem("theme");
+        if (theme !== "light" && theme !== "dark") theme = "dark";
+        document.documentElement.dataset.theme = theme;
+      })();
+    </script><script async src="https://www.googletagmanager.com/gtag/js?id=G-PNVK2LGZM4"></script><script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+      gtag("config", "G-PNVK2LGZM4");
+    </script><link rel="stylesheet" href="/_astro/_slug_.Dvx0OjJ9.css"></head> <body> <header class="site-header"> <div class="container"> <a class="cwd" href="/">~/abdelwahab</a> <nav class="site-nav" aria-label="Primary"> <a href="/#experience">./experience</a> <a href="/#products">./products</a> <a href="/#stack">./stack</a> <a class="nav-blog" href="/blog">./blog</a> <a href="/#contact">./contact</a> <button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme"> <span class="toggle-dark">[light]</span> <span class="toggle-light">[dark]</span> </button> </nav> </div> </header> <main>  <main class="not-found"> <p class="preamble">$ pwd</p> <h1>404: not found</h1> <p>That path is not in this filesystem.</p> <a href="/">cd ~</a> </main>  </main> <footer class="site-footer"> <div class="container"> <span>© 2026 Abdelwahab Mahmoud</span> <span>built with astro · hosted on github pages</span> </div> </footer> <script data-track-target="theme-toggle">
+      function applyThemeColor(theme) {
+        var meta = document.getElementById("theme-color");
+        if (meta)
+          meta.setAttribute(
+            "content",
+            theme === "dark" ? "#13161a" : "#f7f6f2"
+          );
+      }
+      applyThemeColor(document.documentElement.dataset.theme);
+      var toggle = document.getElementById("theme-toggle");
+      if (toggle) {
+        toggle.addEventListener("click", function () {
+          var theme =
+            document.documentElement.dataset.theme === "dark"
+              ? "light"
+              : "dark";
+          document.documentElement.dataset.theme = theme;
+          localStorage.setItem("theme", theme);
+          applyThemeColor(theme);
+        });
+      }
+      document.addEventListener("click", function (event) {
+        var el = event.target.closest("[data-track]");
+        if (!el) return;
+        window.gtag &&
+          window.gtag("event", "click", {
+            hitType: "event",
+            event_category: "Reached",
+            event_label: el.getAttribute("data-track")
+          });
+      });
+    </script> </body> </html>

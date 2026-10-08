@@ -1,0 +1,47 @@
+<!DOCTYPE html><html lang="en"> <head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>The verdict lives in code, not the prompt | Abdelwahab Mahmoud</title><meta name="title" content="The verdict lives in code, not the prompt | Abdelwahab Mahmoud"><meta name="description" content="An agent that only explains an incident is easy to fool, so the pass and fail call lives in code, not in the prompt."><meta name="theme-color" id="theme-color" content="#13161a"><link rel="canonical" href="https://abdelwahab.dev/blog/triage/"><meta property="og:type" content="website"><meta property="og:url" content="https://abdelwahab.dev/blog/triage/"><meta property="og:title" content="The verdict lives in code, not the prompt | Abdelwahab Mahmoud"><meta property="og:description" content="An agent that only explains an incident is easy to fool, so the pass and fail call lives in code, not in the prompt."><meta property="og:image" content="https://abdelwahab.dev/og.png"><meta property="twitter:card" content="summary_large_image"><meta property="twitter:url" content="https://abdelwahab.dev/blog/triage/"><meta property="twitter:title" content="The verdict lives in code, not the prompt | Abdelwahab Mahmoud"><meta property="twitter:description" content="An agent that only explains an incident is easy to fool, so the pass and fail call lives in code, not in the prompt."><meta property="twitter:image" content="https://abdelwahab.dev/og.png"><link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="shortcut icon" href="/favicon.ico"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="manifest" href="/manifest.json"><script>
+      (function () {
+        var theme = localStorage.getItem("theme");
+        if (theme !== "light" && theme !== "dark") theme = "dark";
+        document.documentElement.dataset.theme = theme;
+      })();
+    </script><script async src="https://www.googletagmanager.com/gtag/js?id=G-PNVK2LGZM4"></script><script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+      gtag("config", "G-PNVK2LGZM4");
+    </script><link rel="stylesheet" href="/_astro/_slug_.Dvx0OjJ9.css"></head> <body> <header class="site-header"> <div class="container"> <a class="cwd" href="/">~/abdelwahab</a> <nav class="site-nav" aria-label="Primary"> <a href="/#experience">./experience</a> <a href="/#products">./products</a> <a href="/#stack">./stack</a> <a class="nav-blog" href="/blog">./blog</a> <a href="/#contact">./contact</a> <button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme"> <span class="toggle-dark">[light]</span> <span class="toggle-light">[dark]</span> </button> </nav> </div> </header> <main>  <article class="post"> <a class="post-back" href="/blog">← All posts</a> <header class="post-head"> <div class="post-meta"> <time datetime="2026-10-05">2026-10-05</time> <span class="post-kind">Case study</span>  </div> <h1 class="post-title">The verdict lives in code, not the prompt</h1>  <p class="post-lede">An agent that only explains an incident is easy to fool, so the pass and fail call lives in code, not in the prompt.</p> <ul class="post-tags"> <li class="post-tag">agents</li><li class="post-tag">reliability</li> </ul> </header> <div class="post-body">  <figure class="case-figure"> <svg viewBox="0 0 720 300" role="img" aria-labelledby="dgm-triage-title"><title id="dgm-triage-title">Agents investigate inside guardrails. The verdict gate is code. Writes stay human.</title><defs><marker id="dgm-ta" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" class="dgm-arrowhead"></path></marker></defs><rect class="dgm-box" x="20" y="40" width="150" height="60"></rect><text class="dgm-text" x="95" y="66" text-anchor="middle">production</text><text class="dgm-sub" x="95" y="86" text-anchor="middle">exceptions</text><line class="dgm-line" x1="170" y1="70" x2="222" y2="70" marker-end="url(#dgm-ta)"></line><rect class="dgm-guardrail" x="226" y="20" width="270" height="180"></rect><text class="dgm-sub" x="240" y="38">guardrails</text><text class="dgm-sub" x="240" y="56">read-only · rollback wrapper · audit log</text><rect class="dgm-box dgm-box-accent" x="246" y="72" width="230" height="50"></rect><text class="dgm-text" x="361" y="94" text-anchor="middle">investigator agent</text><text class="dgm-sub" x="361" y="112" text-anchor="middle">reads, never writes</text><rect class="dgm-box dgm-box-accent" x="246" y="138" width="230" height="50"></rect><text class="dgm-text" x="361" y="160" text-anchor="middle">critic agent</text><text class="dgm-sub" x="361" y="178" text-anchor="middle">checks the story</text><line class="dgm-line" x1="476" y1="97" x2="528" y2="97" marker-end="url(#dgm-ta)"></line><line class="dgm-line" x1="476" y1="163" x2="528" y2="163" marker-end="url(#dgm-ta)"></line><rect class="dgm-box" x="532" y="104" width="170" height="64"></rect><text class="dgm-text" x="617" y="130" text-anchor="middle">verdict gate</text><text class="dgm-sub" x="617" y="150" text-anchor="middle">pass / fail in code</text><path class="dgm-line dgm-dash" d="M617,168 V210" marker-end="url(#dgm-ta)"></path><rect class="dgm-box" x="532" y="214" width="170" height="52"></rect><text class="dgm-text" x="617" y="236" text-anchor="middle">audit log</text><text class="dgm-sub" x="617" y="254" text-anchor="middle">every verdict</text><path class="dgm-line dgm-dash" d="M280,200 V252 H176" marker-end="url(#dgm-ta)"></path><rect class="dgm-box" x="20" y="226" width="152" height="52"></rect><text class="dgm-text" x="96" y="248" text-anchor="middle">write gate</text><text class="dgm-sub" x="96" y="266" text-anchor="middle">humans only</text></svg> <figcaption class="case-figure-caption"> Agents investigate inside guardrails. The verdict gate is code. Writes stay human. </figcaption> </figure> <dl class="case-parts"> <div class="case-part"> <dt class="case-part-label">Situation</dt> <dd class="case-part-text">Production exceptions needed triage before a human looked at them. An agent that only explains an incident is easy to trust and easy to fool.</dd> </div><div class="case-part"> <dt class="case-part-label">Decision</dt> <dd class="case-part-text">An agent-driven triage platform where the pass and fail call lives in code, not in the prompt. Agents run behind production tooling: read-only data access with a rollback wrapper, an audit log, and a human-only write gate.</dd> </div><div class="case-part"> <dt class="case-part-label">Trade-off</dt> <dd class="case-part-text">Code verdicts mean maintaining a test harness instead of a clever prompt. Deterministic checks are worth that maintenance, because a false pass is worse than no answer.</dd> </div><div class="case-part"> <dt class="case-part-label">Outcome</dt> <dd class="case-part-text">Replayed on past incidents, it caught three false passes. It now also adjudicates support claims.</dd> </div> </dl>  </div> <nav class="post-nav"> <a class="post-nav-prev" href="/blog/aurora" rel="prev">
+← 7.33M rows per call </a>  </nav> </article>  </main> <footer class="site-footer"> <div class="container"> <span>© 2026 Abdelwahab Mahmoud</span> <span>built with astro · hosted on github pages</span> </div> </footer> <script data-track-target="theme-toggle">
+      function applyThemeColor(theme) {
+        var meta = document.getElementById("theme-color");
+        if (meta)
+          meta.setAttribute(
+            "content",
+            theme === "dark" ? "#13161a" : "#f7f6f2"
+          );
+      }
+      applyThemeColor(document.documentElement.dataset.theme);
+      var toggle = document.getElementById("theme-toggle");
+      if (toggle) {
+        toggle.addEventListener("click", function () {
+          var theme =
+            document.documentElement.dataset.theme === "dark"
+              ? "light"
+              : "dark";
+          document.documentElement.dataset.theme = theme;
+          localStorage.setItem("theme", theme);
+          applyThemeColor(theme);
+        });
+      }
+      document.addEventListener("click", function (event) {
+        var el = event.target.closest("[data-track]");
+        if (!el) return;
+        window.gtag &&
+          window.gtag("event", "click", {
+            hitType: "event",
+            event_category: "Reached",
+            event_label: el.getAttribute("data-track")
+          });
+      });
+    </script> </body> </html>
