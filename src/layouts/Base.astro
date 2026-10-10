@@ -12,6 +12,7 @@ interface Props {
   ogTitle?: string;
   ogDescription?: string;
   ogImage?: string;
+  date?: Date;
 }
 
 const {
@@ -19,11 +20,13 @@ const {
   description,
   ogTitle = title,
   ogDescription = description,
-  ogImage = "/og.png"
+  ogImage = "/og.png",
+  date
 } = Astro.props;
 
 const site = Astro.site;
 const canonical = site ? new URL(Astro.url.pathname, site) : Astro.url;
+const publishedTime = date ? new Date(date).toISOString() : undefined;
 ---
 
 <!doctype html>
@@ -53,13 +56,8 @@ const canonical = site ? new URL(Astro.url.pathname, site) : Astro.url;
     <meta property="og:image" content={new URL(ogImage, site).href} />
     <meta property="og:image:alt" content={ogTitle} />
     {
-      Astro.url.pathname.startsWith("/blog/") && (
-        <meta
-          property="article:published_time"
-          content={new Date(
-            Astro.props.frontmatter?.date || Astro.props.date || Date.now()
-          ).toISOString()}
-        />
+      Astro.url.pathname.startsWith("/blog/") && publishedTime && (
+        <meta property="article:published_time" content={publishedTime} />
       )
     }
     <meta property="twitter:card" content="summary_large_image" />

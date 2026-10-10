@@ -26,7 +26,7 @@ const CASE_PARTS = [
   {key: "decision", label: "Decision"},
   {key: "tradeoff", label: "Trade-off"},
   {key: "outcome", label: "Outcome"}
-];
+] as const;
 
 const index = posts.findIndex(item => item.id === post.id);
 const previous = posts[index - 1];
@@ -36,7 +36,7 @@ const title = `${data.title} | Abdelwahab Mahmoud`;
 const description = data.lede;
 ---
 
-<Base {title} {description}>
+<Base {title} {description} date={data.date}>
   <article class="post">
     <a class="post-back" href="/blog">← All posts</a>
 
@@ -48,7 +48,7 @@ const description = data.lede;
       </div>
       <h1 class="post-title">{data.title}</h1>
       {
-        data.product && data.link && (
+        data.kind === "case-study" && data.product && data.link && (
           <a
             class="post-product"
             href={data.link}

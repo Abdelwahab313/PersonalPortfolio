@@ -23,7 +23,7 @@ const description =
 const codeThemes = {
   light: {
     name: "site-light",
-    type: "light",
+    type: "light" as const,
     colors: {"editor.background": "#fffdf9", "editor.foreground": "#3f454c"},
     tokenColors: [
       {
@@ -83,7 +83,7 @@ const codeThemes = {
   },
   dark: {
     name: "site-dark",
-    type: "dark",
+    type: "dark" as const,
     colors: {"editor.background": "#1a1e23", "editor.foreground": "#c3c8cd"},
     tokenColors: [
       {
