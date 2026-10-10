@@ -44,11 +44,13 @@ sections:
 ## Kinds
 
 **`case-study`** - Situation / Decision / Trade-off / Outcome about one
-system, with a real diagram where one exists. The four migrated posts are
-`fargate`, `engine`, `aurora` and `triage`. Read one of them before writing
-the next.
+system, with a real diagram where one exists. The four parts are single
+strings, so it suits a short write-up.
 
-**`note`** - anything else. Sections of prose. No diagram, no product link.
+**`note`** - sections of prose. The four migrated posts (`fargate`, `engine`,
+`aurora`, `triage`) are notes: they carry the case-study arc across headings,
+which the four-part shape cannot hold. Read one of them before writing the
+next.
 
 ## Rules
 

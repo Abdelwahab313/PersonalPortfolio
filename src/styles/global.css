@@ -189,6 +189,30 @@ a:hover {
   color: var(--body);
 }
 
+.hero-value {
+  margin: 1rem 0 0;
+  max-width: 46rem;
+  font-size: 16px;
+  line-height: 1.7;
+  color: var(--body);
+}
+
+.hero-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 1.5rem;
+}
+
+.hero-chip {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--muted);
+  border: 1px solid var(--border);
+  border-radius: 3px;
+  padding: 0.2rem 0.55rem;
+}
+
 .hero-actions {
   display: flex;
   flex-wrap: wrap;

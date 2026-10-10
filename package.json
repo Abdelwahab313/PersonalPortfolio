@@ -12,10 +12,14 @@
     "predeploy": "npm run build",
     "deploy": "gh-pages -d dist",
     "format": "prettier --write \"./**/*.{js,jsx,ts,astro,css,json}\"",
-    "check-format": "prettier -c \"./**/*.{js,jsx,ts,astro,css,json}\""
+    "check-format": "prettier -c \"./**/*.{js,jsx,ts,astro,css,json}\"",
+    "check": "astro check",
+    "test": "astro check"
   },
   "dependencies": {
     "@astrojs/react": "^4.2.0",
+    "@astrojs/rss": "^4.0.19",
+    "@astrojs/sitemap": "^3.7.4",
     "@fontsource/ibm-plex-mono": "^5.3.0",
     "@fontsource/ibm-plex-sans": "^5.3.0",
     "astro": "^5.12.0",
@@ -25,9 +29,11 @@
     "shiki": "^3.4.0"
   },
   "devDependencies": {
+    "@astrojs/check": "^0.9.10",
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",
     "prettier": "^3.3.3",
-    "prettier-plugin-astro": "^0.14.1"
+    "prettier-plugin-astro": "^0.14.1",
+    "typescript": "^7.0.2"
   }
 }

@@ -10,6 +10,7 @@ import {
   educationInfo,
   workExperiences,
   bigProjects,
+  openSource,
   contactInfo,
   codeSnippets
 } from "../data/portfolio";
@@ -19,25 +20,140 @@ const title =
 const description =
   "Abdelwahab Mahmoud, senior software engineer in Cairo. Ruby on Rails, AWS (ECS Fargate, Lambda, Terraform) and LLM platforms over Bedrock, OpenAI and Gemini. Eight years building and operating production systems.";
 
+const codeThemes = {
+  light: {
+    name: "site-light",
+    type: "light",
+    colors: {"editor.background": "#fffdf9", "editor.foreground": "#3f454c"},
+    tokenColors: [
+      {
+        scope: ["comment", "punctuation.definition.comment"],
+        settings: {foreground: "#8a8f96", fontStyle: "italic"}
+      },
+      {
+        scope: ["keyword", "storage", "storage.type", "storage.modifier"],
+        settings: {foreground: "#0f766e"}
+      },
+      {
+        scope: [
+          "constant.numeric",
+          "constant.language",
+          "constant.character",
+          "keyword.other.unit"
+        ],
+        settings: {foreground: "#0f766e"}
+      },
+      {
+        scope: [
+          "string",
+          "punctuation.definition.string",
+          "constant.other.symbol"
+        ],
+        settings: {foreground: "#3f454c"}
+      },
+      {
+        scope: ["entity.name.function", "support.function", "entity.name.tag"],
+        settings: {foreground: "#1c1f24"}
+      },
+      {
+        scope: [
+          "entity.name.type",
+          "entity.name.class",
+          "support.type",
+          "support.class",
+          "storage.type.primitive"
+        ],
+        settings: {foreground: "#1c1f24"}
+      },
+      {
+        scope: [
+          "variable",
+          "variable.parameter",
+          "variable.other",
+          "meta.object-literal.key",
+          "meta.property-name"
+        ],
+        settings: {foreground: "#3f454c"}
+      },
+      {
+        scope: ["punctuation", "meta.brace", "keyword.operator"],
+        settings: {foreground: "#6b7178"}
+      }
+    ]
+  },
+  dark: {
+    name: "site-dark",
+    type: "dark",
+    colors: {"editor.background": "#1a1e23", "editor.foreground": "#c3c8cd"},
+    tokenColors: [
+      {
+        scope: ["comment", "punctuation.definition.comment"],
+        settings: {foreground: "#6b7480", fontStyle: "italic"}
+      },
+      {
+        scope: ["keyword", "storage", "storage.type", "storage.modifier"],
+        settings: {foreground: "#6fd6cb"}
+      },
+      {
+        scope: [
+          "constant.numeric",
+          "constant.language",
+          "constant.character",
+          "keyword.other.unit"
+        ],
+        settings: {foreground: "#4ac0b4"}
+      },
+      {
+        scope: [
+          "string",
+          "punctuation.definition.string",
+          "constant.other.symbol"
+        ],
+        settings: {foreground: "#e9e7e2"}
+      },
+      {
+        scope: ["entity.name.function", "support.function", "entity.name.tag"],
+        settings: {foreground: "#e9e7e2"}
+      },
+      {
+        scope: [
+          "entity.name.type",
+          "entity.name.class",
+          "support.type",
+          "support.class",
+          "storage.type.primitive"
+        ],
+        settings: {foreground: "#e9e7e2"}
+      },
+      {
+        scope: [
+          "variable",
+          "variable.parameter",
+          "variable.other",
+          "meta.object-literal.key",
+          "meta.property-name"
+        ],
+        settings: {foreground: "#c3c8cd"}
+      },
+      {
+        scope: ["punctuation", "meta.brace", "keyword.operator"],
+        settings: {foreground: "#7d858e"}
+      }
+    ]
+  }
+};
+
 const snippets = await Promise.all(
   codeSnippets.map(async snippet => ({
     filename: snippet.filename,
     label: snippet.label,
     html: await codeToHtml(snippet.code, {
       lang: snippet.lang,
-      themes: {light: "vitesse-light", dark: "vitesse-dark"},
+      themes: codeThemes,
       defaultColor: false
     })
   }))
 );
-
-const socialRow = [
-  {label: "github", href: socialMediaLinks.github},
-  {label: "linkedin", href: socialMediaLinks.linkedin},
-  {label: "gitlab", href: socialMediaLinks.gitlab},
-  {label: "stackoverflow", href: socialMediaLinks.stackoverflow},
-  {label: "email", href: `mailto:${socialMediaLinks.gmail}`}
-];
 
 const jobs = workExperiences.experience.map(job => ({
   job,
@@ -67,24 +183,29 @@ const education = educationInfo.schools[0];
     </p>
     <h1>{greeting.title}</h1>
     <p class="hero-subtitle">{greeting.subTitle}</p>
+    <p class="hero-value">{greeting.valueProp}</p>
+    <div class="hero-chips">
+      {greeting.chips?.map(chip => <span class="hero-chip">{chip}</span>)}
+    </div>
     <div class="hero-actions">
       <a class="btn btn-primary" href={greeting.resumeLink} data-track="cv"
-        >resume.pdf ↓</a
+        >Resume</a
       >
-      <a class="btn" href="#contact" data-track="contact">contact →</a>
-    </div>
-    <div class="hero-social">
-      {
-        socialRow.map(item => (
-          <a
-            href={item.href}
-            target={item.href.startsWith("http") ? "_blank" : undefined}
-            rel="noreferrer"
-          >
-            {item.label}
-          </a>
-        ))
-      }
+      <a
+        class="btn"
+        href={greeting.githubLink}
+        target="_blank"
+        rel="noopener noreferrer"
+        data-track="github">GitHub</a
+      >
+      <a
+        class="btn"
+        href={greeting.linkedinLink}
+        target="_blank"
+        rel="noopener noreferrer"
+        data-track="linkedin">LinkedIn</a
+      >
+      <a class="btn" href="#contact" data-track="contact">Email</a>
     </div>
     <CodeCard client:visible snippets={snippets} />
   </section>
@@ -93,7 +214,7 @@ const education = educationInfo.schools[0];
   <section class="container section" id="experience">
     <h2 class="section-head">
       <span class="prompt">$</span>
-      <span class="cmd">git log --career</span>
+      <span class="cmd">Experience</span>
       <span class="comment"># four roles, newest first</span>
     </h2>
     <ol class="jobs">
@@ -135,11 +256,42 @@ const education = educationInfo.schools[0];
     </ol>
   </section>
 
+  <section class="container section" id="opensource">
+    <h2 class="section-head">
+      <span class="prompt">$</span>
+      <span class="cmd">Open Source</span>
+      <span class="comment"># selected projects</span>
+    </h2>
+    <div class="product-grid">
+      {
+        openSource.projects.map(project => (
+          <article class="product-card">
+            <h3>{project.name}</h3>
+            <p>{project.desc}</p>
+            <p>
+              {project.role} · {project.outcome}
+            </p>
+            <div class="product-link">
+              <a href={project.url} target="_blank" rel="noopener noreferrer">
+                GitHub ↗
+              </a>
+            </div>
+            <ul class="job-tags" aria-label="Tech">
+              {project.tags.map(tag => (
+                <li class="job-tag">{tag}</li>
+              ))}
+            </ul>
+          </article>
+        ))
+      }
+    </div>
+  </section>
+
   <!-- products -->
   <section class="container section" id="products">
     <h2 class="section-head">
       <span class="prompt">$</span>
-      <span class="cmd">ls ./products</span>
+      <span class="cmd">Products</span>
       <span class="comment"># four, all in production</span>
     </h2>
     <div class="product-grid">
@@ -166,7 +318,7 @@ const education = educationInfo.schools[0];
   <section class="container section" id="stack">
     <h2 class="section-head">
       <span class="prompt">$</span>
-      <span class="cmd">cat stack.json</span>
+      <span class="cmd">What I do</span>
       <span class="comment"># ten rows, straight from the cv</span>
     </h2>
     <p class="hero-subtitle">{skillsSection.subTitle}</p>
@@ -200,7 +352,7 @@ const education = educationInfo.schools[0];
   <section class="container section" id="contact">
     <h2 class="section-head">
       <span class="prompt">$</span>
-      <span class="cmd">zsh · contact</span>
+      <span class="cmd">Contact</span>
       <span class="comment"># reachable within a day</span>
     </h2>
     <a
@@ -210,8 +362,20 @@ const education = educationInfo.schools[0];
     >
     <p class="contact-sub">{contactInfo.subtitle}</p>
     <div class="contact-row">
-      <span>github → <a href={socialMediaLinks.github} target="_blank" rel="noopener noreferrer">{socialMediaLinks.github}</a></span>
-      <span>linkedin → <a href={socialMediaLinks.linkedin} target="_blank" rel="noopener noreferrer">{socialMediaLinks.linkedin}</a></span>
+      <span
+        >github → <a
+          href={socialMediaLinks.github}
+          target="_blank"
+          rel="noopener noreferrer">{socialMediaLinks.github}</a
+        ></span
+      >
+      <span
+        >linkedin → <a
+          href={socialMediaLinks.linkedin}
+          target="_blank"
+          rel="noopener noreferrer">{socialMediaLinks.linkedin}</a
+        ></span
+      >
       <span>timezone → UTC+3</span>
     </div>
   </section>

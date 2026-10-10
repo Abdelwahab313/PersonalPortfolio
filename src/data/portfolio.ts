@@ -3,16 +3,20 @@
 
 export const greeting = {
   username: "Abdelwahab",
-  title: "Hi, I'm Abdelwahab",
-  subTitle:
-    "Senior software engineer, eight years in. I build production AWS systems and own them from architecture through deployment to reliability: Node.js and TypeScript services, a delivery platform serving 100K daily users, and WPML's LLM translation and agent platform on 1.5M+ WordPress sites. I am usually the one who finds out why production broke. Cairo, UTC+3. Open to remote senior backend, platform and AI-platform roles.",
-  resumeLink: "/resume.pdf"
+  title: "Abdelwahab Mahmoud",
+  subTitle: "Senior Software Engineer · Full-stack & Platform",
+  valueProp:
+    "Eight years building production systems on AWS: Node.js, TypeScript, Rails, and Go. I own architecture, delivery, and reliability.",
+  chips: ["8 years", "4 roles", "Cairo / UTC+3", "open to roles"],
+  resumeLink: "/resume.pdf",
+  githubLink: "https://github.com/abdelwahab313",
+  linkedinLink: "https://www.linkedin.com/in/abdelwahab313/"
 };
 
 export const socialMediaLinks = {
   github: "https://github.com/abdelwahab313",
   linkedin: "https://www.linkedin.com/in/abdelwahab313/",
-  gmail: "abdelwahabahmed93@gmail.com",
+  gmail: "abdelwahabahmed93@gmail.com"
 };
 
 // Same rows as the CV (CONTENT.md section 1).
@@ -137,7 +141,7 @@ export const workExperiences = {
         "Aurora",
         "Bedrock"
       ],
-      desc: "Worked on Private Translation Cloud (PTC), an AI translation platform from the team behind WPML, the multilingual plugin that powers over a million WordPress sites. Product work in Rails and React, and the AWS platform underneath it.",
+      desc: "Worked on Private Translation Cloud (PTC), an AI translation platform from the team behind WPML, the multilingual plugin that powers over a million WordPress sites. Full-stack product work in Rails and React, with the AWS platform underneath it.",
       descBullets: [
         "Built the multi-provider translation LLM engine behind WPML (Bedrock, OpenAI, Gemini): fallback chains, JSON repair and rate-limit retries keep translations flowing when a provider degrades.",
         "Built the guardrails agents run behind: an MCP server exposing live databases, logs and selected APIs through authenticated, monitored access, adopted as the team's standard agent integration path.",
@@ -158,7 +162,7 @@ export const workExperiences = {
       duration: "3 yrs",
       location: "Riyadh",
       tags: ["React Native", "Node.js", "AWS", "Datadog", "Redis"],
-      desc: "Built and scaled a meal subscription platform serving customers across Saudi Arabia, with a React Native driver app and the Node.js services behind it.",
+      desc: "Built and scaled a meal subscription platform serving customers across Saudi Arabia, with full-stack work across React Native and Node.js services.",
       descBullets: [
         "Built the real-time order service behind a 100,000 daily-user delivery product: kitchen, driver and delivery status pushed to mobile and web clients over Node.js and Socket.IO.",
         "Cut Mean Time To Resolve by 30% by instrumenting order, driver and kitchen flows with Datadog and OpenTelemetry.",
@@ -305,3 +309,40 @@ WHERE based_in = 'Cairo, Egypt'
   AND status = 'open to remote work';`
   }
 ];
+export const openSource = {
+  title: "Open Source",
+  projects: [
+    {
+      name: "ecs-drain-scaler",
+      url: "https://github.com/abdelwahab313/ecs-drain-scaler",
+      desc: "Lambda-based ECS autoscaler that drains long-running jobs before scale-in.",
+      role: "Author",
+      outcome: "Prevents mid-job termination on Fargate Spot/scale-in.",
+      tags: ["Go", "AWS", "Terraform"]
+    },
+    {
+      name: "focusflow",
+      url: "https://github.com/abdelwahab313/focusflow",
+      desc: "Time and task focus app.",
+      role: "Author",
+      outcome: "Minimalist flow tracking.",
+      tags: ["TypeScript", "PocketBase"]
+    },
+    {
+      name: "handoff-mcp-server",
+      url: "https://github.com/abdelwahab313/handoff-mcp-server",
+      desc: "MCP server for authenticated access to logs, DB, and APIs.",
+      role: "Author",
+      outcome: "Standardized agent access path.",
+      tags: ["TypeScript", "MCP"]
+    },
+    {
+      name: "egy-finance-radar",
+      url: "https://github.com/abdelwahab313/egy-finance-radar",
+      desc: "Egyptian finance data radar.",
+      role: "Author",
+      outcome: "Aggregates signals for analysis.",
+      tags: ["Python", "PostgreSQL", "Next.js"]
+    }
+  ]
+};

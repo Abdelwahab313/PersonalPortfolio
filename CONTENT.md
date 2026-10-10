@@ -98,19 +98,24 @@ Rules, in priority order:
 
 ## 3. Site copy
 
-Paste-ready. Keys refer to `src/portfolio.js` unless noted.
+Paste-ready. Keys refer to `src/data/portfolio.ts` unless noted.
 
-### Hero (`greeting.title`, `greeting.subTitle`)
+### Hero (`greeting.title`, `greeting.subTitle`, `greeting.valueProp`, `greeting.chips`)
 
-Title: `Hi, I'm Abdelwahab`
+Title: `Abdelwahab Mahmoud`
 
-Subtitle:
+Subtitle (role line): `Senior Software Engineer · Full-stack & Platform`
 
-> Senior software engineer, eight years in. I build production AWS systems and own them from
-> architecture through deployment to reliability: Node.js and TypeScript services, a delivery
-> platform serving 100K daily users, and WPML's LLM translation and agent platform on 1.5M+
-> WordPress sites. I am usually the one who finds out why production broke. Cairo, UTC+3. Open
-> to remote senior backend, platform and AI-platform roles.
+Value line:
+
+> Eight years building production systems on AWS: Node.js, TypeScript, Rails, and Go. I own
+> architecture, delivery, and reliability.
+
+Chips: `8 years`, `4 roles`, `Cairo / UTC+3`, `open to roles`.
+
+Actions: Resume (`/resume.pdf`), GitHub, LinkedIn, Email (`#contact`). Below the actions the
+hero renders the Code card (one profile in four CV-listed languages). No product card in the
+hero; products live only in the Products section.
 
 ### Meta (`public/index.html` title, description, og, twitter)
 
@@ -227,16 +232,26 @@ come from section 2 above.
 
 Index page (`/blog`) chrome, owned by `src/pages/blog/index.astro`:
 
-Title: `Blog`
+Meta title: `Blog | Abdelwahab Mahmoud`
+
+Heading: `Writing`
 
 Subtitle:
 
-> Four systems from the last two years, plus whatever comes next. What was there, what
-> I decided, what it cost, and what changed.
+> Notes and case studies from building production systems. What was tried, what cost,
+> and what changed.
 
-The four migrated case studies keep their copy verbatim from the 2026-10-05 refresh:
-`fargate` (Draining, not stopping), `engine` (One engine, three providers), `aurora`
-(7.33M rows per call), `triage` (The verdict lives in code, not the prompt).
+Meta description:
+
+> Case studies and notes from eight years building production systems. What was there,
+> what I decided, what it cost, and what changed.
+
+The four migrated posts keep their copy verbatim from the 2026-10-05 refresh, and are
+published as `kind: note`: `fargate` (Draining, not stopping), `engine` (One engine, three
+providers), `aurora` (7.33M rows per call), `triage` (The verdict lives in code, not the
+prompt). They carry the case-study arc across `sections` headings. The `case-study` kind is
+the four-part shape (`situation` / `decision` / `tradeoff` / `outcome`), used when a post is
+short enough for that form.
 
 Anonymized 2026-10-08: no product, company, or `*.wpml.org` link in any post.
 Bodies and diagrams keep only the names of public tooling (AWS services, OpenAI,
@@ -256,6 +271,13 @@ Subtitle: `Products I helped build`
 > websites automatically, and on the AWS infrastructure and LLM engine layer underneath it.
 
 Other three cards unchanged except names per section 1.
+
+### Open source (`openSource.projects`)
+
+Four public repositories, rendered between Experience and Products. Copy lives in
+`src/data/portfolio.ts` `openSource`. Each card shows the repo name, description,
+`role · outcome`, a GitHub link and tech tags. Named repos, links and descriptions are the
+author's real repos; do not invent new ones here without a matching repository.
 
 ### Code card (hero, `src/data/portfolio.ts` `codeSnippets`)
 

@@ -64,10 +64,11 @@ Canonical inputs: `CONTEXT.md`, `CONTENT.md`, CV repo at
   a possible later follow-up only if a measured benefit justifies it.~~ **Reversed by ADR
   0001 (2026-10-08): the site is Astro, rebuilt on `astro-rebrand`.**
 - No trend sections: no talks, podcast, twitter timeline, achievements,
-  open-source grid, "Ask AI". All are already `display: false`. Blogs are in
-  scope from 2026-10-08: one `/blog` stream holding the case studies plus
-  future notes, authored one file at a time under `src/content/blog/`
-  (contract: `docs/BLOG.md`).
+  "Ask AI". Blogs are in scope from 2026-10-08: one `/blog` stream holding the
+  case studies plus future notes, authored one file at a time under
+  `src/content/blog/` (contract: `docs/BLOG.md`). **Open-source grid reversed
+  2026-10-10:** the homepage now renders an Open Source section between
+  Experience and Products, data in `src/data/portfolio.ts` `openSource`.
 - No generic terminal or dashboard decoration. No Lottie. No badges from
   third parties. No cityscapes or desk illustrations.
 - No claims about performance problems until measured (section 6).
@@ -226,7 +227,7 @@ Engineering:
 Small steps, each ending in a build and test run:
 
 1. Content model: resolve OTGS bullets, update CONTENT.md, mirror into
-   `src/portfolio.js`.
+   `src/data/portfolio.ts`.
 2. Case study copy: new CONTENT.md section, paste-ready.
 3. Diagram components: three inline SVGs, drawn against the verified facts.
 4. Case studies container, integrated into `Main.js`, anchor in nav.

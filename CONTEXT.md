@@ -1,6 +1,6 @@
 # CONTEXT
 
-Glossary of canonical terms for this portfolio's content. The site's copy (src/portfolio.js, public/index.html meta tags, resume) must agree with these terms. Canonical facts, tone rules and paste-ready copy live in CONTENT.md.
+Glossary of canonical terms for this portfolio's content. The site's copy (src/data/portfolio.ts, public/index.html meta tags, resume) must agree with these terms. Canonical facts, tone rules and paste-ready copy live in CONTENT.md.
 
 ## Terms
 
@@ -17,7 +17,7 @@ All site copy reads as human-written: no em dashes, no symmetrical buzzword bull
 A showcased product the user helped build, in the "Big Projects" section — one card per product with description and link. Distinct from an Experience: an Experience is the job; a Big Project is the artifact.
 
 ### Case study
-A Situation / Decision / Trade-off / Outcome write-up about one system, published as a post under `/blog/{slug}`. It carries a real system diagram where one exists. A Case study may go deeper than the two-page CV; numbers in it trace to the CV or to the fact-trace table in SPEC.md. Distinct from a Blog post only by `kind: "case-study"`.
+A Situation / Decision / Trade-off / Outcome write-up about one system, published as a post under `/blog/{slug}`. It carries a real system diagram where one exists. A Case study may go deeper than the two-page CV. It is the four-part `kind: "case-study"` shape; a longer write-up that carries the same arc across `sections` headings is a Blog post (`kind: "note"`), which is how the four migrated posts are published.
 
 ### Blog post
 One entry in the single `/blog` stream. Authored as exactly one file in `src/content/blog/{slug}.md` and discovered automatically by Astro content collections—never by editing a registry. Two kinds: `case-study` and `note`. A post with `status: "draft"` is visible in development only. Authoring contract: `docs/BLOG.md`.
@@ -29,4 +29,4 @@ The hero widget that shows one profile translated into several programming langu
 The tab switcher on the Code Card, one tab per language. The code is highlighted at build time by Shiki, so the island only swaps pre-built HTML.
 
 ### prompt chrome
-The terminal-style section headers that frame each section (`$ whoami`, `git log --career`, `cat stack.json`, `zsh · contact`). Decoration, not prose, so it is exempt from the Voice rules—but it must not introduce facts that are not in the CV.
+The terminal-style section headers that frame each section (`$ whoami`, `$ Experience`, `$ Open Source`, `$ Products`, `$ What I do`, `$ cat education.txt`, `$ Contact`, and the `~/abdelwahab` header). Decoration, not prose, so it is exempt from the Voice rules—but it must not introduce facts that are not in the CV.
