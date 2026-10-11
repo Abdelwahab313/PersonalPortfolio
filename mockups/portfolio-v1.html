@@ -1,0 +1,1341 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Abdelwahab Mahmoud — Portfolio redesign mockup</title>
+    <meta
+      name="description"
+      content="Design mockup. Not the live site."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      /* ============================================================
+         Design mockup — proposed redesign.
+         Goal: senior-engineer credibility + recruiter/HR legibility.
+         Terminal identity kept as a quiet accent, not the whole meal.
+         Both themes; toggle top-right. Light is the default here.
+         ============================================================ */
+
+      :root {
+        --font-sans: "IBM Plex Sans", -apple-system, BlinkMacSystemFont,
+          "Segoe UI", Helvetica, Arial, sans-serif;
+        --font-mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo,
+          Consolas, monospace;
+
+        --bg: #f7f6f2;
+        --bg-grad: radial-gradient(
+          1100px 520px at 78% -8%,
+          rgba(15, 118, 110, 0.1),
+          transparent 70%
+        );
+        --surface: #ffffff;
+        --surface-2: #fffdf9;
+        --ink: #1a1d22;
+        --muted: #5d636a;
+        --body: #3f454c;
+        --border: #e6e3da;
+        --border-strong: #d8d4c9;
+        --accent: #0f766e;
+        --accent-2: #0b5d56;
+        --accent-soft: rgba(15, 118, 110, 0.1);
+        --on-accent: #ffffff;
+        --shadow: 0 1px 2px rgba(20, 24, 28, 0.04),
+          0 10px 30px rgba(20, 24, 28, 0.06);
+        --shadow-hover: 0 2px 4px rgba(20, 24, 28, 0.06),
+          0 18px 44px rgba(20, 24, 28, 0.1);
+      }
+
+      [data-theme="dark"] {
+        --bg: #121519;
+        --bg-grad: radial-gradient(
+          1100px 520px at 78% -8%,
+          rgba(74, 192, 180, 0.14),
+          transparent 70%
+        );
+        --surface: #181c21;
+        --surface-2: #1a1e23;
+        --ink: #ecebe6;
+        --muted: #98a0a8;
+        --body: #c3c8cd;
+        --border: #2a3037;
+        --border-strong: #343b43;
+        --accent: #4ac0b4;
+        --accent-2: #6fd6cb;
+        --accent-soft: rgba(74, 192, 180, 0.12);
+        --on-accent: #08201c;
+        --shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 12px 34px rgba(0, 0, 0, 0.35);
+        --shadow-hover: 0 2px 6px rgba(0, 0, 0, 0.35),
+          0 22px 50px rgba(0, 0, 0, 0.45);
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+      body {
+        margin: 0;
+        font-family: var(--font-sans);
+        font-size: 16px;
+        line-height: 1.65;
+        color: var(--ink);
+        background-color: var(--bg);
+        background-image: var(--bg-grad);
+        background-repeat: no-repeat;
+        -webkit-font-smoothing: antialiased;
+        transition:
+          background-color 0.2s ease,
+          color 0.2s ease;
+      }
+      a {
+        color: var(--accent);
+        text-decoration: none;
+      }
+      a:hover {
+        color: var(--accent-2);
+      }
+      ::selection {
+        background: var(--accent-soft);
+      }
+      :focus-visible {
+        outline: 2px solid var(--accent);
+        outline-offset: 2px;
+        border-radius: 3px;
+      }
+
+      .container {
+        width: 92%;
+        max-width: 68rem;
+        margin: 0 auto;
+      }
+      .mono {
+        font-family: var(--font-mono);
+      }
+
+      /* ---------- mockup banner ---------- */
+      .mockup-bar {
+        position: sticky;
+        top: 0;
+        z-index: 50;
+        font-family: var(--font-mono);
+        font-size: 12px;
+        text-align: center;
+        padding: 0.4rem 1rem;
+        color: var(--on-accent);
+        background: var(--accent);
+      }
+
+      /* ---------- header ---------- */
+      .site-header {
+        position: sticky;
+        top: 0;
+        z-index: 40;
+        backdrop-filter: blur(10px);
+        background: color-mix(in srgb, var(--bg) 82%, transparent);
+        border-bottom: 1px solid var(--border);
+      }
+      .site-header .container {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+        padding: 0.8rem 0;
+      }
+      .brand {
+        font-family: var(--font-mono);
+        font-size: 13px;
+        color: var(--ink);
+      }
+      .brand .tilde {
+        color: var(--accent);
+      }
+      .site-nav {
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 0.25rem 1.15rem;
+        font-size: 14px;
+      }
+      .site-nav a {
+        color: var(--muted);
+      }
+      .site-nav a:hover {
+        color: var(--accent);
+      }
+      .theme-toggle {
+        font: inherit;
+        font-family: var(--font-mono);
+        font-size: 12px;
+        color: var(--muted);
+        background: none;
+        border: 1px solid var(--border-strong);
+        border-radius: 999px;
+        padding: 0.25rem 0.7rem;
+        cursor: pointer;
+      }
+      .theme-toggle:hover {
+        color: var(--accent);
+        border-color: var(--accent);
+      }
+      [data-theme="light"] .t-dark,
+      [data-theme="dark"] .t-light {
+        display: none;
+      }
+
+      /* ---------- hero ---------- */
+      .hero {
+        padding: 4.5rem 0 3rem;
+      }
+      .hero-grid {
+        display: grid;
+        grid-template-columns: 1.5fr 0.9fr;
+        gap: 3rem;
+        align-items: center;
+      }
+      .eyebrow {
+        font-family: var(--font-mono);
+        font-size: 13px;
+        color: var(--muted);
+        margin: 0 0 1.1rem;
+      }
+      .eyebrow .prompt {
+        color: var(--accent);
+      }
+      .eyebrow .comment {
+        color: var(--muted);
+      }
+      .hero h1 {
+        margin: 0;
+        font-size: clamp(36px, 5.2vw, 58px);
+        line-height: 1.04;
+        letter-spacing: -0.025em;
+      }
+      .hero-role {
+        margin: 0.9rem 0 0;
+        font-size: clamp(17px, 2vw, 20px);
+        font-weight: 500;
+        color: var(--accent);
+      }
+      .hero-lede {
+        margin: 1.25rem 0 0;
+        max-width: 34rem;
+        font-size: 17px;
+        line-height: 1.7;
+        color: var(--body);
+      }
+      .quick-facts {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        margin: 1.6rem 0 0;
+        padding: 0;
+        list-style: none;
+      }
+      .quick-facts li {
+        font-family: var(--font-mono);
+        font-size: 12.5px;
+        color: var(--body);
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 999px;
+        padding: 0.28rem 0.7rem;
+      }
+      .hero-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.7rem;
+        margin-top: 1.9rem;
+      }
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.45rem;
+        font-size: 14.5px;
+        font-weight: 500;
+        padding: 0.62rem 1.15rem;
+        border: 1px solid var(--border-strong);
+        border-radius: 8px;
+        color: var(--ink);
+        background: var(--surface);
+        transition:
+          transform 0.12s ease,
+          border-color 0.15s ease,
+          background 0.15s ease;
+      }
+      .btn:hover {
+        color: var(--ink);
+        border-color: var(--accent);
+        transform: translateY(-1px);
+      }
+      .btn-primary {
+        background: var(--accent);
+        border-color: var(--accent);
+        color: var(--on-accent);
+      }
+      .btn-primary:hover {
+        background: var(--accent-2);
+        border-color: var(--accent-2);
+        color: var(--on-accent);
+      }
+      .hero-links {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.3rem 1.1rem;
+        margin-top: 1.4rem;
+        font-family: var(--font-mono);
+        font-size: 12.5px;
+        color: var(--muted);
+      }
+      .hero-links a {
+        color: var(--muted);
+      }
+      .hero-links a:hover {
+        color: var(--accent);
+      }
+
+      /* photo placeholder */
+      .portrait {
+        aspect-ratio: 4 / 5;
+        border-radius: 18px;
+        border: 1px solid var(--border);
+        background:
+          linear-gradient(160deg, var(--accent-soft), transparent 60%),
+          var(--surface);
+        box-shadow: var(--shadow);
+        display: grid;
+        place-items: center;
+        position: relative;
+        overflow: hidden;
+      }
+      .portrait::after {
+        content: "your photo here · 4:5";
+        position: absolute;
+        bottom: 12px;
+        left: 0;
+        right: 0;
+        text-align: center;
+        font-family: var(--font-mono);
+        font-size: 11px;
+        color: var(--muted);
+      }
+      .portrait-inner {
+        width: 74%;
+        aspect-ratio: 1;
+        border-radius: 50%;
+        border: 2px dashed var(--border-strong);
+        display: grid;
+        place-items: center;
+        font-family: var(--font-mono);
+        font-size: 40px;
+        font-weight: 600;
+        color: var(--accent);
+        letter-spacing: 0.02em;
+      }
+
+      /* ---------- impact band ---------- */
+      .impact {
+        margin-top: 2.5rem;
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 0;
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 14px;
+        box-shadow: var(--shadow);
+        overflow: hidden;
+      }
+      .impact-item {
+        padding: 1.5rem 1.4rem;
+        border-right: 1px solid var(--border);
+      }
+      .impact-item:last-child {
+        border-right: none;
+      }
+      .impact-num {
+        font-size: 30px;
+        font-weight: 700;
+        letter-spacing: -0.02em;
+        color: var(--ink);
+        line-height: 1;
+      }
+      .impact-num .accent {
+        color: var(--accent);
+      }
+      .impact-label {
+        margin: 0.55rem 0 0;
+        font-size: 13.5px;
+        line-height: 1.5;
+        color: var(--muted);
+      }
+
+      /* ---------- section scaffolding ---------- */
+      .section {
+        margin-top: 6rem;
+      }
+      .section-head {
+        margin: 0 0 2.25rem;
+      }
+      .section-kicker {
+        font-family: var(--font-mono);
+        font-size: 12.5px;
+        color: var(--accent);
+        margin: 0 0 0.4rem;
+      }
+      .section-title {
+        margin: 0;
+        font-size: clamp(24px, 3vw, 30px);
+        font-weight: 700;
+        letter-spacing: -0.02em;
+      }
+      .section-note {
+        margin: 0.5rem 0 0;
+        max-width: 42rem;
+        font-size: 15.5px;
+        color: var(--muted);
+      }
+
+      /* ---------- about ---------- */
+      .about-grid {
+        display: grid;
+        grid-template-columns: 1.6fr 1fr;
+        gap: 2.5rem;
+        align-items: start;
+      }
+      .about-body p {
+        margin: 0 0 1rem;
+        font-size: 16.5px;
+        line-height: 1.75;
+        color: var(--body);
+      }
+      .about-body p:last-child {
+        margin-bottom: 0;
+      }
+      .fact-card {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        padding: 1.35rem 1.5rem;
+        box-shadow: var(--shadow);
+      }
+      .fact-row {
+        display: flex;
+        justify-content: space-between;
+        gap: 1rem;
+        padding: 0.6rem 0;
+        border-bottom: 1px solid var(--border);
+        font-size: 14px;
+      }
+      .fact-row:last-child {
+        border-bottom: none;
+        padding-bottom: 0;
+      }
+      .fact-row:first-child {
+        padding-top: 0;
+      }
+      .fact-key {
+        font-family: var(--font-mono);
+        font-size: 12.5px;
+        color: var(--muted);
+        white-space: nowrap;
+      }
+      .fact-val {
+        text-align: right;
+        color: var(--ink);
+      }
+
+      /* ---------- experience timeline ---------- */
+      .jobs {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+      }
+      .job {
+        position: relative;
+        padding: 0 0 2.75rem 1.75rem;
+        border-left: 2px solid var(--border);
+      }
+      .job:last-child {
+        padding-bottom: 0;
+        border-left-color: transparent;
+      }
+      .job::before {
+        content: "";
+        position: absolute;
+        left: -7px;
+        top: 5px;
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        background: var(--accent);
+        box-shadow: 0 0 0 3px var(--bg);
+      }
+      .job-meta {
+        font-family: var(--font-mono);
+        font-size: 12.5px;
+        color: var(--muted);
+        margin: 0 0 0.45rem;
+      }
+      .job-top {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        flex-wrap: wrap;
+      }
+      .logo-badge {
+        width: 34px;
+        height: 34px;
+        border-radius: 8px;
+        display: grid;
+        place-items: center;
+        font-family: var(--font-mono);
+        font-size: 12px;
+        font-weight: 600;
+        color: var(--accent);
+        background: var(--accent-soft);
+        border: 1px solid var(--border);
+        flex: none;
+      }
+      .job-company {
+        margin: 0;
+        font-size: 19px;
+        font-weight: 600;
+        letter-spacing: -0.01em;
+      }
+      .job-role {
+        margin: 0.15rem 0 0;
+        font-size: 14.5px;
+        color: var(--muted);
+      }
+      .job-desc {
+        margin: 0.85rem 0 0;
+        font-size: 15.5px;
+        line-height: 1.7;
+        color: var(--body);
+      }
+      .job-bullets {
+        margin: 0.8rem 0 0;
+        padding-left: 1.1rem;
+      }
+      .job-bullets li {
+        margin-bottom: 0.4rem;
+        font-size: 15px;
+        line-height: 1.65;
+        color: var(--body);
+      }
+      .job-bullets li::marker {
+        color: var(--accent);
+      }
+      .tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.4rem;
+        list-style: none;
+        margin: 0.95rem 0 0;
+        padding: 0;
+      }
+      .tag {
+        font-family: var(--font-mono);
+        font-size: 11.5px;
+        color: var(--muted);
+        background: var(--surface-2);
+        border: 1px solid var(--border);
+        border-radius: 6px;
+        padding: 0.16rem 0.5rem;
+      }
+
+      /* ---------- cards grid (products) ---------- */
+      .card-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 1.25rem;
+      }
+      .card {
+        display: flex;
+        flex-direction: column;
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 14px;
+        padding: 1.5rem;
+        box-shadow: var(--shadow);
+        transition:
+          transform 0.14s ease,
+          box-shadow 0.14s ease,
+          border-color 0.14s ease;
+      }
+      .card:hover {
+        transform: translateY(-3px);
+        box-shadow: var(--shadow-hover);
+        border-color: var(--border-strong);
+      }
+      .card h3 {
+        margin: 0.9rem 0 0;
+        font-size: 18px;
+        font-weight: 600;
+      }
+      .card p {
+        margin: 0.6rem 0 0;
+        font-size: 14.5px;
+        line-height: 1.65;
+        color: var(--body);
+      }
+      .card-link {
+        margin-top: auto;
+        padding-top: 1rem;
+        font-family: var(--font-mono);
+        font-size: 12.5px;
+      }
+
+      /* ---------- open source ---------- */
+      .os-list {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        border-top: 1px solid var(--border);
+      }
+      .os-item {
+        display: grid;
+        grid-template-columns: 220px 1fr auto;
+        gap: 1.25rem;
+        align-items: baseline;
+        padding: 1.15rem 0;
+        border-bottom: 1px solid var(--border);
+      }
+      .os-name {
+        font-family: var(--font-mono);
+        font-size: 14px;
+        color: var(--ink);
+      }
+      .os-desc {
+        font-size: 14.5px;
+        color: var(--body);
+      }
+      .os-meta {
+        font-family: var(--font-mono);
+        font-size: 12px;
+        color: var(--muted);
+        white-space: nowrap;
+      }
+
+      /* ---------- skills ---------- */
+      .skills {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 1rem 2rem;
+      }
+      .skill-group {
+        padding: 1rem 0;
+        border-top: 1px solid var(--border);
+      }
+      .skill-group h4 {
+        margin: 0 0 0.7rem;
+        font-family: var(--font-mono);
+        font-size: 12.5px;
+        font-weight: 500;
+        color: var(--accent);
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+      }
+      .skill-group ul {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.4rem;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+      }
+      .skill-group li {
+        font-size: 13.5px;
+        color: var(--body);
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 6px;
+        padding: 0.2rem 0.55rem;
+      }
+
+      /* ---------- education ---------- */
+      .edu {
+        display: flex;
+        align-items: center;
+        gap: 1.1rem;
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 14px;
+        padding: 1.4rem 1.5rem;
+        box-shadow: var(--shadow);
+      }
+      .edu-badge {
+        width: 46px;
+        height: 46px;
+        border-radius: 10px;
+        background: var(--accent-soft);
+        border: 1px solid var(--border);
+        display: grid;
+        place-items: center;
+        font-family: var(--font-mono);
+        font-size: 13px;
+        font-weight: 600;
+        color: var(--accent);
+        flex: none;
+      }
+      .edu-name {
+        margin: 0;
+        font-size: 17px;
+        font-weight: 600;
+      }
+      .edu-sub {
+        margin: 0.15rem 0 0;
+        font-size: 14px;
+        color: var(--muted);
+      }
+      .edu-duration {
+        margin-left: auto;
+        font-family: var(--font-mono);
+        font-size: 12.5px;
+        color: var(--muted);
+        white-space: nowrap;
+      }
+
+      /* ---------- contact ---------- */
+      .contact {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 16px;
+        padding: 2.5rem;
+        box-shadow: var(--shadow);
+        text-align: center;
+      }
+      .contact h2 {
+        margin: 0;
+        font-size: clamp(22px, 3vw, 28px);
+        letter-spacing: -0.02em;
+      }
+      .contact p {
+        margin: 0.75rem auto 0;
+        max-width: 34rem;
+        color: var(--muted);
+      }
+      .contact-email {
+        display: inline-block;
+        margin-top: 1.5rem;
+        font-family: var(--font-mono);
+        font-size: 19px;
+        color: var(--accent);
+        word-break: break-all;
+      }
+      .contact-actions {
+        margin-top: 1.5rem;
+        display: flex;
+        gap: 0.7rem;
+        justify-content: center;
+        flex-wrap: wrap;
+      }
+      .contact-facts {
+        margin-top: 1.75rem;
+        font-family: var(--font-mono);
+        font-size: 12.5px;
+        color: var(--muted);
+        display: flex;
+        gap: 0.4rem 1.25rem;
+        justify-content: center;
+        flex-wrap: wrap;
+      }
+      .contact-facts a {
+        color: var(--muted);
+      }
+
+      /* ---------- footer ---------- */
+      .site-footer {
+        margin-top: 5rem;
+        border-top: 1px solid var(--border);
+        padding: 1.75rem 0 2.5rem;
+      }
+      .site-footer .container {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 0.4rem 1rem;
+        font-family: var(--font-mono);
+        font-size: 12px;
+        color: var(--muted);
+      }
+
+      /* ---------- responsive ---------- */
+      @media (max-width: 900px) {
+        .hero-grid,
+        .about-grid {
+          grid-template-columns: 1fr;
+        }
+        .portrait {
+          max-width: 320px;
+          order: -1;
+        }
+        .impact {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        .impact-item:nth-child(2) {
+          border-right: none;
+        }
+        .impact-item:nth-child(1),
+        .impact-item:nth-child(2) {
+          border-bottom: 1px solid var(--border);
+        }
+        .os-item {
+          grid-template-columns: 1fr;
+          gap: 0.3rem;
+        }
+      }
+      @media (max-width: 560px) {
+        .impact {
+          grid-template-columns: 1fr;
+        }
+        .impact-item {
+          border-right: none;
+          border-bottom: 1px solid var(--border);
+        }
+        .impact-item:last-child {
+          border-bottom: none;
+        }
+        .site-nav a:not(.nav-primary) {
+          display: none;
+        }
+        .edu-duration {
+          display: none;
+        }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        html {
+          scroll-behavior: auto;
+        }
+        * {
+          transition: none !important;
+        }
+      }
+    </style>
+    <!-- Structured data to ship with the real page (helps Google + AI assistants find you). -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Abdelwahab Mahmoud",
+        "jobTitle": "Senior Software Engineer",
+        "email": "mailto:abdelwahabahmed93@gmail.com",
+        "url": "https://abdelwahab.dev",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Cairo",
+          "addressCountry": "EG"
+        },
+        "alumniOf": {
+          "@type": "CollegeOrUniversity",
+          "name": "Cairo University"
+        },
+        "sameAs": [
+          "https://github.com/abdelwahab313",
+          "https://www.linkedin.com/in/abdelwahab313/"
+        ],
+        "knowsLanguage": ["en", "ar"],
+        "knowsAbout": [
+          "Ruby on Rails",
+          "AWS",
+          "ECS Fargate",
+          "Terraform",
+          "Node.js",
+          "Go",
+          "LLM platforms",
+          "PostgreSQL"
+        ]
+      }
+    </script>
+  </head>
+  <body>
+    <div class="mockup-bar">Design mockup · not the live site · placeholders marked</div>
+
+    <header class="site-header">
+      <div class="container">
+        <a class="brand" href="#top"><span class="tilde">~/</span>abdelwahab</a>
+        <nav class="site-nav">
+          <a class="nav-primary" href="#about">About</a>
+          <a href="#experience">Experience</a>
+          <a href="#products">Projects</a>
+          <a href="#skills">Skills</a>
+          <a href="#contact">Contact</a>
+          <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">
+            <span class="t-light">dark</span><span class="t-dark">light</span>
+          </button>
+        </nav>
+      </div>
+    </header>
+
+    <main id="top">
+      <!-- ============ HERO ============ -->
+      <section class="container hero">
+        <div class="hero-grid">
+          <div>
+            <p class="eyebrow">
+              <span class="prompt">$</span> whoami
+              <span class="comment"># senior software engineer, backend &amp; platform</span>
+            </p>
+            <h1>Abdelwahab Mahmoud</h1>
+            <p class="hero-role">Senior Software Engineer · Full-stack &amp; Platform</p>
+            <p class="hero-lede">
+              I build and operate production systems, mostly on AWS. Eight years
+              across Rails, Node.js and Go, lately LLM platforms over Bedrock,
+              OpenAI and Gemini, with the reliability work that keeps them
+              boring.
+            </p>
+            <ul class="quick-facts">
+              <li>Cairo, Egypt · UTC+3</li>
+              <li>Remote-friendly</li>
+              <li>English · Arabic (native)</li>
+              <li>Open to senior roles</li>
+            </ul>
+            <div class="hero-actions">
+              <a class="btn btn-primary" href="#">Download CV</a>
+              <a class="btn" href="#contact">Get in touch</a>
+            </div>
+            <div class="hero-links">
+              <a href="#">GitHub ↗</a>
+              <a href="#">LinkedIn ↗</a>
+              <a href="#">Email</a>
+            </div>
+          </div>
+          <div class="portrait" aria-hidden="true">
+            <div class="portrait-inner">AM</div>
+          </div>
+        </div>
+
+        <!-- ============ IMPACT BAND ============ -->
+        <div class="impact">
+          <div class="impact-item">
+            <div class="impact-num"><span class="accent">8+</span> yrs</div>
+            <p class="impact-label">Shipping production software since 2018</p>
+          </div>
+          <div class="impact-item">
+            <div class="impact-num">100k</div>
+            <p class="impact-label">Daily users on the delivery platform I built</p>
+          </div>
+          <div class="impact-item">
+            <div class="impact-num"><span class="accent">30%</span></div>
+            <p class="impact-label">Faster incident resolution after I instrumented the flows</p>
+          </div>
+          <div class="impact-item">
+            <div class="impact-num">1M+</div>
+            <p class="impact-label">Sites served by the translation platform behind WPML</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ ABOUT ============ -->
+      <section class="container section" id="about">
+        <div class="section-head">
+          <p class="section-kicker">About</p>
+          <h2 class="section-title">Who I am, in plain language</h2>
+        </div>
+        <div class="about-grid">
+          <div class="about-body">
+            <p>
+              I'm a senior software engineer based in Cairo. I spent the last
+              eight years building and operating real products end to end, with
+              backend and platform as my home ground: Ruby on Rails, Node.js and
+              Go, with the AWS infrastructure underneath.
+            </p>
+            <p>
+              Most of my work is the unglamorous kind that keeps a product
+              standing up: keeping databases out of CPU saturation, replacing
+              autoscaling that kills long jobs, and making an LLM engine fail
+              over cleanly when a provider degrades. I like owning a system from
+              the architecture decision to the 3am incident.
+            </p>
+            <p>
+              I've worked on a meal-subscription platform serving 100,000 daily
+              users, a US health product, and the AI translation platform behind
+              WPML. I'm looking for a senior backend or platform role where I can
+              own systems, and I'm happy to work remotely.
+            </p>
+          </div>
+          <aside class="fact-card" aria-label="Quick facts">
+            <div class="fact-row">
+              <span class="fact-key">location</span
+              ><span class="fact-val">Cairo, Egypt (UTC+3)</span>
+            </div>
+            <div class="fact-row">
+              <span class="fact-key">focus</span
+              ><span class="fact-val">Backend &amp; platform</span>
+            </div>
+            <div class="fact-row">
+              <span class="fact-key">experience</span
+              ><span class="fact-val">8+ years</span>
+            </div>
+            <div class="fact-row">
+              <span class="fact-key">languages</span
+              ><span class="fact-val">English · Arabic (native)</span>
+            </div>
+            <div class="fact-row">
+              <span class="fact-key">work model</span
+              ><span class="fact-val">Remote · relocation ok</span>
+            </div>
+            <div class="fact-row">
+              <span class="fact-key">status</span
+              ><span class="fact-val" style="color: var(--accent)">Open to roles</span>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <!-- ============ EXPERIENCE ============ -->
+      <section class="container section" id="experience">
+        <div class="section-head">
+          <p class="section-kicker">Experience</p>
+          <h2 class="section-title">Where I've worked</h2>
+          <p class="section-note">Four roles, newest first.</p>
+        </div>
+
+        <ol class="jobs">
+          <!-- job 1 -->
+          <li class="job">
+            <p class="job-meta">December 2024 – Present · Remote (Hong Kong)</p>
+            <div class="job-top">
+              <span class="logo-badge">OG</span>
+              <div>
+                <h3 class="job-company">OnTheGoSystems</h3>
+                <p class="job-role">Senior Software Engineer · WPML, WordPress plugins</p>
+              </div>
+            </div>
+            <p class="job-desc">
+              I worked on Private Translation Cloud, an AI translation platform
+              from the team behind WPML, the multilingual plugin that powers over
+              a million WordPress sites. Product work in Rails and React, and the
+              AWS platform underneath it.
+            </p>
+            <ul class="job-bullets">
+              <li>
+                Built the multi-provider translation LLM engine (Bedrock, OpenAI,
+                Gemini): fallback chains and rate-limit retries keep translations
+                flowing when a provider degrades.
+              </li>
+              <li>
+                Cleared Aurora MySQL's worst-query backlog until CPU pressure
+                stopped turning into incidents.
+              </li>
+              <li>
+                Migrated the product onto AWS ECS Fargate and own the platform and
+                its Terraform.
+              </li>
+            </ul>
+            <ul class="tags">
+              <li class="tag">Ruby on Rails</li>
+              <li class="tag">React</li>
+              <li class="tag">ECS Fargate</li>
+              <li class="tag">Terraform</li>
+              <li class="tag">Aurora</li>
+              <li class="tag">Bedrock</li>
+            </ul>
+          </li>
+
+          <!-- job 2 -->
+          <li class="job">
+            <p class="job-meta">December 2021 – December 2024 · Riyadh</p>
+            <div class="job-top">
+              <span class="logo-badge">DM</span>
+              <div>
+                <h3 class="job-company">Dailymealz</h3>
+                <p class="job-role">Senior Software Engineer</p>
+              </div>
+            </div>
+            <p class="job-desc">
+              Built and scaled a meal subscription platform serving customers
+              across Saudi Arabia, with a React Native driver app and the Node.js
+              services behind it.
+            </p>
+            <ul class="job-bullets">
+              <li>
+                Built the real-time order service behind a 100,000 daily-user
+                delivery product.
+              </li>
+              <li>
+                Cut Mean Time To Resolve by 30% by instrumenting order, driver and
+                kitchen flows with Datadog and OpenTelemetry.
+              </li>
+              <li>
+                Led a team of five building a driver location check-in system.
+              </li>
+            </ul>
+            <ul class="tags">
+              <li class="tag">React Native</li>
+              <li class="tag">Node.js</li>
+              <li class="tag">AWS</li>
+              <li class="tag">Datadog</li>
+              <li class="tag">Redis</li>
+            </ul>
+          </li>
+
+          <!-- job 3 -->
+          <li class="job">
+            <p class="job-meta">October 2020 – December 2021 · Cairo</p>
+            <div class="job-top">
+              <span class="logo-badge">NF</span>
+              <div>
+                <h3 class="job-company">Nformacy</h3>
+                <p class="job-role">Full-Stack Developer</p>
+              </div>
+            </div>
+            <p class="job-desc">
+              Built Nformacy, a knowledge marketplace that connects business
+              advisors with companies that need their expertise. Full-stack work
+              in React and Ruby on Rails, from the first MVP to the beta launch.
+            </p>
+            <ul class="tags">
+              <li class="tag">React</li>
+              <li class="tag">Ruby on Rails</li>
+            </ul>
+          </li>
+
+          <!-- job 4 -->
+          <li class="job">
+            <p class="job-meta">January 2018 – October 2020 · Cairo</p>
+            <div class="job-top">
+              <span class="logo-badge">DS</span>
+              <div>
+                <h3 class="job-company">DevSquads</h3>
+                <p class="job-role">Software Engineer · formerly Fikr Labs</p>
+              </div>
+            </div>
+            <p class="job-desc">
+              First job in tech, at a Cairo venture studio that became DevSquads,
+              an agile consultancy that takes XP seriously: TDD, pair programming
+              and continuous delivery. Delivered products for international
+              clients, including Shapa, a US health tech platform.
+            </p>
+            <ul class="tags">
+              <li class="tag">React</li>
+              <li class="tag">React Native</li>
+              <li class="tag">Node.js</li>
+              <li class="tag">Java Spring</li>
+              <li class="tag">TDD</li>
+            </ul>
+          </li>
+        </ol>
+      </section>
+
+      <!-- ============ PRODUCTS ============ -->
+      <section class="container section" id="products">
+        <div class="section-head">
+          <p class="section-kicker">Products</p>
+          <h2 class="section-title">Things I helped build</h2>
+          <p class="section-note">Four products, all shipped and in the wild.</p>
+        </div>
+        <div class="card-grid">
+          <article class="card">
+            <span class="logo-badge">PTC</span>
+            <h3>Private Translation Cloud</h3>
+            <p>
+              AI translation service from the team behind WPML. I worked on the
+              platform and the AWS and LLM layers underneath it.
+            </p>
+            <div class="card-link"><a href="#">Visit website ↗</a></div>
+          </article>
+          <article class="card">
+            <span class="logo-badge">DM</span>
+            <h3>Dailymealz</h3>
+            <p>
+              Meal subscription service in Saudi Arabia. Three years building its
+              apps, dashboards and infrastructure.
+            </p>
+            <div class="card-link"><a href="#">Visit website ↗</a></div>
+          </article>
+          <article class="card">
+            <span class="logo-badge">SH</span>
+            <h3>Shapa</h3>
+            <p>
+              US health product built around a numberless smart scale. I worked on
+              the mobile app and the backend behind it.
+            </p>
+            <div class="card-link"><a href="#">Visit website ↗</a></div>
+          </article>
+          <article class="card">
+            <span class="logo-badge">NF</span>
+            <h3>Nformacy</h3>
+            <p>
+              Knowledge marketplace connecting advisors with companies. I built
+              it from the first MVP to the beta launch.
+            </p>
+            <div class="card-link"><a href="#">Visit website ↗</a></div>
+          </article>
+        </div>
+      </section>
+
+      <!-- ============ OPEN SOURCE ============ -->
+      <section class="container section" id="opensource">
+        <div class="section-head">
+          <p class="section-kicker">Open source</p>
+          <h2 class="section-title">Things I've published</h2>
+        </div>
+        <ul class="os-list">
+          <li class="os-item">
+            <a class="os-name" href="#">ecs-drain-scaler</a>
+            <span class="os-desc"
+              >Lambda ECS autoscaler that drains long-running jobs before
+              scale-in.</span
+            >
+            <span class="os-meta">Go · AWS · Terraform</span>
+          </li>
+          <li class="os-item">
+            <a class="os-name" href="#">handoff-mcp-server</a>
+            <span class="os-desc"
+              >MCP server for authenticated access to logs, databases and
+              APIs.</span
+            >
+            <span class="os-meta">TypeScript · MCP</span>
+          </li>
+          <li class="os-item">
+            <a class="os-name" href="#">focusflow</a>
+            <span class="os-desc">Time and task focus app.</span>
+            <span class="os-meta">TypeScript · PocketBase</span>
+          </li>
+          <li class="os-item">
+            <a class="os-name" href="#">egy-finance-radar</a>
+            <span class="os-desc">Egyptian finance data radar.</span>
+            <span class="os-meta">Python · PostgreSQL · Next.js</span>
+          </li>
+        </ul>
+      </section>
+
+      <!-- ============ SKILLS ============ -->
+      <section class="container section" id="skills">
+        <div class="section-head">
+          <p class="section-kicker">Skills</p>
+          <h2 class="section-title">What I work with</h2>
+          <p class="section-note">
+            Backend and platform first. The full list, straight from the CV.
+          </p>
+        </div>
+        <div class="skills">
+          <div class="skill-group">
+            <h4>Languages</h4>
+            <ul>
+              <li>PHP</li><li>TypeScript</li><li>JavaScript</li><li>Go</li>
+              <li>Ruby</li><li>Java (Spring)</li><li>Python</li><li>SQL</li>
+            </ul>
+          </div>
+          <div class="skill-group">
+            <h4>Backend</h4>
+            <ul>
+              <li>Ruby on Rails</li><li>Node.js</li><li>REST API design</li>
+              <li>service-oriented architecture</li><li>SQS</li><li>Kafka</li>
+            </ul>
+          </div>
+          <div class="skill-group">
+            <h4>Frontend</h4>
+            <ul>
+              <li>Next.js</li><li>React</li><li>Redux</li>
+              <li>Hotwire (Turbo &amp; Stimulus)</li><li>React Native</li>
+              <li>Tailwind CSS</li>
+            </ul>
+          </div>
+          <div class="skill-group">
+            <h4>AI &amp; LLM</h4>
+            <ul>
+              <li>AWS Bedrock</li><li>OpenAI</li><li>Gemini</li>
+              <li>agentic workflows</li><li>Claude Agent SDK</li><li>MCP</li>
+              <li>Langfuse</li><li>evals</li>
+            </ul>
+          </div>
+          <div class="skill-group">
+            <h4>Cloud &amp; Infrastructure</h4>
+            <ul>
+              <li>ECS Fargate</li><li>Lambda</li><li>Step Functions</li>
+              <li>CloudWatch</li><li>S3</li><li>IAM</li><li>Kubernetes</li>
+              <li>Terraform</li><li>Docker</li><li>GitHub Actions</li><li>GitLab CI</li>
+            </ul>
+          </div>
+          <div class="skill-group">
+            <h4>Observability</h4>
+            <ul>
+              <li>Datadog</li><li>OpenTelemetry</li><li>AWS CloudWatch</li>
+              <li>Langfuse tracing</li>
+            </ul>
+          </div>
+          <div class="skill-group">
+            <h4>Databases</h4>
+            <ul>
+              <li>PostgreSQL</li><li>MySQL</li><li>Aurora</li><li>Redis</li>
+              <li>DynamoDB</li><li>ClickHouse</li>
+            </ul>
+          </div>
+          <div class="skill-group">
+            <h4>Testing</h4>
+            <ul>
+              <li>TDD</li><li>Spec-driven development</li><li>RSpec</li>
+              <li>Capybara</li><li>Playwright</li><li>Cypress</li><li>Jest</li>
+              <li>VCR</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ EDUCATION ============ -->
+      <section class="container section" id="education">
+        <div class="section-head">
+          <p class="section-kicker">Education</p>
+          <h2 class="section-title">Where it started</h2>
+        </div>
+        <div class="edu">
+          <span class="edu-badge">CU</span>
+          <div>
+            <h3 class="edu-name">Faculty of Science, Cairo University</h3>
+            <p class="edu-sub">BSc in Geophysics</p>
+          </div>
+          <span class="edu-duration">Sep 2012 – Jun 2016</span>
+        </div>
+      </section>
+
+      <!-- ============ CONTACT ============ -->
+      <section class="container section" id="contact">
+        <div class="contact">
+          <h2>Let's talk</h2>
+          <p>
+            Hiring for a senior backend or platform role? I usually reply within
+            a day.
+          </p>
+          <a class="contact-email" href="mailto:abdelwahabahmed93@gmail.com"
+            >abdelwahabahmed93@gmail.com</a
+          >
+          <div class="contact-actions">
+            <a class="btn btn-primary" href="#">Download CV</a>
+            <a class="btn" href="#">LinkedIn ↗</a>
+            <a class="btn" href="#">GitHub ↗</a>
+          </div>
+          <div class="contact-facts">
+            <span>github → <a href="#">abdelwahab313</a></span>
+            <span>linkedin → <a href="#">in/abdelwahab313</a></span>
+            <span>timezone → UTC+3</span>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container">
+        <span>© 2026 Abdelwahab Mahmoud</span>
+        <span>built with astro · hosted on github pages</span>
+      </div>
+    </footer>
+
+    <script>
+      (function () {
+        var el = document.getElementById("theme-toggle");
+        el.addEventListener("click", function () {
+          var cur = document.documentElement.dataset.theme;
+          document.documentElement.dataset.theme = cur === "dark" ? "light" : "dark";
+        });
+      })();
+    </script>
+  </body>
+</html>

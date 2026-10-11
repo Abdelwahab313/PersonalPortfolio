@@ -1,0 +1,1061 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Abdelwahab Mahmoud — Portfolio mockup v3 (bento)</title>
+    <meta
+      name="description"
+      content="Design mockup v3, bento-grid direction. Not the live site."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      /* ============================================================
+         v3 — Bento dashboard.
+         The 2026 default on Linear / Vercel / Notion style sites:
+         a modular grid of asymmetric tiles that lets a recruiter scan
+         everything at once, then read detail below. Near-black, one
+         accent, generous spacing, quiet motion.
+         ============================================================ */
+
+      :root {
+        --sans: "Inter Tight", -apple-system, BlinkMacSystemFont, "Segoe UI",
+          Helvetica, Arial, sans-serif;
+        --mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, Consolas,
+          monospace;
+        --maxw: 74rem;
+        --gap: 1rem;
+        --radius: 18px;
+        --ease: cubic-bezier(0.22, 0.61, 0.36, 1);
+      }
+      html[data-theme="dark"] {
+        --bg: #090b0e;
+        --bg-soft: #0d1014;
+        --surface: #101419;
+        --surface-2: #151a21;
+        --surface-3: #1a2029;
+        --ink: #f1f4f7;
+        --muted: #8a929d;
+        --body: #bcc4cd;
+        --border: #1d232b;
+        --border-hi: #2b333e;
+        --accent: #8a97ff;
+        --accent-2: #aab4ff;
+        --accent-soft: rgba(138, 151, 255, 0.14);
+        --on-accent: #0a0c18;
+        --positive: #4ade80;
+        --shadow: 0 1px 0 rgba(255, 255, 255, 0.03) inset,
+          0 20px 40px rgba(0, 0, 0, 0.45);
+        --grid-line: rgba(255, 255, 255, 0.035);
+      }
+      html[data-theme="light"] {
+        --bg: #f6f6f4;
+        --bg-soft: #f1f1ee;
+        --surface: #ffffff;
+        --surface-2: #fbfbfa;
+        --surface-3: #f4f4f2;
+        --ink: #16181c;
+        --muted: #6a7078;
+        --body: #414750;
+        --border: #e6e6e2;
+        --border-hi: #d8d8d2;
+        --accent: #4b57d6;
+        --accent-2: #3a45c0;
+        --accent-soft: rgba(75, 87, 214, 0.1);
+        --on-accent: #ffffff;
+        --positive: #16a34a;
+        --shadow: 0 1px 2px rgba(20, 22, 28, 0.04),
+          0 14px 34px rgba(20, 22, 28, 0.06);
+        --grid-line: rgba(20, 22, 28, 0.04);
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+      body {
+        margin: 0;
+        font-family: var(--sans);
+        font-size: 16px;
+        line-height: 1.6;
+        color: var(--ink);
+        background: var(--bg);
+        -webkit-font-smoothing: antialiased;
+      }
+      a {
+        color: var(--accent);
+        text-decoration: none;
+      }
+      ::selection {
+        background: var(--accent-soft);
+      }
+      :focus-visible {
+        outline: 2px solid var(--accent);
+        outline-offset: 3px;
+        border-radius: 6px;
+      }
+
+      .container {
+        width: min(94%, var(--maxw));
+        margin: 0 auto;
+      }
+      .mono {
+        font-family: var(--mono);
+      }
+
+      .mockup-bar {
+        text-align: center;
+        font-family: var(--mono);
+        font-size: 11.5px;
+        padding: 0.42rem 1rem;
+        color: var(--on-accent);
+        background: var(--accent);
+      }
+
+      /* header */
+      .site-header {
+        position: sticky;
+        top: 0;
+        z-index: 40;
+        background: color-mix(in srgb, var(--bg) 80%, transparent);
+        backdrop-filter: blur(12px);
+        border-bottom: 1px solid var(--border);
+      }
+      .site-header .container {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+        padding: 0.7rem 0;
+      }
+      .brand {
+        font-weight: 600;
+        font-size: 15px;
+        letter-spacing: -0.01em;
+        color: var(--ink);
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+      .brand .mark {
+        width: 22px;
+        height: 22px;
+        border-radius: 7px;
+        background: var(--accent);
+        color: var(--on-accent);
+        display: grid;
+        place-items: center;
+        font-size: 12px;
+        font-weight: 700;
+        font-family: var(--mono);
+      }
+      .site-nav {
+        display: flex;
+        align-items: center;
+        gap: 0.2rem;
+        font-size: 14px;
+      }
+      .site-nav a {
+        color: var(--muted);
+        padding: 0.35rem 0.65rem;
+        border-radius: 8px;
+        transition: all 0.15s var(--ease);
+      }
+      .site-nav a:hover {
+        color: var(--ink);
+        background: var(--surface-2);
+      }
+      .theme-toggle {
+        font-family: var(--mono);
+        font-size: 12px;
+        color: var(--muted);
+        background: none;
+        border: 1px solid var(--border-hi);
+        border-radius: 999px;
+        padding: 0.3rem 0.7rem;
+        cursor: pointer;
+        margin-left: 0.5rem;
+      }
+      .theme-toggle:hover {
+        color: var(--accent);
+        border-color: var(--accent);
+      }
+      html[data-theme="dark"] .t-dark,
+      html[data-theme="light"] .t-light {
+        display: none;
+      }
+
+      /* grid */
+      .bento {
+        display: grid;
+        grid-template-columns: repeat(6, 1fr);
+        grid-auto-rows: minmax(104px, auto);
+        gap: var(--gap);
+        grid-auto-flow: dense;
+        padding: 2rem 0 0;
+      }
+      .tile {
+        position: relative;
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        padding: 1.35rem 1.4rem;
+        overflow: hidden;
+        transition:
+          border-color 0.18s var(--ease),
+          transform 0.18s var(--ease),
+          background 0.18s var(--ease);
+      }
+      .tile:hover {
+        border-color: var(--border-hi);
+      }
+      .tile-label {
+        font-family: var(--mono);
+        font-size: 11px;
+        letter-spacing: 0.09em;
+        text-transform: uppercase;
+        color: var(--muted);
+        margin: 0 0 0.75rem;
+      }
+
+      /* spans */
+      .c2 {
+        grid-column: span 2;
+      }
+      .c3 {
+        grid-column: span 3;
+      }
+      .c4 {
+        grid-column: span 4;
+      }
+      .r2 {
+        grid-row: span 2;
+      }
+
+      /* intro tile */
+      .intro {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        background:
+          radial-gradient(
+            520px 320px at 100% 0%,
+            var(--accent-soft),
+            transparent 60%
+          ),
+          var(--surface);
+        padding: 1.9rem 2rem;
+      }
+      .status {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-family: var(--mono);
+        font-size: 11.5px;
+        color: var(--body);
+        background: var(--surface-2);
+        border: 1px solid var(--border-hi);
+        border-radius: 999px;
+        padding: 0.28rem 0.75rem;
+        width: fit-content;
+      }
+      .dot {
+        width: 7px;
+        height: 7px;
+        border-radius: 50%;
+        background: var(--positive);
+        box-shadow: 0 0 0 0 rgba(74, 222, 128, 0.5);
+        animation: pulse 2.4s infinite;
+      }
+      @keyframes pulse {
+        70% {
+          box-shadow: 0 0 0 7px rgba(74, 222, 128, 0);
+        }
+        100% {
+          box-shadow: 0 0 0 0 rgba(74, 222, 128, 0);
+        }
+      }
+      .intro h1 {
+        margin: 0.9rem 0 0;
+        font-size: clamp(30px, 4.4vw, 46px);
+        font-weight: 700;
+        letter-spacing: -0.03em;
+        line-height: 1.02;
+      }
+      .intro .role {
+        margin: 0.7rem 0 0;
+        font-size: 16px;
+        color: var(--muted);
+      }
+      .intro .lede {
+        margin: 1rem 0 0;
+        max-width: 40rem;
+        font-size: 15.5px;
+        line-height: 1.65;
+        color: var(--body);
+      }
+      .intro-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.6rem;
+        margin-top: 1.5rem;
+      }
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.45rem;
+        font-size: 14px;
+        font-weight: 500;
+        padding: 0.6rem 1.05rem;
+        border-radius: 10px;
+        border: 1px solid var(--border-hi);
+        color: var(--ink);
+        background: var(--surface-2);
+        transition: all 0.15s var(--ease);
+      }
+      .btn:hover {
+        border-color: var(--accent);
+        transform: translateY(-1px);
+      }
+      .btn-primary {
+        background: var(--accent);
+        border-color: var(--accent);
+        color: var(--on-accent);
+      }
+      .btn-primary:hover {
+        background: var(--accent-2);
+        border-color: var(--accent-2);
+        color: var(--on-accent);
+      }
+
+      /* photo tile */
+      .photo {
+        padding: 0;
+        display: grid;
+        place-items: center;
+        background:
+          linear-gradient(160deg, var(--accent-soft), transparent 55%),
+          var(--surface);
+      }
+      .photo-inner {
+        width: 66%;
+        aspect-ratio: 1;
+        border-radius: 50%;
+        border: 2px dashed var(--border-hi);
+        display: grid;
+        place-items: center;
+        font-size: 40px;
+        font-weight: 700;
+        color: var(--accent);
+        letter-spacing: -0.02em;
+      }
+      .photo-tag {
+        position: absolute;
+        bottom: 12px;
+        left: 0;
+        right: 0;
+        text-align: center;
+        font-family: var(--mono);
+        font-size: 10.5px;
+        color: var(--muted);
+      }
+      .photo-badge {
+        position: absolute;
+        top: 12px;
+        left: 12px;
+        font-family: var(--mono);
+        font-size: 10.5px;
+        color: var(--on-accent);
+        background: var(--accent);
+        border-radius: 999px;
+        padding: 0.2rem 0.55rem;
+      }
+
+      /* stats tile */
+      .stats {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        align-items: center;
+        gap: 0.5rem;
+      }
+      .stat {
+        padding: 0 1.1rem;
+        border-left: 1px solid var(--border);
+      }
+      .stat:first-child {
+        border-left: none;
+        padding-left: 0;
+      }
+      .stat-num {
+        font-size: 30px;
+        font-weight: 700;
+        letter-spacing: -0.03em;
+        line-height: 1;
+        color: var(--ink);
+      }
+      .stat-num .a {
+        color: var(--accent);
+      }
+      .stat-label {
+        margin: 0.5rem 0 0;
+        font-size: 12.5px;
+        line-height: 1.45;
+        color: var(--muted);
+      }
+
+      /* facts */
+      .facts {
+        display: flex;
+        flex-direction: column;
+        gap: 0.55rem;
+      }
+      .fact {
+        display: flex;
+        justify-content: space-between;
+        gap: 1rem;
+        font-size: 13.5px;
+        padding-bottom: 0.55rem;
+        border-bottom: 1px solid var(--border);
+      }
+      .fact:last-child {
+        border-bottom: none;
+        padding-bottom: 0;
+      }
+      .fact .k {
+        font-family: var(--mono);
+        font-size: 12px;
+        color: var(--muted);
+      }
+      .fact .v {
+        color: var(--ink);
+        text-align: right;
+      }
+
+      /* stack tile */
+      .chips {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.4rem;
+      }
+      .chip {
+        font-family: var(--mono);
+        font-size: 11.5px;
+        color: var(--body);
+        background: var(--surface-2);
+        border: 1px solid var(--border);
+        border-radius: 7px;
+        padding: 0.2rem 0.5rem;
+      }
+
+      /* writing tile */
+      .mini-posts {
+        display: flex;
+        flex-direction: column;
+        gap: 0.7rem;
+      }
+      .mini-post {
+        display: block;
+        padding-bottom: 0.7rem;
+        border-bottom: 1px solid var(--border);
+      }
+      .mini-post:last-child {
+        border-bottom: none;
+        padding-bottom: 0;
+      }
+      .mini-post .k {
+        font-family: var(--mono);
+        font-size: 10.5px;
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+        color: var(--accent);
+      }
+      .mini-post .t {
+        display: block;
+        margin-top: 0.15rem;
+        font-size: 14.5px;
+        font-weight: 500;
+        color: var(--ink);
+      }
+      .mini-post:hover .t {
+        color: var(--accent);
+      }
+
+      /* os list tile */
+      .os {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+      }
+      .os a {
+        display: flex;
+        justify-content: space-between;
+        gap: 1rem;
+        font-family: var(--mono);
+        font-size: 13px;
+        color: var(--body);
+      }
+      .os a:hover {
+        color: var(--accent);
+      }
+      .os a span:last-child {
+        color: var(--muted);
+      }
+
+      /* contact tile */
+      .contact-tile {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        background:
+          radial-gradient(
+            420px 260px at 100% 100%,
+            var(--accent-soft),
+            transparent 65%
+          ),
+          var(--surface);
+      }
+      .contact-tile h2 {
+        margin: 0;
+        font-size: 24px;
+        font-weight: 700;
+        letter-spacing: -0.02em;
+      }
+      .contact-tile p {
+        margin: 0.5rem 0 0;
+        font-size: 14px;
+        color: var(--muted);
+      }
+      .contact-tile .email {
+        margin-top: 1rem;
+        font-family: var(--mono);
+        font-size: 15px;
+      }
+
+      /* detail sections */
+      .section {
+        margin-top: 5.5rem;
+        scroll-margin-top: 5rem;
+      }
+      .section-head {
+        display: flex;
+        align-items: flex-end;
+        justify-content: space-between;
+        gap: 1rem;
+        margin-bottom: 1.75rem;
+      }
+      .section-head h2 {
+        margin: 0;
+        font-size: clamp(22px, 3vw, 30px);
+        font-weight: 700;
+        letter-spacing: -0.025em;
+      }
+      .section-head .note {
+        font-size: 13.5px;
+        color: var(--muted);
+      }
+
+      .jobs {
+        display: grid;
+        gap: 1rem;
+      }
+      .job {
+        display: grid;
+        grid-template-columns: 13rem 1fr;
+        gap: 1.5rem;
+        padding: 1.5rem 1.6rem;
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        transition: all 0.18s var(--ease);
+      }
+      .job:hover {
+        border-color: var(--border-hi);
+        transform: translateY(-2px);
+      }
+      .job-meta {
+        font-family: var(--mono);
+        font-size: 12.5px;
+        color: var(--muted);
+      }
+      .job-meta .co {
+        display: block;
+        font-family: var(--sans);
+        font-size: 15px;
+        font-weight: 600;
+        color: var(--ink);
+        margin-bottom: 0.25rem;
+      }
+      .job-role {
+        margin: 0;
+        font-size: 17px;
+        font-weight: 600;
+      }
+      .job-desc {
+        margin: 0.7rem 0 0;
+        font-size: 14.5px;
+        line-height: 1.65;
+        color: var(--body);
+      }
+      .job-bullets {
+        margin: 0.7rem 0 0;
+        padding-left: 1.1rem;
+      }
+      .job-bullets li {
+        font-size: 14px;
+        line-height: 1.6;
+        color: var(--body);
+        margin-bottom: 0.35rem;
+      }
+      .job-bullets li::marker {
+        color: var(--accent);
+      }
+      .tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.35rem;
+        list-style: none;
+        margin: 0.9rem 0 0;
+        padding: 0;
+      }
+      .tag {
+        font-family: var(--mono);
+        font-size: 11px;
+        color: var(--muted);
+        background: var(--surface-2);
+        border: 1px solid var(--border);
+        border-radius: 6px;
+        padding: 0.15rem 0.5rem;
+      }
+
+      .card-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        gap: 1rem;
+      }
+      .card {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        padding: 1.4rem;
+        transition: all 0.18s var(--ease);
+      }
+      .card:hover {
+        border-color: var(--border-hi);
+        transform: translateY(-3px);
+      }
+      .card h3 {
+        margin: 0.9rem 0 0;
+        font-size: 17px;
+        font-weight: 600;
+      }
+      .card p {
+        margin: 0.55rem 0 0;
+        font-size: 14px;
+        line-height: 1.6;
+        color: var(--body);
+      }
+      .card .link {
+        display: inline-block;
+        margin-top: 1rem;
+        font-family: var(--mono);
+        font-size: 12px;
+      }
+
+      .footer {
+        margin-top: 5rem;
+        border-top: 1px solid var(--border);
+        padding: 1.75rem 0 3rem;
+      }
+      .footer .container {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 0.4rem 1rem;
+        font-family: var(--mono);
+        font-size: 12px;
+        color: var(--muted);
+      }
+
+      /* reveal */
+      .reveal {
+        opacity: 0;
+        transform: translateY(14px);
+        transition:
+          opacity 0.55s var(--ease),
+          transform 0.55s var(--ease);
+      }
+      .reveal.in {
+        opacity: 1;
+        transform: none;
+      }
+
+      @media (max-width: 900px) {
+        .bento {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        .c2,
+        .c3,
+        .c4 {
+          grid-column: span 2;
+        }
+        .r2 {
+          grid-row: auto;
+        }
+        .stats {
+          grid-template-columns: repeat(2, 1fr);
+          gap: 1.2rem 0;
+        }
+        .stat:nth-child(3) {
+          border-left: none;
+          padding-left: 0;
+        }
+        .job {
+          grid-template-columns: 1fr;
+          gap: 0.75rem;
+        }
+      }
+      @media (max-width: 560px) {
+        .site-nav a:not(.nav-primary) {
+          display: none;
+        }
+        .stats {
+          grid-template-columns: 1fr;
+        }
+        .stat {
+          border-left: none;
+          padding: 0;
+        }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        html {
+          scroll-behavior: auto;
+        }
+        * {
+          animation: none !important;
+          transition: none !important;
+        }
+        .reveal {
+          opacity: 1;
+          transform: none;
+        }
+      }
+    </style>
+    <script type="application/ld+json">
+      {"@context":"https://schema.org","@type":"Person","name":"Abdelwahab Mahmoud","jobTitle":"Senior Software Engineer","email":"mailto:abdelwahabahmed93@gmail.com","url":"https://abdelwahab.dev","address":{"@type":"PostalAddress","addressLocality":"Cairo","addressCountry":"EG"},"sameAs":["https://github.com/abdelwahab313","https://www.linkedin.com/in/abdelwahab313/"],"knowsLanguage":["en","ar"]}
+    </script>
+  </head>
+  <body>
+    <div class="mockup-bar">Design mockup v3 · bento · not the live site</div>
+
+    <header class="site-header">
+      <div class="container">
+        <a class="brand" href="#top"><span class="mark">AM</span>Abdelwahab Mahmoud</a>
+        <nav class="site-nav">
+          <a class="nav-primary" href="#work">Work</a>
+          <a href="#writing">Writing</a>
+          <a href="#products">Products</a>
+          <a href="#contact">Contact</a>
+          <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">
+            <span class="t-light">dark</span><span class="t-dark">light</span>
+          </button>
+        </nav>
+      </div>
+    </header>
+
+    <main id="top" class="container">
+      <!-- ============ BENTO ============ -->
+      <section class="bento">
+        <article class="tile c4 intro">
+          <span class="status"><span class="dot"></span>Available for senior roles</span>
+          <h1>Senior software engineer building reliable backend &amp; platform systems.</h1>
+          <p class="role">Abdelwahab Mahmoud · Full-stack &amp; Platform</p>
+          <p class="lede">
+            Eight years shipping production software, mostly on AWS. Rails,
+            Node.js and Go, lately LLM platforms over Bedrock, OpenAI and Gemini,
+            with the reliability work that keeps them boring.
+          </p>
+          <div class="intro-actions">
+            <a class="btn btn-primary" href="#">Download CV ↗</a>
+            <a class="btn" href="#contact">Get in touch</a>
+          </div>
+        </article>
+
+        <div class="tile c2 r2 photo" aria-hidden="true">
+          <span class="photo-badge">Open to work</span>
+          <div class="photo-inner">AM</div>
+          <span class="photo-tag">your photo · 4:5</span>
+        </div>
+
+        <div class="tile c4 stats">
+          <div class="stat">
+            <div class="stat-num"><span class="a">8+</span> yrs</div>
+            <p class="stat-label">Shipping production software</p>
+          </div>
+          <div class="stat">
+            <div class="stat-num">100k</div>
+            <p class="stat-label">Daily users on a platform I built</p>
+          </div>
+          <div class="stat">
+            <div class="stat-num"><span class="a">30%</span></div>
+            <p class="stat-label">Faster incident resolution</p>
+          </div>
+          <div class="stat">
+            <div class="stat-num">1M+</div>
+            <p class="stat-label">Sites served via WPML</p>
+          </div>
+        </div>
+
+        <div class="tile c2 facts reveal">
+          <p class="tile-label">At a glance</p>
+          <div class="fact"><span class="k">location</span><span class="v">Cairo, Egypt</span></div>
+          <div class="fact"><span class="k">timezone</span><span class="v">UTC+3</span></div>
+          <div class="fact"><span class="k">languages</span><span class="v">English, Arabic</span></div>
+          <div class="fact"><span class="k">work model</span><span class="v">Remote-friendly</span></div>
+        </div>
+
+        <div class="tile c2 reveal">
+          <p class="tile-label">Core stack</p>
+          <div class="chips">
+            <span class="chip">Ruby on Rails</span>
+            <span class="chip">Node.js</span>
+            <span class="chip">Go</span>
+            <span class="chip">TypeScript</span>
+            <span class="chip">AWS</span>
+            <span class="chip">ECS Fargate</span>
+            <span class="chip">Terraform</span>
+            <span class="chip">PostgreSQL</span>
+            <span class="chip">Bedrock</span>
+          </div>
+        </div>
+
+        <div class="tile c2 reveal">
+          <p class="tile-label">Latest writing</p>
+          <div class="mini-posts">
+            <a class="mini-post" href="#">
+              <span class="k">Case study</span>
+              <span class="t">7.33M rows per call</span>
+            </a>
+            <a class="mini-post" href="#">
+              <span class="k">Case study</span>
+              <span class="t">One engine, three providers</span>
+            </a>
+            <a class="mini-post" href="#">
+              <span class="k">Note</span>
+              <span class="t">Draining, not stopping</span>
+            </a>
+          </div>
+        </div>
+
+        <div class="tile c3 reveal">
+          <p class="tile-label">Open source</p>
+          <div class="os">
+            <a href="#"><span>ecs-drain-scaler</span><span>Go · AWS</span></a>
+            <a href="#"><span>handoff-mcp-server</span><span>TypeScript · MCP</span></a>
+            <a href="#"><span>focusflow</span><span>TypeScript</span></a>
+            <a href="#"><span>egy-finance-radar</span><span>Python · Next.js</span></a>
+          </div>
+        </div>
+
+        <div class="tile c3 contact-tile reveal" id="contact">
+          <h2>Let's talk</h2>
+          <p>Hiring for a senior backend or platform role? I usually reply within a day.</p>
+          <a class="email" href="mailto:abdelwahabahmed93@gmail.com"
+            >abdelwahabahmed93@gmail.com</a
+          >
+        </div>
+      </section>
+
+      <!-- ============ WORK ============ -->
+      <section class="section" id="work">
+        <div class="section-head">
+          <h2>Work</h2>
+          <span class="note">Four roles, newest first</span>
+        </div>
+        <div class="jobs">
+          <article class="job reveal">
+            <div class="job-meta">
+              <span class="co">OnTheGoSystems</span>
+              Dec 2024 – Present<br />Remote (Hong Kong)
+            </div>
+            <div>
+              <h3 class="job-role">Senior Software Engineer</h3>
+              <p class="job-desc">
+                Worked on Private Translation Cloud, an AI translation platform
+                from the team behind WPML, which powers over a million WordPress
+                sites. Product work in Rails and React, and the AWS platform
+                underneath it.
+              </p>
+              <ul class="job-bullets">
+                <li>
+                  Built the multi-provider translation LLM engine (Bedrock, OpenAI,
+                  Gemini) with fallback chains and rate-limit retries.
+                </li>
+                <li>
+                  Cleared Aurora MySQL's worst-query backlog until CPU pressure
+                  stopped turning into incidents.
+                </li>
+                <li>Migrated the product onto AWS ECS Fargate, Terraform-owned.</li>
+              </ul>
+              <ul class="tags">
+                <li class="tag">Ruby on Rails</li>
+                <li class="tag">React</li>
+                <li class="tag">ECS Fargate</li>
+                <li class="tag">Terraform</li>
+                <li class="tag">Aurora</li>
+                <li class="tag">Bedrock</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="job reveal">
+            <div class="job-meta">
+              <span class="co">Dailymealz</span>
+              Dec 2021 – Dec 2024<br />Riyadh
+            </div>
+            <div>
+              <h3 class="job-role">Senior Software Engineer</h3>
+              <p class="job-desc">
+                Built and scaled a meal subscription platform serving customers
+                across Saudi Arabia, with a React Native driver app and the
+                Node.js services behind it.
+              </p>
+              <ul class="job-bullets">
+                <li>Built the real-time order service behind a 100,000 daily-user product.</li>
+                <li>Cut Mean Time To Resolve by 30% with Datadog and OpenTelemetry.</li>
+                <li>Led a team of five on a driver location check-in system.</li>
+              </ul>
+              <ul class="tags">
+                <li class="tag">React Native</li>
+                <li class="tag">Node.js</li>
+                <li class="tag">AWS</li>
+                <li class="tag">Datadog</li>
+                <li class="tag">Redis</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="job reveal">
+            <div class="job-meta">
+              <span class="co">Nformacy</span>
+              Oct 2020 – Dec 2021<br />Cairo
+            </div>
+            <div>
+              <h3 class="job-role">Full-Stack Developer</h3>
+              <p class="job-desc">
+                Built Nformacy, a knowledge marketplace connecting business
+                advisors with companies. React and Ruby on Rails, from MVP to beta.
+              </p>
+              <ul class="tags">
+                <li class="tag">React</li>
+                <li class="tag">Ruby on Rails</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="job reveal">
+            <div class="job-meta">
+              <span class="co">DevSquads</span>
+              Jan 2018 – Oct 2020<br />Cairo
+            </div>
+            <div>
+              <h3 class="job-role">Software Engineer</h3>
+              <p class="job-desc">
+                First job in tech, at a Cairo venture studio that became
+                DevSquads, an agile consultancy that takes XP seriously. Delivered
+                products for international clients, including Shapa, a US health
+                tech platform.
+              </p>
+              <ul class="tags">
+                <li class="tag">React</li>
+                <li class="tag">React Native</li>
+                <li class="tag">Node.js</li>
+                <li class="tag">Java Spring</li>
+                <li class="tag">TDD</li>
+              </ul>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- ============ PRODUCTS ============ -->
+      <section class="section" id="products">
+        <div class="section-head">
+          <h2>Products</h2>
+          <span class="note">All shipped and in the wild</span>
+        </div>
+        <div class="card-grid">
+          <article class="card reveal">
+            <span class="chip">PTC</span>
+            <h3>Private Translation Cloud</h3>
+            <p>AI translation service from the team behind WPML. Platform plus the AWS and LLM layers.</p>
+            <a class="link" href="#">Visit ↗</a>
+          </article>
+          <article class="card reveal">
+            <span class="chip">DM</span>
+            <h3>Dailymealz</h3>
+            <p>Meal subscription service in Saudi Arabia. Three years across apps, dashboards and infra.</p>
+            <a class="link" href="#">Visit ↗</a>
+          </article>
+          <article class="card reveal">
+            <span class="chip">SH</span>
+            <h3>Shapa</h3>
+            <p>US health product built around a numberless smart scale. Mobile app and backend.</p>
+            <a class="link" href="#">Visit ↗</a>
+          </article>
+          <article class="card reveal">
+            <span class="chip">NF</span>
+            <h3>Nformacy</h3>
+            <p>Knowledge marketplace connecting advisors with companies. MVP to beta.</p>
+            <a class="link" href="#">Visit ↗</a>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <span>© 2026 Abdelwahab Mahmoud</span>
+        <span>built with astro · hosted on github pages</span>
+      </div>
+    </footer>
+
+    <script>
+      (function () {
+        var t = document.getElementById("theme-toggle");
+        t.addEventListener("click", function () {
+          var cur = document.documentElement.dataset.theme;
+          document.documentElement.dataset.theme = cur === "dark" ? "light" : "dark";
+        });
+        var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+        var els = document.querySelectorAll(".reveal");
+        if (reduce || !("IntersectionObserver" in window)) {
+          els.forEach(function (e) {
+            e.classList.add("in");
+          });
+        } else {
+          var io = new IntersectionObserver(
+            function (en) {
+              en.forEach(function (e) {
+                if (e.isIntersecting) {
+                  e.target.classList.add("in");
+                  io.unobserve(e.target);
+                }
+              });
+            },
+            {rootMargin: "0px 0px -8% 0px", threshold: 0.05}
+          );
+          els.forEach(function (e) {
+            io.observe(e);
+          });
+        }
+      })();
+    </script>
+  </body>
+</html>
