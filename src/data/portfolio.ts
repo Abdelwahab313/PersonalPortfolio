@@ -166,7 +166,7 @@ export const workExperiences = {
       tags: ["React Native", "Node.js", "AWS", "Datadog", "Redis"],
       desc: "Built and scaled a meal subscription platform serving customers across Saudi Arabia, with full-stack work across React Native and Node.js services.",
       descBullets: [
-        "Built the real-time order service behind a 100,000 daily-user delivery product: kitchen, driver and delivery status pushed to mobile and web clients over Node.js and Socket.IO.",
+        "Built the real-time order service behind a 100K daily-user delivery product: kitchen, driver and delivery status pushed to mobile and web clients over Node.js and Socket.IO.",
         "Cut Mean Time To Resolve by 30% by instrumenting order, driver and kitchen flows with Datadog and OpenTelemetry.",
         "Decomposed the fulfillment component out of the PHP/Laravel monolith into a standalone service in a distributed event-driven architecture, passing state changes over AWS SQS behind a REST API contract.",
         "Chose incremental extraction over a full event-driven rewrite, because a team of six could not freeze features for months to run two partially consistent systems.",
@@ -228,7 +228,7 @@ export const bigProjects = {
       tagline: "Meal subscription platform for customers across Saudi Arabia.",
       projectDesc:
         "I spent three years building the real-time order service, the React Native driver app, and the move from a PHP monolith to event-driven services.",
-      scale: "100,000 daily users",
+      scale: "100K daily users",
       timeframe: "Dec 2021 – Dec 2024",
       stack: ["React Native", "Node.js", "AWS", "Redis"],
       footerLink: [{name: "Visit website", url: "https://dailymealz.com/"}]

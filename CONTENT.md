@@ -174,7 +174,7 @@ bullet is past tense.
 > Built and scaled a meal subscription platform serving customers across Saudi Arabia, with a
 > React Native driver app and the Node.js services behind it.
 
-- Built the real-time order service behind a 100,000 daily-user delivery product: kitchen, driver and delivery status pushed to mobile and web clients over Node.js and Socket.IO.
+- Built the real-time order service behind a 100K daily-user delivery product: kitchen, driver and delivery status pushed to mobile and web clients over Node.js and Socket.IO.
 - Cut Mean Time To Resolve by 30% by instrumenting order, driver and kitchen flows with Datadog and OpenTelemetry.
 - Decomposed the fulfillment component out of the PHP/Laravel monolith into a standalone service in a distributed event-driven architecture, passing state changes over AWS SQS behind a REST API contract.
 - Chose incremental extraction over a full event-driven rewrite, because a team of six could not freeze features for months to run two partially consistent systems.
@@ -287,7 +287,7 @@ Stack: Ruby on Rails, React, AWS, Terraform, Bedrock. Link: `https://ptc.wpml.or
 > the real-time order service, the React Native driver app, and the move from a PHP monolith
 > to event-driven services.
 
-Scale: `100,000 daily users`. Time: `Dec 2021 – Dec 2024`.
+Scale: `100K daily users`. Time: `Dec 2021 – Dec 2024`.
 Stack: React Native, Node.js, AWS, Redis. Link: `https://dailymealz.com/`.
 
 **Shapa** (badge `SH`)
