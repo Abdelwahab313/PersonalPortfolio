@@ -8,7 +8,7 @@ first, then this file, then `src/data/portfolio.ts` and the page meta in the Ast
 CV source: `~/projects/playground/Awesome-CV`, branch `cv/automattic-experienced-swe`, files under
 `examples/resume/`. Built with LuaLaTeX via `make resume.pdf`. Built PDF: `examples/resume.pdf`.
 
-Last aligned: 2026-10-08.
+Last aligned: 2026-10-11.
 
 ---
 
@@ -34,12 +34,12 @@ or titles.
 
 | Company | Location | Title | Dates |
 |---|---|---|---|
-| OnTheGoSystems (WPML — WordPress plugins) | Remote (Hong Kong) | Senior Software Engineer | Dec 2024 – Present |
+| OnTheGoSystems (WPML — WordPress plugins) | Remote (Hong Kong) | Senior Software Engineer | Dec 2024 – Sep 2026 |
 | Dailymealz | Riyadh, Saudi Arabia | Senior Software Engineer | Dec 2021 – Dec 2024 |
 | Nformacy | Cairo, Egypt | Full-Stack Developer | Oct 2020 – Dec 2021 |
 | DevSquads (formerly Fikr Labs) | Cairo, Egypt | Software Engineer | Jan 2018 – Oct 2020 |
 
-Four entries, not five. OnTheGoSystems is current; every earlier entry is past tense.
+Four entries, not five. No role is current; every entry is past tense.
 
 ### Skills (same rows as the CV)
 
@@ -71,8 +71,7 @@ frontend last.
 
 Rules, in priority order:
 
-1. **Past tense for every job.** OnTheGoSystems is current, so its present-tense bullets stay
-   present. Every earlier entry is past tense.
+1. **Past tense for every job.** No role is current, so every bullet is past tense.
 2. **Concrete over abstract.** A bullet names a system, a change, and why. "Built full-stack
    features across the translation pipeline" says nothing. "Moved the product off a single EC2
    host onto ECS Fargate" says something.
@@ -86,7 +85,8 @@ Rules, in priority order:
 6. **No em dashes in site prose.** Use a full stop or a comma. Company and product names taken
    verbatim from the CV are exempt (for example `OnTheGoSystems (WPML — WordPress plugins)`).
 7. **No self-assessment numbers.** Proficiency bars off (`viewSkillBars: false`).
-8. **One sentence on availability**, in the hero. Location, timezone, what roles.
+8. **No availability signals.** No "open to work" badges or status pills anywhere. Location
+   and timezone live in the hero quick facts.
 9. **No filler lines.** The Geophysics "leveraged strong analytical skills" sentence goes.
 10. **Company and product names exactly as in section 1.** Not "DailyMealz", "nformacy",
     "Devsquads", "Fikrlabs".
@@ -108,14 +108,15 @@ Subtitle (role line): `Senior Software Engineer · Full-stack & Platform`
 
 Value line:
 
-> Eight years building production systems on AWS: Node.js, TypeScript, Rails, and Go. I own
-> architecture, delivery, and reliability.
+> I build and operate production systems, mostly on AWS. Eight years across Rails, Node.js
+> and Go, lately LLM platforms over Bedrock, OpenAI and Gemini, with the reliability work
+> that keeps them boring.
 
-Chips: `8 years`, `4 roles`, `Cairo / UTC+3`, `open to roles`.
+Quick facts (`greeting.chips`): `Cairo, Egypt · UTC+3`, `English · Arabic (native)`, `8+ years`.
 
-Actions: Resume (`/resume.pdf`), GitHub, LinkedIn, Email (`#contact`). Below the actions the
-hero renders the Code card (one profile in four CV-listed languages). No product card in the
-hero; products live only in the Products section.
+Actions: Resume (`/resume.pdf`), GitHub, LinkedIn, Email (`#contact`). No availability badge
+and no code card in the hero. No product card in the hero; products live only in the Products
+section.
 
 ### Meta (`public/index.html` title, description, og, twitter)
 
@@ -147,25 +148,26 @@ Bullets (replace all six):
 
 ### Work experience (`workExperiences.experience`)
 
-**OnTheGoSystems (WPML — WordPress plugins)**, Senior Software Engineer, December 2024 – Present
+**OnTheGoSystems (WPML — WordPress plugins)**, Senior Software Engineer, December 2024 – September 2026
 
 > I worked on Private Translation Cloud (PTC), an AI translation platform from the team behind
-> WPML, the multilingual plugin that powers over a million WordPress sites. Product work in
+> WPML, the multilingual plugin that powers 1.5M+ WordPress sites. Product work in
 > Rails and React, and the AWS platform underneath it.
 
 - Built the multi-provider translation LLM engine behind WPML (Bedrock, OpenAI, Gemini): fallback chains, JSON repair and rate-limit retries keep translations flowing when a provider degrades.
 - Built the guardrails agents run behind: an MCP server exposing live databases, logs and selected APIs through authenticated, monitored access, adopted as the team's standard agent integration path.
 - Owned credits and billing correctness for a metered LLM product; one authorization architecture to replace scattered permission checks.
-- Own an agentic triage platform that handles first-line incident and support inquiries, cutting Mean Time To Resolve.
+- Owned an agentic triage platform that handled first-line incident and support inquiries, cutting Mean Time To Resolve.
 - Cleared Aurora MySQL's worst-query backlog query by query: rewritten plans, covering indexes and restructured hot reads, until CPU pressure stopped turning into incidents.
-- Replaced ECS autoscaling with a queue-depth Lambda autoscaler that drains long-running jobs instead of killing them.
+- Replaced ECS autoscaling with a queue-depth Lambda autoscaler (DynamoDB deployment state store) that drained long-running jobs instead of killing them, sustaining 500K jobs/hour at peak against a ~5K/hour baseline.
+- Fixed lock contention under concurrent writes: exclusive advisory locks on hot paths, batch-processing rewrites for load management, and connection-pool tuning after autoscaling exposed pooling contention on the shared database.
 - Owned the GitLab CI/CD pipelines: build, e2e test, SAST and deploy gates for every service in the product.
 - Kept plugin APIs backwards compatible across releases with deprecation paths and contract tests.
-- Migrated the product onto AWS ECS Fargate running Docker containers, and own the platform and its Terraform.
+- Migrated the product onto AWS ECS Fargate running Docker containers, and owned the platform and its Terraform; the fleet handled ~100K requests/hour at peak across background processing and LLM inference.
 
-Source: all nine bullets follow `examples/resume/experience.tex` on
-`cv/automattic-experienced-swe` (aligned 2026-10-08). Bullets 4 and 9 stay present tense
-because the job is current.
+Source: all ten bullets follow `examples/resume/experience.tex` on
+`cv/automattic-experienced-swe` (aligned 2026-10-11). The job ended September 2026, so every
+bullet is past tense.
 
 **Dailymealz**, Senior Software Engineer, December 2021 – December 2024
 
@@ -212,14 +214,13 @@ entry's own description or bullets.
 
 | Company | duration | location | tags |
 |---|---|---|---|
-| OnTheGoSystems (WPML — WordPress plugins) | 1 yr 10 mo | Remote (Hong Kong) | Ruby on Rails, React, ECS Fargate, Lambda, Terraform, Aurora, Bedrock |
+| OnTheGoSystems (WPML — WordPress plugins) | 1 yr 9 mo | Remote (Hong Kong) | Ruby on Rails, React, ECS Fargate, Lambda, Terraform, Aurora, Bedrock, DynamoDB |
 | Dailymealz | 3 yrs | Riyadh | React Native, Node.js, AWS, Datadog, Redis |
 | Nformacy | 1 yr 2 mo | Cairo | React, Ruby on Rails |
 | DevSquads (formerly Fikr Labs) | 2 yrs 9 mo | Cairo | React, React Native, Node.js, Java Spring, TDD |
 
-`duration` for OnTheGoSystems counts from December 2024 to the current month, so recompute it
-whenever this file is updated. Entries with more than three bullets show three and a
-"Show N more" toggle.
+`duration` for OnTheGoSystems is December 2024 to September 2026. Entries with more than three
+bullets show three and a "Show N more" toggle.
 
 ### Blog posts (`src/content/blog/`, replaces the old `caseStudies` section)
 
@@ -265,26 +266,52 @@ Title: `Products`
 
 Subtitle: `Products I helped build`
 
-**Private Translation Cloud**
+Each card is an artifact dossier: `badge`, `projectName`, `tagline` (one line, what it is),
+`projectDesc` (overview, distinct wording from Experience), `scale` (only where the CV carries
+a number), `timeframe` (the author's engagement window, not product age), `stack[]` (tech
+already in that product's story) and `footerLink` (the real product URL). Scale and timeframe
+rows render only when present.
 
-> AI translation service from the team behind WPML. I worked on the platform that translates
-> websites automatically, and on the AWS infrastructure and LLM engine layer underneath it.
+**Private Translation Cloud** (badge `PTC`)
 
-Other three cards unchanged except names per section 1.
+> AI translation platform from the team behind WPML. I worked on the AWS platform and the
+> multi-provider LLM engine that translates websites automatically, moving the product onto
+> ECS Fargate and keeping its database and autoscaling healthy.
+
+Scale: `1.5M+ WordPress sites`. Time: `Dec 2024 – Sep 2026`.
+Stack: Ruby on Rails, React, AWS, Terraform, Bedrock. Link: `https://ptc.wpml.org/`.
+
+**Dailymealz** (badge `DM`)
+
+> Meal subscription platform for customers across Saudi Arabia. I spent three years building
+> the real-time order service, the React Native driver app, and the move from a PHP monolith
+> to event-driven services.
+
+Scale: `100,000 daily users`. Time: `Dec 2021 – Dec 2024`.
+Stack: React Native, Node.js, AWS, Redis. Link: `https://dailymealz.com/`.
+
+**Shapa** (badge `SH`)
+
+> US health product built around a numberless smart scale and a behavior change program. I
+> built the mobile app and the backend behind it as part of the DevSquads XP team.
+
+Time: `2018 – 2020`. No CV scale figure, so no Scale row.
+Stack: React, React Native, Node.js, Java Spring. Link: `https://shapahealth.com/`.
+
+**Nformacy** (badge `NF`)
+
+> Knowledge marketplace connecting business advisors with companies. I built it from the first
+> MVP to the beta launch, plus the cloud infrastructure and deploy pipelines.
+
+Time: `Oct 2020 – Dec 2021`. No CV scale figure, so no Scale row.
+Stack: React, Ruby on Rails. Link: `https://nformacy.com/`.
 
 ### Open source (`openSource.projects`)
 
-Four public repositories, rendered between Experience and Products. Copy lives in
+Four public repositories, rendered after Products. Copy lives in
 `src/data/portfolio.ts` `openSource`. Each card shows the repo name, description,
 `role · outcome`, a GitHub link and tech tags. Named repos, links and descriptions are the
 author's real repos; do not invent new ones here without a matching repository.
-
-### Code card (hero, `src/data/portfolio.ts` `codeSnippets`)
-
-One profile, translated into four CV-listed languages. Rendered once at build time by
-Shiki, switched by Language tabs in the hero. The code must state no fact the CV does not
-carry (added 2026-10-08: TypeScript, Ruby, Go, SQL). Languages come from the CV languages
-row only. Filenames: `engineer.ts`, `engineer.rb`, `engineer.go`, `query.sql`.
 
 ### Education (`educationInfo.schools[0]`)
 
@@ -317,11 +344,10 @@ Where each fact lives, so an edit in one place is mirrored in the others.
 | Summary | `summary.tex` | `greeting.subTitle` |
 | Jobs, titles, dates | `experience.tex` | `workExperiences.experience[]` |
 | OTGS bullets | `experience.tex` first `cventry` | `workExperiences.experience[0].descBullets` |
-| Skills | `skills.tex` | `skillsSection.skills`, `cvStack` (the `stack.json` card) |
+| Skills | `skills.tex` | `skillsSection.skills`, `cvStack` (chip groups in the Skills section) |
 | Email, phone | `../resume.tex` header | `socialMediaLinks.gmail`, `contactInfo` |
 | Education | `education.tex` | `educationInfo` |
 | Years figure | `summary.tex` | `greeting.subTitle`, `CONTEXT.md` Positioning |
-| Code card | languages row of `skills.tex` | `codeSnippets` (four translations, no new facts) |
 | Case-study and note copy | pre-2026-10-08 CV branches (SPEC.md section 8) | `src/content/blog/{slug}.md` |
 
 Resume button (`greeting.resumeLink`) points at `/resume.pdf`, which is `public/resume.pdf`
@@ -334,6 +360,11 @@ SPEC.md section 7 before shipping.
 
 ## 5. Open items against the live site (2026-10-08)
 
+- 2026-10-11 redesign (docs/mockup-review.md, mockup v2): availability signals, the stat band
+  and the hero Code card are removed; Products became dossier cards; Skills became chip
+  groups; Writing links to `/blog`. OTGS end date moved to `Dec 2024 – Sep 2026`, so no job is
+  current and every bullet is past tense. Section-7 throughput and DB-concurrency bullets were
+  added from the CV.
 - 2026-10-08 alignment: CV branch `cv/automattic-experienced-swe` @ `a0103b9` is the source
   of truth. Positioning is now `Full-stack & Platform`; OTGS is current (`Dec 2024 – Present`);
   there are four entries, not five; skills are ten rows; the summary leads with AWS production

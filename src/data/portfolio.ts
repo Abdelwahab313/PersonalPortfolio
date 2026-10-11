@@ -6,8 +6,8 @@ export const greeting = {
   title: "Abdelwahab Mahmoud",
   subTitle: "Senior Software Engineer · Full-stack & Platform",
   valueProp:
-    "Eight years building production systems on AWS: Node.js, TypeScript, Rails, and Go. I own architecture, delivery, and reliability.",
-  chips: ["8 years", "4 roles", "Cairo / UTC+3", "open to roles"],
+    "I build and operate production systems, mostly on AWS. Eight years across Rails, Node.js and Go, lately LLM platforms over Bedrock, OpenAI and Gemini, with the reliability work that keeps them boring.",
+  chips: ["Cairo, Egypt · UTC+3", "English · Arabic (native)", "8+ years"],
   resumeLink: "/resume.pdf",
   githubLink: "https://github.com/abdelwahab313",
   linkedinLink: "https://www.linkedin.com/in/abdelwahab313/"
@@ -129,8 +129,8 @@ export const workExperiences = {
       role: "Senior Software Engineer",
       company: "OnTheGoSystems (WPML — WordPress plugins)",
       companylogo: "/img/otgsLogo.png",
-      date: "December 2024 – Present",
-      duration: "1 yr 10 mo",
+      date: "December 2024 – September 2026",
+      duration: "1 yr 9 mo",
       location: "Remote (Hong Kong)",
       tags: [
         "Ruby on Rails",
@@ -139,19 +139,21 @@ export const workExperiences = {
         "Lambda",
         "Terraform",
         "Aurora",
-        "Bedrock"
+        "Bedrock",
+        "DynamoDB"
       ],
-      desc: "Worked on Private Translation Cloud (PTC), an AI translation platform from the team behind WPML, the multilingual plugin that powers over a million WordPress sites. Full-stack product work in Rails and React, with the AWS platform underneath it.",
+      desc: "Worked on Private Translation Cloud (PTC), an AI translation platform from the team behind WPML, the multilingual plugin that powers 1.5M+ WordPress sites. Full-stack product work in Rails and React, with the AWS platform underneath it.",
       descBullets: [
         "Built the multi-provider translation LLM engine behind WPML (Bedrock, OpenAI, Gemini): fallback chains, JSON repair and rate-limit retries keep translations flowing when a provider degrades.",
         "Built the guardrails agents run behind: an MCP server exposing live databases, logs and selected APIs through authenticated, monitored access, adopted as the team's standard agent integration path.",
         "Owned credits and billing correctness for a metered LLM product; one authorization architecture to replace scattered permission checks.",
-        "Own an agentic triage platform that handles first-line incident and support inquiries, cutting Mean Time To Resolve.",
+        "Owned an agentic triage platform that handled first-line incident and support inquiries, cutting Mean Time To Resolve.",
         "Cleared Aurora MySQL's worst-query backlog query by query: rewritten plans, covering indexes and restructured hot reads, until CPU pressure stopped turning into incidents.",
-        "Replaced ECS autoscaling with a queue-depth Lambda autoscaler that drains long-running jobs instead of killing them.",
+        "Replaced ECS autoscaling with a queue-depth Lambda autoscaler (DynamoDB deployment state store) that drained long-running jobs instead of killing them, sustaining 500K jobs/hour at peak against a ~5K/hour baseline.",
+        "Fixed lock contention under concurrent writes: exclusive advisory locks on hot paths, batch-processing rewrites for load management, and connection-pool tuning after autoscaling exposed pooling contention on the shared database.",
         "Owned the GitLab CI/CD pipelines: build, e2e test, SAST and deploy gates for every service in the product.",
         "Kept plugin APIs backwards compatible across releases with deprecation paths and contract tests.",
-        "Migrated the product onto AWS ECS Fargate running Docker containers, and own the platform and its Terraform."
+        "Migrated the product onto AWS ECS Fargate running Docker containers, and owned the platform and its Terraform; the fleet handled ~100K requests/hour at peak across background processing and LLM inference."
       ]
     },
     {
@@ -210,32 +212,48 @@ export const bigProjects = {
   subtitle: "Products I helped build",
   projects: [
     {
-      image: "/img/ptcLogo.png",
+      badge: "PTC",
       projectName: "Private Translation Cloud",
+      tagline: "AI translation platform from the team behind WPML.",
       projectDesc:
-        "AI translation service from the team behind WPML. I worked on the platform that translates websites automatically, and on the AWS infrastructure and LLM engine layer underneath it.",
-      footerLink: [{name: "Visit Website", url: "https://ptc.wpml.org/"}]
+        "I worked on the AWS platform and the multi-provider LLM engine that translates websites automatically, moving the product onto ECS Fargate and keeping its database and autoscaling healthy.",
+      scale: "1.5M+ WordPress sites",
+      timeframe: "Dec 2024 – Sep 2026",
+      stack: ["Ruby on Rails", "React", "AWS", "Terraform", "Bedrock"],
+      footerLink: [{name: "Visit website", url: "https://ptc.wpml.org/"}]
     },
     {
-      image: "/img/dailymealzLogo.png",
+      badge: "DM",
       projectName: "Dailymealz",
+      tagline: "Meal subscription platform for customers across Saudi Arabia.",
       projectDesc:
-        "Meal subscription service in Saudi Arabia. I spent three years building its apps, dashboards and the infrastructure behind them.",
-      footerLink: [{name: "Visit Website", url: "https://dailymealz.com/"}]
+        "I spent three years building the real-time order service, the React Native driver app, and the move from a PHP monolith to event-driven services.",
+      scale: "100,000 daily users",
+      timeframe: "Dec 2021 – Dec 2024",
+      stack: ["React Native", "Node.js", "AWS", "Redis"],
+      footerLink: [{name: "Visit website", url: "https://dailymealz.com/"}]
     },
     {
-      image: "/img/shapa.png",
+      badge: "SH",
       projectName: "Shapa",
+      tagline:
+        "US health product built around a numberless smart scale and a behavior change program.",
       projectDesc:
-        "US health product built around a numberless smart scale and a behavior change program. I worked on the mobile app and the backend behind it.",
-      footerLink: [{name: "Visit Website", url: "https://shapahealth.com/"}]
+        "I built the mobile app and the backend behind it as part of the DevSquads XP team.",
+      timeframe: "2018 – 2020",
+      stack: ["React", "React Native", "Node.js", "Java Spring"],
+      footerLink: [{name: "Visit website", url: "https://shapahealth.com/"}]
     },
     {
-      image: "/img/nformacy.png",
+      badge: "NF",
       projectName: "Nformacy",
+      tagline:
+        "Knowledge marketplace connecting business advisors with companies.",
       projectDesc:
-        "Knowledge marketplace that connects business advisors with companies that need their expertise. I built it from the first MVP to the beta launch.",
-      footerLink: [{name: "Visit Website", url: "https://nformacy.com/"}]
+        "I built it from the first MVP to the beta launch, plus the cloud infrastructure and deploy pipelines.",
+      timeframe: "Oct 2020 – Dec 2021",
+      stack: ["React", "Ruby on Rails"],
+      footerLink: [{name: "Visit website", url: "https://nformacy.com/"}]
     }
   ]
 };
@@ -247,68 +265,6 @@ export const contactInfo = {
   email_address: "abdelwahabahmed93@gmail.com"
 };
 
-// The one profile, translated. CV-listed facts only (CONTENT.md section 1).
-export const codeSnippets = [
-  {
-    label: "typescript",
-    filename: "engineer.ts",
-    lang: "ts",
-    code: `interface Engineer {
-  name: "Abdelwahab Mahmoud";
-  basedIn: "Cairo, Egypt";
-  since: 2018;
-  stack: ["rails", "aws", "typescript", "go", "sql"];
-  cares: ["reliability", "tests", "fast queries"];
-  status: "open to remote work";
-}`
-  },
-  {
-    label: "ruby",
-    filename: "engineer.rb",
-    lang: "ruby",
-    code: `class Engineer
-  def initialize
-    @name     = "Abdelwahab Mahmoud"
-    @based_in = "Cairo, Egypt"
-    @since    = 2018
-    @stack    = %i[rails aws typescript go sql]
-    @cares    = %i[reliability tests fast_queries]
-    @status   = :open_to_remote_work
-  end
-end`
-  },
-  {
-    label: "go",
-    filename: "engineer.go",
-    lang: "go",
-    code: `type Engineer struct {
-  Name    string
-  BasedIn string
-  Since   int
-  Stack   []string
-  Cares   []string
-  Status  string
-}
-
-var me = Engineer{
-  Name:    "Abdelwahab Mahmoud",
-  BasedIn: "Cairo, Egypt",
-  Since:   2018,
-  Stack:   []string{"rails", "aws", "typescript", "go", "sql"},
-  Cares:   []string{"reliability", "tests", "fast queries"},
-  Status:  "open to remote work",
-}`
-  },
-  {
-    label: "sql",
-    filename: "query.sql",
-    lang: "sql",
-    code: `SELECT name, based_in, since, stack, status
-FROM engineers
-WHERE based_in = 'Cairo, Egypt'
-  AND status = 'open to remote work';`
-  }
-];
 export const openSource = {
   title: "Open Source",
   projects: [

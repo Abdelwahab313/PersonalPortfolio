@@ -1,7 +1,6 @@
 ---
 import Base from "../layouts/Base.astro";
-import CodeCard from "../components/CodeCard.jsx";
-import {codeToHtml} from "shiki";
+import {getCollection} from "astro:content";
 import {
   greeting,
   socialMediaLinks,
@@ -11,8 +10,7 @@ import {
   workExperiences,
   bigProjects,
   openSource,
-  contactInfo,
-  codeSnippets
+  contactInfo
 } from "../data/portfolio";
 
 const title =
@@ -20,140 +18,26 @@ const title =
 const description =
   "Abdelwahab Mahmoud, senior software engineer in Cairo. Ruby on Rails, AWS (ECS Fargate, Lambda, Terraform) and LLM platforms over Bedrock, OpenAI and Gemini. Eight years building and operating production systems.";
 
-const codeThemes = {
-  light: {
-    name: "site-light",
-    type: "light" as const,
-    colors: {"editor.background": "#fffdf9", "editor.foreground": "#3f454c"},
-    tokenColors: [
-      {
-        scope: ["comment", "punctuation.definition.comment"],
-        settings: {foreground: "#8a8f96", fontStyle: "italic"}
-      },
-      {
-        scope: ["keyword", "storage", "storage.type", "storage.modifier"],
-        settings: {foreground: "#0f766e"}
-      },
-      {
-        scope: [
-          "constant.numeric",
-          "constant.language",
-          "constant.character",
-          "keyword.other.unit"
-        ],
-        settings: {foreground: "#0f766e"}
-      },
-      {
-        scope: [
-          "string",
-          "punctuation.definition.string",
-          "constant.other.symbol"
-        ],
-        settings: {foreground: "#3f454c"}
-      },
-      {
-        scope: ["entity.name.function", "support.function", "entity.name.tag"],
-        settings: {foreground: "#1c1f24"}
-      },
-      {
-        scope: [
-          "entity.name.type",
-          "entity.name.class",
-          "support.type",
-          "support.class",
-          "storage.type.primitive"
-        ],
-        settings: {foreground: "#1c1f24"}
-      },
-      {
-        scope: [
-          "variable",
-          "variable.parameter",
-          "variable.other",
-          "meta.object-literal.key",
-          "meta.property-name"
-        ],
-        settings: {foreground: "#3f454c"}
-      },
-      {
-        scope: ["punctuation", "meta.brace", "keyword.operator"],
-        settings: {foreground: "#6b7178"}
-      }
-    ]
-  },
-  dark: {
-    name: "site-dark",
-    type: "dark" as const,
-    colors: {"editor.background": "#1a1e23", "editor.foreground": "#c3c8cd"},
-    tokenColors: [
-      {
-        scope: ["comment", "punctuation.definition.comment"],
-        settings: {foreground: "#6b7480", fontStyle: "italic"}
-      },
-      {
-        scope: ["keyword", "storage", "storage.type", "storage.modifier"],
-        settings: {foreground: "#6fd6cb"}
-      },
-      {
-        scope: [
-          "constant.numeric",
-          "constant.language",
-          "constant.character",
-          "keyword.other.unit"
-        ],
-        settings: {foreground: "#4ac0b4"}
-      },
-      {
-        scope: [
-          "string",
-          "punctuation.definition.string",
-          "constant.other.symbol"
-        ],
-        settings: {foreground: "#e9e7e2"}
-      },
-      {
-        scope: ["entity.name.function", "support.function", "entity.name.tag"],
-        settings: {foreground: "#e9e7e2"}
-      },
-      {
-        scope: [
-          "entity.name.type",
-          "entity.name.class",
-          "support.type",
-          "support.class",
-          "storage.type.primitive"
-        ],
-        settings: {foreground: "#e9e7e2"}
-      },
-      {
-        scope: [
-          "variable",
-          "variable.parameter",
-          "variable.other",
-          "meta.object-literal.key",
-          "meta.property-name"
-        ],
-        settings: {foreground: "#c3c8cd"}
-      },
-      {
-        scope: ["punctuation", "meta.brace", "keyword.operator"],
-        settings: {foreground: "#7d858e"}
-      }
-    ]
-  }
-};
+const facts = [
+  {key: "Location", value: "Cairo, Egypt"},
+  {key: "Timezone", value: "UTC+3"},
+  {key: "Focus", value: "Full-stack & Platform"},
+  {key: "Experience", value: "8+ years"},
+  {key: "Languages", value: "English, Arabic"}
+];
 
-const snippets = await Promise.all(
-  codeSnippets.map(async snippet => ({
-    filename: snippet.filename,
-    label: snippet.label,
-    html: await codeToHtml(snippet.code, {
-      lang: snippet.lang,
-      themes: codeThemes,
-      defaultColor: false
-    })
-  }))
-);
+const skillGroups = [
+  {label: "Languages", items: cvStack.languages},
+  {label: "Backend", items: cvStack.backend},
+  {label: "Frontend", items: cvStack.frontend},
+  {label: "AI & LLM", items: cvStack.ai_llm},
+  {label: "Cloud & Infrastructure", items: cvStack.cloud},
+  {label: "Observability", items: cvStack.observability},
+  {label: "Databases", items: cvStack.databases},
+  {label: "Testing", items: cvStack.testing},
+  {label: "WordPress & Compatibility", items: cvStack.wordpress},
+  {label: "Spoken Languages", items: cvStack.spoken}
+];
 
 const jobs = workExperiences.experience.map(job => ({
   job,
@@ -161,35 +45,34 @@ const jobs = workExperiences.experience.map(job => ({
   rest: job.descBullets.slice(3)
 }));
 
-const stackHtml = `{
-  ${Object.entries(cvStack)
-    .map(
-      ([key, values]) =>
-        `<span class="json-key">"${key}"</span>: [${values
-          .map(value => `"${value.replace(/"/g, '\\"')}"`)
-          .join(", ")}]`
-    )
-    .join(",\n  ")}
-}`;
-
 const education = educationInfo.schools[0];
+
+const KIND_LABEL = {"case-study": "Case study", note: "Note"};
+const writing = (
+  await getCollection("blog", ({data}) =>
+    import.meta.env.PROD ? data.status === "published" : true
+  )
+)
+  .sort(
+    (a, b) =>
+      b.data.date.valueOf() - a.data.date.valueOf() ||
+      a.data.order - b.data.order
+  )
+  .slice(0, 4);
 ---
 
 <Base {title} {description}>
   <!-- hero -->
-  <section class="container hero" id="home">
-    <p class="preamble">
-      $ whoami <span class="comment"># a working senior engineer</span>
-    </p>
+  <section class="container hero">
     <h1>{greeting.title}</h1>
-    <p class="hero-subtitle">{greeting.subTitle}</p>
-    <p class="hero-value">{greeting.valueProp}</p>
-    <div class="hero-chips">
-      {greeting.chips?.map(chip => <span class="hero-chip">{chip}</span>)}
-    </div>
+    <p class="hero-role">{greeting.subTitle}</p>
+    <p class="hero-lede">{greeting.valueProp}</p>
+    <ul class="quick-facts">
+      {greeting.chips.map(fact => <li>{fact}</li>)}
+    </ul>
     <div class="hero-actions">
       <a class="btn btn-primary" href={greeting.resumeLink} data-track="cv"
-        >Resume</a
+        >Resume ↗</a
       >
       <a
         class="btn"
@@ -207,101 +90,167 @@ const education = educationInfo.schools[0];
       >
       <a class="btn" href="#contact" data-track="contact">Email</a>
     </div>
-    <CodeCard client:visible snippets={snippets} />
   </section>
 
-  <!-- career -->
+  <!-- about -->
+  <section class="container section" id="about">
+    <div class="section-head">
+      <h2 class="section-title">About</h2>
+    </div>
+    <div class="about-grid">
+      <div class="about-body">
+        <p class="lead">
+          I'm a senior software engineer based in Cairo. For eight years I've
+          built and operated real products end to end, with backend and platform
+          as my home ground.
+        </p>
+        <p>
+          Most of my work is the unglamorous kind that keeps a product standing:
+          keeping a database out of CPU saturation, replacing autoscaling that
+          killed long-running jobs, and making an LLM engine fail over cleanly
+          when a provider degrades. I like owning a system from the architecture
+          decision to the incident at 3am.
+        </p>
+        <p>
+          I've worked on a meal subscription platform serving 100,000 daily
+          users, a US health product, and the AI translation platform behind
+          WPML.
+        </p>
+      </div>
+      <aside class="fact-card" aria-label="Quick facts">
+        <h3>At a glance</h3>
+        {
+          facts.map(fact => (
+            <div class="fact-row">
+              <span class="fact-key">{fact.key}</span>
+              <span class="fact-val">{fact.value}</span>
+            </div>
+          ))
+        }
+      </aside>
+    </div>
+  </section>
+
+  <!-- writing -->
+  <section class="container section" id="writing">
+    <div class="section-head">
+      <h2 class="section-title">Writing</h2>
+      <p class="section-note">
+        Post-mortems and design decisions, written in plain English.
+      </p>
+    </div>
+    <div class="write-grid">
+      {
+        writing.map(post => (
+          <a class="write-card" href={`/blog/${post.id}`}>
+            <span class="write-kind">{KIND_LABEL[post.data.kind]}</span>
+            <h3>{post.data.title}</h3>
+            <p>{post.data.lede}</p>
+            <div class="write-meta">
+              {post.data.date.toISOString().slice(0, 10)} ·{" "}
+              {post.data.tags.join(" · ")}
+            </div>
+          </a>
+        ))
+      }
+    </div>
+    <div class="section-cta">
+      <a class="link-arrow" href="/blog">
+        Read all writing <span class="arrow">→</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- experience -->
   <section class="container section" id="experience">
-    <h2 class="section-head">
-      <span class="prompt">$</span>
-      <span class="cmd">Experience</span>
-      <span class="comment"># four roles, newest first</span>
-    </h2>
+    <div class="section-head">
+      <h2 class="section-title">Experience</h2>
+      <p class="section-note">Four roles, newest first.</p>
+    </div>
     <ol class="jobs">
       {
         jobs.map(({job, shown, rest}) => (
           <li class="job">
             <p class="job-meta">
-              {job.date} · {job.duration} · {job.location}
+              <span class="co">{job.date}</span>
+              {job.duration} · {job.location}
             </p>
-            <h3 class="job-company">
-              <img src={job.companylogo} alt="" width="26" height="26" />
-              {job.company}
-            </h3>
-            <p class="job-role">{job.role}</p>
-            <p class="job-desc">{job.desc}</p>
-            <ul class="job-bullets">
-              {shown.map(bullet => (
-                <li>{bullet}</li>
-              ))}
-            </ul>
-            {rest.length > 0 && (
-              <details class="job-more">
-                <summary>Show {rest.length} more</summary>
-                <ul class="job-bullets">
-                  {rest.map(bullet => (
-                    <li>{bullet}</li>
-                  ))}
-                </ul>
-              </details>
-            )}
-            <ul class="job-tags" aria-label="Tech at job">
-              {job.tags.map(tag => (
-                <li class="job-tag">{tag}</li>
-              ))}
-            </ul>
+            <div class="job-body">
+              <h3 class="job-company">
+                <img src={job.companylogo} alt="" width="26" height="26" />
+                {job.company}
+              </h3>
+              <p class="job-role">{job.role}</p>
+              <p class="job-desc">{job.desc}</p>
+              <ul class="job-bullets">
+                {shown.map(bullet => (
+                  <li>{bullet}</li>
+                ))}
+              </ul>
+              {rest.length > 0 && (
+                <details class="job-more">
+                  <summary>Show {rest.length} more</summary>
+                  <ul class="job-bullets">
+                    {rest.map(bullet => (
+                      <li>{bullet}</li>
+                    ))}
+                  </ul>
+                </details>
+              )}
+              <ul class="tags" aria-label="Tech at job">
+                {job.tags.map(tag => (
+                  <li class="tag">{tag}</li>
+                ))}
+              </ul>
+            </div>
           </li>
         ))
       }
     </ol>
   </section>
 
-  <section class="container section" id="opensource">
-    <h2 class="section-head">
-      <span class="prompt">$</span>
-      <span class="cmd">Open Source</span>
-      <span class="comment"># selected projects</span>
-    </h2>
-    <div class="product-grid">
-      {
-        openSource.projects.map(project => (
-          <article class="product-card">
-            <h3>{project.name}</h3>
-            <p>{project.desc}</p>
-            <p>
-              {project.role} · {project.outcome}
-            </p>
-            <div class="product-link">
-              <a href={project.url} target="_blank" rel="noopener noreferrer">
-                GitHub ↗
-              </a>
-            </div>
-            <ul class="job-tags" aria-label="Tech">
-              {project.tags.map(tag => (
-                <li class="job-tag">{tag}</li>
-              ))}
-            </ul>
-          </article>
-        ))
-      }
-    </div>
-  </section>
-
   <!-- products -->
   <section class="container section" id="products">
-    <h2 class="section-head">
-      <span class="prompt">$</span>
-      <span class="cmd">Products</span>
-      <span class="comment"># four, all in production</span>
-    </h2>
-    <div class="product-grid">
+    <div class="section-head">
+      <h2 class="section-title">Products</h2>
+      <p class="section-note">Four products, all shipped and in the wild.</p>
+    </div>
+    <div class="card-grid">
       {
         bigProjects.projects.map(product => (
-          <article class="product-card">
-            <img src={product.image} alt={`${product.projectName} logo`} />
+          <article class="card">
+            <span class="logo-badge">{product.badge}</span>
             <h3>{product.projectName}</h3>
-            <p>{product.projectDesc}</p>
-            <div class="product-link">
+            <p class="card-tagline">{product.tagline}</p>
+            <dl class="card-meta">
+              <div class="card-row">
+                <dt>Overview</dt>
+                <dd>{product.projectDesc}</dd>
+              </div>
+              {product.scale && (
+                <div class="card-row">
+                  <dt>Scale</dt>
+                  <dd>{product.scale}</dd>
+                </div>
+              )}
+              {product.timeframe && (
+                <div class="card-row">
+                  <dt>Time</dt>
+                  <dd>{product.timeframe}</dd>
+                </div>
+              )}
+              <div class="card-row">
+                <dt>Stack</dt>
+                <dd>
+                  <ul class="tags" aria-label="Product stack">
+                    {product.stack.map(tech => (
+                      <li class="tag">{tech}</li>
+                    ))}
+                  </ul>
+                </dd>
+              </div>
+            </dl>
+            <div class="card-link">
               {product.footerLink.map(link => (
                 <a href={link.url} target="_blank" rel="noreferrer">
                   {link.name} ↗
@@ -314,32 +263,66 @@ const education = educationInfo.schools[0];
     </div>
   </section>
 
-  <!-- stack -->
-  <section class="container section" id="stack">
-    <h2 class="section-head">
-      <span class="prompt">$</span>
-      <span class="cmd">What I do</span>
-      <span class="comment"># ten rows, straight from the cv</span>
-    </h2>
-    <p class="hero-subtitle">{skillsSection.subTitle}</p>
-    <ul class="skill-list">
-      {skillsSection.skills.map(skill => <li>{skill}</li>)}
+  <!-- open source -->
+  <section class="container section" id="opensource">
+    <div class="section-head">
+      <h2 class="section-title">Open source</h2>
+    </div>
+    <ul class="os-list">
+      {
+        openSource.projects.map(project => (
+          <li class="os-item">
+            <a
+              class="os-name"
+              href={project.url}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {project.name}
+            </a>
+            <span class="os-desc">
+              {project.desc} {project.role} · {project.outcome}
+            </span>
+            <span class="os-meta">{project.tags.join(" · ")}</span>
+          </li>
+        ))
+      }
     </ul>
-    <pre
-      class="stack-json"
-      aria-label="Full technology stack"
-      set:html={stackHtml}
-    />
+  </section>
+
+  <!-- skills -->
+  <section class="container section" id="skills">
+    <div class="section-head">
+      <h2 class="section-title">Skills</h2>
+    </div>
+    <p class="section-lede">{skillsSection.subTitle}</p>
+    <div class="skills">
+      {
+        skillGroups.map(group => (
+          <div class="skill-group">
+            <h4>{group.label}</h4>
+            <ul>
+              {group.items.map(item => (
+                <li>{item}</li>
+              ))}
+            </ul>
+          </div>
+        ))
+      }
+    </div>
   </section>
 
   <!-- education -->
   <section class="container section" id="education">
-    <h2 class="section-head">
-      <span class="prompt">$</span>
-      <span class="cmd">cat education.txt</span>
-    </h2>
-    <div class="edu-row">
-      <img src={education.logo} alt={`${education.schoolName} logo`} />
+    <div class="section-head">
+      <h2 class="section-title">Education</h2>
+    </div>
+    <div class="edu">
+      <img
+        class="edu-badge-img"
+        src={education.logo}
+        alt={`${education.schoolName} logo`}
+      />
       <div>
         <h3 class="edu-name">{education.schoolName}</h3>
         <p class="edu-sub">{education.subHeader}</p>
@@ -350,33 +333,49 @@ const education = educationInfo.schools[0];
 
   <!-- contact -->
   <section class="container section" id="contact">
-    <h2 class="section-head">
-      <span class="prompt">$</span>
-      <span class="cmd">Contact</span>
-      <span class="comment"># reachable within a day</span>
-    </h2>
-    <a
-      class="contact-email"
-      href={`mailto:${contactInfo.email_address}`}
-      data-track="contact">{contactInfo.email_address}</a
-    >
-    <p class="contact-sub">{contactInfo.subtitle}</p>
-    <div class="contact-row">
-      <span
-        >github → <a
-          href={socialMediaLinks.github}
-          target="_blank"
-          rel="noopener noreferrer">{socialMediaLinks.github}</a
-        ></span
+    <div class="contact">
+      <p class="kicker">Contact</p>
+      <h2>{contactInfo.title}</h2>
+      <p>{contactInfo.subtitle}</p>
+      <a
+        class="contact-email"
+        href={`mailto:${contactInfo.email_address}`}
+        data-track="contact">{contactInfo.email_address}</a
       >
-      <span
-        >linkedin → <a
+      <div class="contact-actions">
+        <a class="btn btn-primary" href={greeting.resumeLink} data-track="cv"
+          >Resume ↗</a
+        >
+        <a
+          class="btn"
           href={socialMediaLinks.linkedin}
           target="_blank"
-          rel="noopener noreferrer">{socialMediaLinks.linkedin}</a
-        ></span
-      >
-      <span>timezone → UTC+3</span>
+          rel="noopener noreferrer">LinkedIn</a
+        >
+        <a
+          class="btn"
+          href={socialMediaLinks.github}
+          target="_blank"
+          rel="noopener noreferrer">GitHub</a
+        >
+      </div>
+      <div class="contact-facts">
+        <span>
+          github → <a
+            href={socialMediaLinks.github}
+            target="_blank"
+            rel="noopener noreferrer">{socialMediaLinks.github}</a
+          >
+        </span>
+        <span>
+          linkedin → <a
+            href={socialMediaLinks.linkedin}
+            target="_blank"
+            rel="noopener noreferrer">{socialMediaLinks.linkedin}</a
+          >
+        </span>
+        <span>timezone → UTC+3</span>
+      </div>
     </div>
   </section>
 </Base>

@@ -4,6 +4,10 @@ import "@fontsource/ibm-plex-sans/500.css";
 import "@fontsource/ibm-plex-sans/600.css";
 import "@fontsource/ibm-plex-mono/400.css";
 import "@fontsource/ibm-plex-mono/500.css";
+import "@fontsource/ibm-plex-mono/600.css";
+import "@fontsource/fraunces/400.css";
+import "@fontsource/fraunces/500.css";
+import "@fontsource/fraunces/600.css";
 import "../styles/global.css";
 
 interface Props {
@@ -37,7 +41,7 @@ const publishedTime = date ? new Date(date).toISOString() : undefined;
     <title>{title}</title>
     <meta name="title" content={title} />
     <meta name="description" content={description} />
-    <meta name="theme-color" id="theme-color" content="#13161a" />
+    <meta name="theme-color" id="theme-color" content="#0e1013" />
     <link rel="canonical" href={canonical} />
     <link
       rel="alternate"
@@ -95,22 +99,26 @@ const publishedTime = date ? new Date(date).toISOString() : undefined;
   <body>
     <header class="site-header">
       <div class="container">
-        <a class="cwd" href="/">~/abdelwahab</a>
+        <a class="cwd" href="/"
+          ><span class="cwd-dot"></span><span class="path">~/</span
+          >abdelwahab</a
+        >
         <nav class="site-nav" aria-label="Primary">
-          <a href="/#experience">./experience</a>
-          <a href="/#products">./products</a>
-          <a href="/#stack">./stack</a>
-          <a href="/#opensource">./open-source</a>
-          <a class="nav-blog" href="/blog">./blog</a>
-          <a href="/#contact">./contact</a>
+          <a class="nav-primary" href="/#about">About</a>
+          <a href="/#writing">Writing</a>
+          <a href="/#experience">Experience</a>
+          <a href="/#products">Products</a>
+          <a href="/#skills">Skills</a>
+          <a class="nav-blog" href="/blog">Blog</a>
+          <a href="/#contact">Contact</a>
           <button
             id="theme-toggle"
             class="theme-toggle"
             aria-label="Toggle theme"
             data-track="theme-toggle"
           >
-            <span class="toggle-dark">[light]</span>
-            <span class="toggle-light">[dark]</span>
+            <span class="toggle-dark">dark</span>
+            <span class="toggle-light">light</span>
           </button>
         </nav>
       </div>
@@ -133,7 +141,7 @@ const publishedTime = date ? new Date(date).toISOString() : undefined;
         if (meta)
           meta.setAttribute(
             "content",
-            theme === "dark" ? "#13161a" : "#f7f6f2"
+            theme === "dark" ? "#0e1013" : "#faf8f3"
           );
       }
       applyThemeColor(document.documentElement.dataset.theme);
