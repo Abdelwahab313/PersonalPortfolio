@@ -384,6 +384,19 @@ img {
   color: var(--on-accent);
 }
 
+.arrow {
+  display: inline-flex;
+  align-items: center;
+}
+
+.arrow svg {
+  transition: transform 0.18s var(--ease);
+}
+
+a:hover .arrow svg {
+  transform: translate(2px, -2px);
+}
+
 /* ---------- sections ---------- */
 
 .section {
@@ -405,14 +418,6 @@ img {
   font-size: clamp(26px, 3.4vw, 38px);
   letter-spacing: -0.02em;
   line-height: 1.08;
-}
-
-.section-head .section-note {
-  margin-left: auto;
-  max-width: 22rem;
-  font-size: 14px;
-  color: var(--muted);
-  text-align: right;
 }
 
 .section-lede {
@@ -1432,9 +1437,6 @@ img {
   .os-item {
     grid-template-columns: 1fr;
     gap: 0.35rem;
-  }
-  .section-head .section-note {
-    display: none;
   }
 }
 

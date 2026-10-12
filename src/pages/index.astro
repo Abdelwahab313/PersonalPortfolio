@@ -1,5 +1,6 @@
 ---
 import Base from "../layouts/Base.astro";
+import ArrowUpRight from "../components/ArrowUpRight.astro";
 import {getCollection} from "astro:content";
 import {
   greeting,
@@ -72,7 +73,7 @@ const writing = (
     </ul>
     <div class="hero-actions">
       <a class="btn btn-primary" href={greeting.resumeLink} data-track="cv"
-        >Resume ↗</a
+        >Resume <ArrowUpRight /></a
       >
       <a
         class="btn"
@@ -134,9 +135,6 @@ const writing = (
   <section class="container section" id="writing">
     <div class="section-head">
       <h2 class="section-title">Writing</h2>
-      <p class="section-note">
-        Post-mortems and design decisions, written in plain English.
-      </p>
     </div>
     <div class="write-grid">
       {
@@ -164,7 +162,6 @@ const writing = (
   <section class="container section" id="experience">
     <div class="section-head">
       <h2 class="section-title">Experience</h2>
-      <p class="section-note">Four roles, newest first.</p>
     </div>
     <ol class="jobs">
       {
@@ -212,7 +209,6 @@ const writing = (
   <section class="container section" id="products">
     <div class="section-head">
       <h2 class="section-title">Products</h2>
-      <p class="section-note">Four products, all shipped and in the wild.</p>
     </div>
     <div class="card-grid">
       {
@@ -252,7 +248,7 @@ const writing = (
             <div class="card-link">
               {product.footerLink.map(link => (
                 <a href={link.url} target="_blank" rel="noreferrer">
-                  {link.name} ↗
+                  {link.name} <ArrowUpRight />
                 </a>
               ))}
             </div>
@@ -343,7 +339,7 @@ const writing = (
       >
       <div class="contact-actions">
         <a class="btn btn-primary" href={greeting.resumeLink} data-track="cv"
-          >Resume ↗</a
+          >Resume <ArrowUpRight /></a
         >
         <a
           class="btn"
