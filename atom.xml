@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Blog | Abdelwahab Mahmoud</title>
+  <subtitle>Case studies and notes from building production systems.</subtitle>
+  <id>https://abdelwahab.dev/atom.xml</id>
+  <link href="https://abdelwahab.dev/atom.xml" rel="self"/>
+  <link href="https://abdelwahab.dev/blog"/>
+  <updated>2026-10-14T00:00:00.000Z</updated>
+  <author>
+    <name>Abdelwahab Mahmoud</name>
+  </author>
+  <entry>
+    <title>Pulling fulfillment out of the monolith</title>
+    <link href="https://abdelwahab.dev/blog/fulfillment-extraction/"/>
+    <id>https://abdelwahab.dev/blog/fulfillment-extraction/</id>
+    <published>2026-10-14T00:00:00.000Z</published>
+    <updated>2026-10-14T00:00:00.000Z</updated>
+    <summary>Fulfillment came out of a PHP monolith one piece at a time, over SQS behind a REST contract, because a team of six could not freeze features.</summary>
+  </entry>
+  <entry>
+    <title>From empty repo to beta launch</title>
+    <link href="https://abdelwahab.dev/blog/zero-to-launch/"/>
+    <id>https://abdelwahab.dev/blog/zero-to-launch/</id>
+    <published>2026-10-13T00:00:00.000Z</published>
+    <updated>2026-10-13T00:00:00.000Z</updated>
+    <summary>A marketplace from nothing to beta: React and Rails, calendar integrations, and CI pipelines from the first week, not as a cleanup later.</summary>
+  </entry>
+  <entry>
+    <title>One backend, drivers on the road</title>
+    <link href="https://abdelwahab.dev/blog/mobile-backend/"/>
+    <id>https://abdelwahab.dev/blog/mobile-backend/</id>
+    <published>2026-10-12T00:00:00.000Z</published>
+    <updated>2026-10-12T00:00:00.000Z</updated>
+    <summary>React Native apps fed by one Node.js backend. Live orders reach drivers on phones and the same state reaches the web, over Socket.IO.</summary>
+  </entry>
+  <entry>
+    <title>7.33M rows per call</title>
+    <link href="https://abdelwahab.dev/blog/aurora/"/>
+    <id>https://abdelwahab.dev/blog/aurora/</id>
+    <published>2026-10-05T00:00:00.000Z</published>
+    <updated>2026-10-05T00:00:00.000Z</updated>
+    <summary>One status broadcast ran 1,013 queries and pinned Aurora at 100% CPU. The fix was not an index. EXPLAIN showed each call scanning 7.33M rows.</summary>
+  </entry>
+  <entry>
+    <title>One engine, three providers</title>
+    <link href="https://abdelwahab.dev/blog/engine/"/>
+    <id>https://abdelwahab.dev/blog/engine/</id>
+    <published>2026-10-05T00:00:00.000Z</published>
+    <updated>2026-10-05T00:00:00.000Z</updated>
+    <summary>Rate limits caused 65% of review failures. Treating them as &quot;retry later&quot; stopped provider outages from becoming ours.</summary>
+  </entry>
+  <entry>
+    <title>Draining, not stopping</title>
+    <link href="https://abdelwahab.dev/blog/fargate/"/>
+    <id>https://abdelwahab.dev/blog/fargate/</id>
+    <published>2026-10-05T00:00:00.000Z</published>
+    <updated>2026-10-05T00:00:00.000Z</updated>
+    <summary>ECS scale-in was killing 2-hour translation jobs. So workers drain before they stop.</summary>
+  </entry>
+  <entry>
+    <title>The verdict lives in code, not the prompt</title>
+    <link href="https://abdelwahab.dev/blog/triage/"/>
+    <id>https://abdelwahab.dev/blog/triage/</id>
+    <published>2026-10-05T00:00:00.000Z</published>
+    <updated>2026-10-05T00:00:00.000Z</updated>
+    <summary>Almost trusted a plausible explanation. So pass/fail had to live in tested code.</summary>
+  </entry>
+</feed>
