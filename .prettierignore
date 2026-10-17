@@ -1,3 +1,5 @@
 dist/
 .astro/
 package-lock.json
+.claude/
+.playwright-mcp/

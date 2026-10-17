@@ -1,7 +1,10 @@
 ---
 import Base from "../layouts/Base.astro";
 import ArrowUpRight from "../components/ArrowUpRight.astro";
+import WorkGrid from "../components/WorkGrid.astro";
 import {getCollection} from "astro:content";
+import {homeGraph, productListSchema} from "../lib/schema";
+import {publishedPosts, assertArticlesExist} from "../lib/blog";
 import {
   greeting,
   socialMediaLinks,
@@ -11,7 +14,8 @@ import {
   workExperiences,
   bigProjects,
   openSource,
-  contactInfo
+  contactInfo,
+  workChallenges
 } from "../data/portfolio";
 
 const title =
@@ -49,20 +53,16 @@ const jobs = workExperiences.experience.map(job => ({
 const education = educationInfo.schools[0];
 
 const KIND_LABEL = {"case-study": "Case study", note: "Note"};
-const writing = (
-  await getCollection("blog", ({data}) =>
-    import.meta.env.PROD ? data.status === "published" : true
-  )
-)
-  .sort(
-    (a, b) =>
-      b.data.date.valueOf() - a.data.date.valueOf() ||
-      a.data.order - b.data.order
-  )
-  .slice(0, 4);
+const allPosts = await getCollection("blog");
+const published = publishedPosts(allPosts);
+assertArticlesExist(
+  published,
+  workChallenges.cards.map(card => card.article)
+);
+const writing = published.slice(0, 4);
 ---
 
-<Base {title} {description}>
+<Base {title} {description} jsonLd={[homeGraph(), productListSchema()]}>
   <!-- hero -->
   <section class="container hero">
     <h1>{greeting.title}</h1>
@@ -90,6 +90,24 @@ const writing = (
         data-track="linkedin">LinkedIn</a
       >
       <a class="btn" href="#contact" data-track="contact">Email</a>
+    </div>
+    <div class="hero-shipped">
+      <span class="hero-shipped-label">Recently shipped</span>
+      <ul>
+        {
+          bigProjects.projects.slice(0, 3).map(product => (
+            <li>
+              <a
+                href={product.footerLink[0]?.url}
+                target="_blank"
+                rel="noreferrer"
+              >
+                {product.projectName} <ArrowUpRight />
+              </a>
+            </li>
+          ))
+        }
+      </ul>
     </div>
   </section>
 
@@ -130,6 +148,9 @@ const writing = (
       </aside>
     </div>
   </section>
+
+  <!-- work -->
+  <WorkGrid />
 
   <!-- writing -->
   <section class="container section" id="writing">
@@ -295,7 +316,7 @@ const writing = (
       {
         skillGroups.map(group => (
           <div class="skill-group">
-            <h4>{group.label}</h4>
+            <h3>{group.label}</h3>
             <ul>
               {group.items.map(item => (
                 <li>{item}</li>
@@ -317,6 +338,8 @@ const writing = (
         class="edu-badge-img"
         src={education.logo}
         alt={`${education.schoolName} logo`}
+        width="277"
+        height="359"
       />
       <div>
         <h3 class="edu-name">{education.schoolName}</h3>

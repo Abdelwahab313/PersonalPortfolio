@@ -1,0 +1,132 @@
+---
+import Base from "../layouts/Base.astro";
+import {getCollection} from "astro:content";
+import {publishedPosts, readingMinutes, assertArticlesExist} from "../lib/blog";
+import {breadcrumbSchema} from "../lib/schema";
+import {workChallenges} from "../data/portfolio";
+
+const posts = publishedPosts(await getCollection("blog"));
+assertArticlesExist(
+  posts,
+  workChallenges.cards.map(card => card.article)
+);
+const caseStudies = posts.filter(post => post.data.kind === "case-study");
+
+const KIND_LABEL = {"case-study": "Case study", note: "Note"};
+
+const title = "Work | Abdelwahab Mahmoud";
+const description =
+  "The problems I'm usually brought in for, and the write-ups behind them: cloud migrations, event-driven services, LLM platforms, mobile apps and reliability.";
+
+const jsonLd = [
+  breadcrumbSchema([
+    {name: "Home", url: "https://abdelwahab.dev/"},
+    {name: "Work", url: "https://abdelwahab.dev/work"}
+  ])
+];
+---
+
+<Base {title} {description} {jsonLd}>
+  <div class="work-main">
+    <p class="preamble">
+      $ cd ./work <span class="comment"># challenges and case studies</span>
+    </p>
+    <header class="blog-head">
+      <h1 class="blog-title">Work</h1>
+      <p class="blog-subtitle">
+        The problems I'm usually brought in for, and how I approached them. Each
+        card opens a write-up of real work behind it.
+      </p>
+    </header>
+
+    <section aria-labelledby="work-challenges-title">
+      <div class="section-head">
+        <h2 class="section-title" id="work-challenges-title">What I work on</h2>
+      </div>
+      <p class="section-lede">
+        {workChallenges.subtitle}
+      </p>
+      <ul class="work-grid">
+        {
+          workChallenges.cards.map(card => (
+            <li class="work-cell">
+              <a class="work-card" href={`/blog/${card.article}`}>
+                <h3 class="work-card-title">{card.title}</h3>
+                <p class="work-card-summary">{card.summary}</p>
+                <span class="work-card-more">
+                  Read the write-up <span class="arrow">→</span>
+                </span>
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </section>
+
+    {
+      caseStudies.length > 0 && (
+        <section aria-labelledby="work-cases-title">
+          <div class="section-head">
+            <h2 class="section-title" id="work-cases-title">
+              Case studies
+            </h2>
+          </div>
+          <p class="section-lede">
+            Short write-ups in the situation, decision, trade-off and outcome
+            shape.
+          </p>
+          <ul class="cs-grid">
+            {caseStudies.map(post => (
+              <li class="cs-cell">
+                <article class="cs-card">
+                  {post.data.cover && (
+                    <a
+                      class="cs-cover"
+                      href={`/blog/${post.id}`}
+                      tabindex="-1"
+                      aria-hidden="true"
+                    >
+                      <img
+                        src={post.data.cover}
+                        alt={post.data.coverAlt}
+                        width="1200"
+                        height="600"
+                        loading="lazy"
+                      />
+                    </a>
+                  )}
+                  <div class="post-meta">
+                    <time datetime={post.data.date.toISOString().slice(0, 10)}>
+                      {post.data.date.toISOString().slice(0, 10)}
+                    </time>
+                    <span class="post-kind">{KIND_LABEL[post.data.kind]}</span>
+                    <span class="post-read">
+                      {readingMinutes(post)} min read
+                    </span>
+                  </div>
+                  <a class="cs-title" href={`/blog/${post.id}`}>
+                    {post.data.title}
+                  </a>
+                  <p class="post-lede">{post.data.lede}</p>
+                  <ul class="post-tags">
+                    {post.data.tags.map(tag => (
+                      <li class="post-tag">
+                        <a href={`/blog/tag/${tag}/`}>{tag}</a>
+                      </li>
+                    ))}
+                  </ul>
+                </article>
+              </li>
+            ))}
+          </ul>
+        </section>
+      )
+    }
+
+    <p class="work-foot">
+      The artifacts behind these write-ups live on the homepage.
+      <a class="link-arrow" href="/#products">Products I helped build</a>
+      <a class="link-arrow" href="/#contact">Tell me what you're building.</a>
+    </p>
+  </div>
+</Base>

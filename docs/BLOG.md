@@ -5,9 +5,12 @@ One post is one file: `src/content/blog/<slug>.md`. The slug is the filename
 step). Drop the file in and `npm run build` picks it up. Schema is validated at
 build time by `src/content.config.ts`; a bad field names the exact problem.
 
+The agentic pipeline that produces drafts (research, write, review agents
+plus the `/blog` orchestrator command) is defined in `docs/BLOG-WORKFLOW.md`.
+
 ## Template
 
-```md
+````md
 ---
 title: Queue depth beats CPU percentage
 kind: note
@@ -16,13 +19,24 @@ date: 2026-11-02
 order: 0
 lede: One line, at most 160 characters, shown on the index and used as the page description.
 tags: [aws, ecs]
-sections:
-  - heading: What broke
-    paragraphs:
-      - One paragraph.
-      - Then another.
 ---
+
+## What broke
+
+One paragraph. Then another.
+
+## What I changed
+
+Code, tables and images are plain Markdown:
+
+```sh
+aws ecs describe-services --cluster workers --services translate
 ```
+````
+
+The frontmatter is metadata only. Everything the reader sees below the lede
+is the Markdown body. Every `##` heading becomes a TOC entry on the page; keep
+headings at `##` and `###`, never `#` (the title is the `h1`).
 
 ## Fields
 
@@ -36,33 +50,45 @@ sections:
 | `order` | no | Integer, ascending. Only breaks ties inside the same `date`. |
 | `lede` | yes | At most 160 characters. Index row and meta description. |
 | `tags` | no | Array of short lowercase strings, rendered as `#tag`. |
-| `sections` | for `note` | `{heading, paragraphs[]}`. |
-| `situation` `decision` `tradeoff` `outcome` | for `case-study` | The four parts. |
-| `diagram` `diagramCaption` | for `case-study` | Optional. `diagram` must be one of `fargate`, `engine`, `aurora`, `triage` (the registry lives in `src/components/Diagrams.jsx`). A `diagram` without a caption, or a caption without a diagram, fails the schema. |
-| `product` `link` | for `case-study` | Optional outbound link to the product. |
+| `featured` | no | Boolean, default `false`. Highlights the post on the index. At most one post may set it (enforced in `src/lib/blog.ts`). |
+| `cover` | no | Path to a cover image, rendered above the title when set. Must come with `coverAlt`. |
+| `coverAlt` | with `cover` | Alt text for the cover image. A `cover` without it, or it without a `cover`, fails the schema. |
+
+The schema is strict: any other key fails the build. Prose, code, tables and
+images live in the Markdown body, not in frontmatter.
 
 ## Kinds
 
-**`case-study`** - Situation / Decision / Trade-off / Outcome about one
-system, with a real diagram where one exists. The four parts are single
-strings, so it suits a short write-up.
+`kind` only drives the label on the post page and the "Case studies" grid on
+`/work`. Both kinds are written the same way: frontmatter plus a Markdown body.
 
-**`note`** - sections of prose. The four migrated posts (`fargate`, `engine`,
-`aurora`, `triage`) are notes: they carry the case-study arc across headings,
-which the four-part shape cannot hold. Read one of them before writing the
-next.
+**`case-study`** - one system, told as Situation / Decision / Trade-off /
+Outcome. The body must carry exactly those four `##` headings, in that order
+(`## Situation`, `## Decision`, `## Trade-off`, `## Outcome`); the build fails
+otherwise (`assertCaseStudyHeadings` in `src/lib/blog.ts`). Other headings may
+sit between or after them.
+
+**`note`** - any set of `##` headings. The four migrated posts (`fargate`,
+`engine`, `aurora`, `triage`) are notes: they carry the case-study arc across
+their own headings. Read one of them before writing the next.
+
+Reading time is computed from the body plus the lede at 200 words per minute.
 
 ## Rules
 
 Tone rules live in `CONTENT.md` section 2. The two that catch most drafts:
 
-1. Every number has to be in the CV. No new figures.
+1. Numbers about the author's own work come from the CV only, no new figures.
+   A learning-topic post about an external system may use an external number
+   (benchmark, limit, version, price) only when the researcher verified it
+   against a first-party source and the dossier carries that source. See
+   `docs/BLOG-WORKFLOW.md`, "Standing decision: numbers from outside the CV".
 2. No em dashes in site prose. Full stops and commas only.
 3. Anonymous unless agreed. No product or company names in a post, and no
-   `product` / `link` frontmatter. The four migrated case studies were
-   anonymized 2026-10-08: bodies and diagrams keep only the names of public
-   tooling (AWS services, OpenAI, Bedrock, Gemini, Langfuse), never the
-   product, the employer, or a `*.wpml.org` URL.
+   outbound product link. The four migrated case studies were anonymized
+   2026-10-08: bodies keep only the names of public tooling (AWS services,
+   OpenAI, Bedrock, Gemini, Langfuse), never the product, the employer, or a
+   `*.wpml.org` URL.
 
 Case studies may be deeper than the two-page CV. That is the point of the
 section: the CV is the summary, the case study is the reasoning.
@@ -88,11 +114,8 @@ the post disappears from the deployed site.
    a `200`.
 4. Deploy.
 
-## Adding a diagram
+## Images and diagrams
 
-Diagrams are hand-authored inline SVG React components in
-`src/components/Diagrams.jsx`, styled by the `.dgm-*` classes in
-`src/styles/global.css`. Add a component, register it in the `diagrams` map at
-the bottom of that file, then set `diagram` on your post. The schema enum is
-the list of registered names, so a typo fails the build instead of rendering a
-blank figure.
+Put the file under `public/img/blog/` (line-art SVG, same style as the
+covers) and reference it from the body with standard Markdown:
+`![Alt text](/img/blog/name.svg)`. Give every image real alt text.

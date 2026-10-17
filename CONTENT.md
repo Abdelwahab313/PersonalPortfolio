@@ -250,13 +250,12 @@ Meta description:
 The four migrated posts keep their copy verbatim from the 2026-10-05 refresh, and are
 published as `kind: note`: `fargate` (Draining, not stopping), `engine` (One engine, three
 providers), `aurora` (7.33M rows per call), `triage` (The verdict lives in code, not the
-prompt). They carry the case-study arc across `sections` headings. The `case-study` kind is
-the four-part shape (`situation` / `decision` / `tradeoff` / `outcome`), used when a post is
-short enough for that form.
+prompt). Every post is frontmatter metadata plus a Markdown body; the `case-study` kind
+carries Situation / Decision / Trade-off / Outcome as four `##` headings in that body.
 
 Anonymized 2026-10-08: no product, company, or `*.wpml.org` link in any post.
-Bodies and diagrams keep only the names of public tooling (AWS services, OpenAI,
-Bedrock, Gemini, Langfuse). Rule of posting: docs/BLOG.md rule 3.
+Bodies keep only the names of public tooling (AWS services, OpenAI, Bedrock, Gemini,
+Langfuse). Rule of posting: docs/BLOG.md rule 3.
 
 Numbers in those four trace to pre-2026-10-08 CV history; see SPEC.md section 8.
 
@@ -359,6 +358,16 @@ SPEC.md section 7 before shipping.
 ---
 
 ## 5. Open items against the live site (2026-10-08)
+
+- 2026-10-15 blog and work expansion: `/blog` gained tag chips with counts, a
+  client-side search and filter, cover thumbnails and the featured card
+  (`fargate` carries `featured: true`). New frontmatter: `featured`, `cover`,
+  `coverAlt` (docs/BLOG.md). Three case studies shipped
+  (`fulfillment-extraction`, `zero-to-launch`, `mobile-backend`), all six
+  challenge cards' `article` fields are filled, `/work` is a real route, the
+  nav's Work item points there, and `/atom.xml` joins `/rss.xml`. Case-study
+  copy comes from the Dailymealz, Nformacy and DevSquads bullets above, with
+  the anonymity and no-new-numbers rules kept.
 
 - 2026-10-11 redesign (docs/mockup-review.md, mockup v2): availability signals, the stat band
   and the hero Code card are removed; Products became dossier cards; Skills became chip

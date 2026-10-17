@@ -1,13 +1,10 @@
 import {defineConfig} from "astro/config";
-import react from "@astrojs/react";
 import sitemap from "@astrojs/sitemap";
 
 export default defineConfig({
   site: "https://abdelwahab.dev",
-  integrations: [react(), sitemap()],
-  vite: {
-    ssr: {
-      external: ["react", "react-dom"]
-    }
+  integrations: [sitemap()],
+  markdown: {
+    smartypants: false
   }
 });

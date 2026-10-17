@@ -1,20 +1,16 @@
 ---
 import Base from "../../layouts/Base.astro";
-import Diagram from "../../components/Diagrams.jsx";
-import ArrowUpRight from "../../components/ArrowUpRight.astro";
-import {getCollection} from "astro:content";
+import {getCollection, render} from "astro:content";
+import {
+  publishedPosts,
+  readingMinutes,
+  tagSlug,
+  assertCaseStudyHeadings
+} from "../../lib/blog";
+import {blogPostingSchema, breadcrumbSchema} from "../../lib/schema";
 
 export async function getStaticPaths() {
-  const posts = (
-    await getCollection("blog", ({data}) =>
-      import.meta.env.PROD ? data.status === "published" : true
-    )
-  ).sort(
-    (a, b) =>
-      b.data.date.valueOf() - a.data.date.valueOf() ||
-      a.data.order - b.data.order
-  );
-
+  const posts = publishedPosts(await getCollection("blog"));
   return posts.map(post => ({params: {slug: post.id}, props: {post, posts}}));
 }
 
@@ -22,82 +18,93 @@ const {post, posts} = Astro.props;
 const data = post.data;
 const date = data.date.toISOString().slice(0, 10);
 const KIND_LABEL = {"case-study": "Case study", note: "Note"};
-const CASE_PARTS = [
-  {key: "situation", label: "Situation"},
-  {key: "decision", label: "Decision"},
-  {key: "tradeoff", label: "Trade-off"},
-  {key: "outcome", label: "Outcome"}
-] as const;
 
 const index = posts.findIndex(item => item.id === post.id);
 const previous = posts[index - 1];
 const next = posts[index + 1];
 
+const {Content, headings} = await render(post);
+assertCaseStudyHeadings(post, headings);
+const anchors = headings.filter(heading => heading.depth === 2);
+const minutes = readingMinutes(post);
+
 const title = `${data.title} | Abdelwahab Mahmoud`;
 const description = data.lede;
+
+const jsonLd = [
+  blogPostingSchema(post),
+  breadcrumbSchema([
+    {name: "Home", url: "https://abdelwahab.dev/"},
+    {name: "Blog", url: "https://abdelwahab.dev/blog"},
+    {name: data.title, url: `https://abdelwahab.dev/blog/${post.id}`}
+  ])
+];
 ---
 
-<Base {title} {description} date={data.date}>
+<Base {title} {description} date={data.date} {jsonLd}>
   <article class="post">
-    <a class="post-back" href="/blog">← All posts</a>
+    <nav class="post-crumbs" aria-label="Breadcrumb">
+      <a href="/blog">Blog</a>
+      {
+        data.tags.length > 0 && (
+          <>
+            <span class="crumb-sep">/</span>
+            <a href={`/blog/tag/${tagSlug(data.tags[0])}`}>#{data.tags[0]}</a>
+          </>
+        )
+      }
+    </nav>
 
     <header class="post-head">
       <div class="post-meta">
         <time datetime={date}>{date}</time>
         <span class="post-kind">{KIND_LABEL[data.kind]}</span>
         {data.status === "draft" && <span class="post-draft">Draft</span>}
+        <span class="post-read">{minutes} min read</span>
       </div>
       <h1 class="post-title">{data.title}</h1>
       {
-        data.kind === "case-study" && data.product && data.link && (
-          <a
-            class="post-product"
-            href={data.link}
-            target="_blank"
-            rel="noreferrer"
-          >
-            {data.product} <ArrowUpRight />
-          </a>
+        data.cover && (
+          <figure class="post-cover">
+            <img
+              src={data.cover}
+              alt={data.coverAlt}
+              width="1200"
+              height="600"
+              loading="eager"
+            />
+          </figure>
         )
       }
       <p class="post-lede">{data.lede}</p>
       <ul class="post-tags">
-        {data.tags.map(tag => <li class="post-tag">{tag}</li>)}
+        {
+          data.tags.map(tag => (
+            <li class="post-tag">
+              <a href={`/blog/tag/${tagSlug(tag)}`}>{tag}</a>
+            </li>
+          ))
+        }
       </ul>
     </header>
 
-    <div class="post-body">
-      {
-        data.kind === "case-study" ? (
-          <>
-            <figure class="case-figure">
-              {data.diagram && <Diagram name={data.diagram} />}
-              <figcaption class="case-figure-caption">
-                {data.diagramCaption}
-              </figcaption>
-            </figure>
-            <dl class="case-parts">
-              {CASE_PARTS.map(part => (
-                <div class="case-part">
-                  <dt class="case-part-label">{part.label}</dt>
-                  <dd class="case-part-text">{data[part.key]}</dd>
-                </div>
-              ))}
-            </dl>
-          </>
-        ) : (
-          <div class="post-body">
-            {data.sections.map(section => (
-              <section class="post-section">
-                <h2 class="post-section-title">{section.heading}</h2>
-                {section.paragraphs.map(paragraph => (
-                  <p>{paragraph}</p>
-                ))}
-              </section>
+    {
+      anchors.length > 0 && (
+        <nav class="post-toc" aria-label="On this page">
+          <span class="post-toc-label">On this page</span>
+          <ol>
+            {anchors.map(anchor => (
+              <li>
+                <a href={`#${anchor.slug}`}>{anchor.text}</a>
+              </li>
             ))}
-          </div>
-        )
-      }
+          </ol>
+        </nav>
+      )
+    }
+
+    <div class="post-body">
+      <Content />
     </div>
 
     <nav class="post-nav">

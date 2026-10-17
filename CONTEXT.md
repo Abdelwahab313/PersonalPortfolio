@@ -1,6 +1,6 @@
 # CONTEXT
 
-Glossary of canonical terms for this portfolio's content. The site's copy (src/data/portfolio.ts, public/index.html meta tags, resume) must agree with these terms. Canonical facts, tone rules and paste-ready copy live in CONTENT.md.
+Glossary of canonical terms for this portfolio's content. The site's copy (src/data/portfolio.ts, src/layouts/Base.astro meta tags, resume) must agree with these terms. Canonical facts, tone rules and paste-ready copy live in CONTENT.md.
 
 ## Terms
 
@@ -17,10 +17,16 @@ All site copy reads as human-written: no em dashes, no symmetrical buzzword bull
 A showcased product the user helped build, in the "Products" section — one dossier card per product (badge, tagline, overview, scale, timeframe, stack, website link). Distinct from an Experience: an Experience is the job; a Big Project is the artifact.
 
 ### Case study
-A Situation / Decision / Trade-off / Outcome write-up about one system, published as a post under `/blog/{slug}`. It carries a real system diagram where one exists. A Case study may go deeper than the two-page CV. It is the four-part `kind: "case-study"` shape; a longer write-up that carries the same arc across `sections` headings is a Blog post (`kind: "note"`), which is how the four migrated posts are published.
+A Blog post with `kind: "case-study"`: one system, written as Situation / Decision / Trade-off / Outcome. Those four are `##` headings in the Markdown body, in that order, and the build fails if one is missing. A Case study may go deeper than the two-page CV. The four migrated posts (`fargate`, `engine`, `aurora`, `triage`) carry the same arc under their own headings and are published as `kind: "note"`.
 
 ### Blog post
-One entry in the single `/blog` stream. Authored as exactly one file in `src/content/blog/{slug}.md` and discovered automatically by Astro content collections—never by editing a registry. Two kinds: `case-study` and `note`. A post with `status: "draft"` is visible in development only. Authoring contract: `docs/BLOG.md`.
+One entry in the single `/blog` stream. Authored as exactly one file in `src/content/blog/{slug}.md`: strict frontmatter metadata plus a Markdown body that carries all prose, code, tables and images. Discovered automatically by Astro content collections, never by editing a registry. Two kinds: `case-study` and `note`; the kind sets the label and the `/work` grid filter, nothing else. A post with `status: "draft"` is visible in development only. Authoring contract: `docs/BLOG.md`.
 
 ### Section head
 The serif heading that titles each homepage section (`About`, `Writing`, … `Education`). Decoration, not prose, so it is exempt from the Voice rules — but it must not introduce facts that are not in the CV.
+
+### Work page
+The dedicated `/work` route: the six challenge cards as links to their write-ups, plus a grid of every published `case-study` post. The homepage `#work` section keeps its dialog cards and links to `/work`; the nav's Work item points to `/work`. Every challenge card's `article` field names a real post slug, and the build fails (via `assertArticlesExist`) if it drifts.
+
+### Featured post
+The one post with `featured: true` in frontmatter, rendered as the large first card on `/blog`. At most one may exist; the build fails otherwise. Its `cover` is the path to an SVG in `public/img/blog/`, always paired with `coverAlt`.
