@@ -17,6 +17,7 @@ interface Props {
   ogDescription?: string;
   ogImage?: string;
   date?: Date;
+  jsonLd?: Record<string, unknown> | Record<string, unknown>[];
 }
 
 const {
@@ -25,12 +26,18 @@ const {
   ogTitle = title,
   ogDescription = description,
   ogImage = "/og.png",
-  date
+  date,
+  jsonLd
 } = Astro.props;
 
 const site = Astro.site;
 const canonical = site ? new URL(Astro.url.pathname, site) : Astro.url;
 const publishedTime = date ? new Date(date).toISOString() : undefined;
+const jsonLdBlocks = jsonLd
+  ? (Array.isArray(jsonLd) ? jsonLd : [jsonLd]).map(block =>
+      JSON.stringify(block).replace(/</g, "\\u003c")
+    )
+  : [];
 ---
 
 <!doctype html>
@@ -48,6 +55,12 @@ const publishedTime = date ? new Date(date).toISOString() : undefined;
       type="application/rss+xml"
       title="Blog | Abdelwahab Mahmoud"
       href="/rss.xml"
+    />
+    <link
+      rel="alternate"
+      type="application/atom+xml"
+      title="Blog | Abdelwahab Mahmoud"
+      href="/atom.xml"
     />
 
     <meta
@@ -75,6 +88,12 @@ const publishedTime = date ? new Date(date).toISOString() : undefined;
     <link rel="shortcut icon" href="/favicon.ico" />
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
     <link rel="manifest" href="/manifest.json" />
+
+    {
+      jsonLdBlocks.map(block => (
+        <script type="application/ld+json" is:inline set:html={block} />
+      ))
+    }
 
     <script is:inline>
       (function () {
@@ -105,7 +124,7 @@ const publishedTime = date ? new Date(date).toISOString() : undefined;
         >
         <nav class="site-nav" aria-label="Primary">
           <a class="nav-primary" href="/#about">About</a>
-          <a href="/#writing">Writing</a>
+          <a href="/work">Work</a>
           <a href="/#experience">Experience</a>
           <a href="/#products">Products</a>
           <a href="/#skills">Skills</a>

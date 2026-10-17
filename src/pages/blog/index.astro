@@ -1,23 +1,38 @@
 ---
 import Base from "../../layouts/Base.astro";
 import {getCollection} from "astro:content";
+import {
+  publishedPosts,
+  readingMinutes,
+  tagCounts,
+  featuredPosts,
+  assertSingleFeatured
+} from "../../lib/blog";
+import {breadcrumbSchema} from "../../lib/schema";
 
-const posts = (
-  await getCollection("blog", ({data}) =>
-    import.meta.env.PROD ? data.status === "published" : true
-  )
-).sort(
-  (a, b) =>
-    b.data.date.valueOf() - a.data.date.valueOf() || a.data.order - b.data.order
-);
+const posts = publishedPosts(await getCollection("blog"));
+assertSingleFeatured(posts);
+
+const featured = featuredPosts(posts)[0];
+const rows = featured ? posts.filter(post => post.id !== featured.id) : posts;
+const counts = tagCounts(posts);
 
 const KIND_LABEL = {"case-study": "Case study", note: "Note"};
-const title = "Blog | Abdelwahab Mahmoud";
+const title = "Blog: Rails, AWS, platform and LLM systems | Abdelwahab Mahmoud";
 const description =
   "Case studies and notes from eight years building production systems. What was there, what I decided, what it cost, and what changed.";
+
+const jsonLd = [
+  breadcrumbSchema([
+    {name: "Home", url: "https://abdelwahab.dev/"},
+    {name: "Blog", url: "https://abdelwahab.dev/blog"}
+  ])
+];
+
+const rowTags = (tags: string[]) => tags.join(" ");
 ---
 
-<Base {title} {description}>
+<Base {title} {description} {jsonLd}>
   <div class="blog-main">
     <p class="preamble">
       $ ls ./blog <span class="comment"># notes and case studies</span>
@@ -30,31 +45,194 @@ const description =
       </p>
     </header>
 
-    <ul class="post-list">
-      {
-        posts.map(post => (
-          <li class="post-row">
+    <div class="blog-tools">
+      <div class="blog-search">
+        <span class="search-prompt">$ grep</span>
+        <input
+          id="blog-search"
+          type="search"
+          placeholder="search posts"
+          aria-label="Search posts by title, lede or tag"
+          autocomplete="off"
+        />
+      </div>
+      <ul class="tag-chips" aria-label="Filter posts by tag">
+        <li>
+          <a class="tag-chip is-active" data-tag="all" href="/blog">
+            all<span class="chip-count">{posts.length}</span>
+          </a>
+        </li>
+        {
+          [...counts.entries()].map(([tag, count]) => (
+            <li>
+              <a class="tag-chip" data-tag={tag} href={`/blog/tag/${tag}/`}>
+                {tag}
+                <span class="chip-count">{count}</span>
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+
+    {
+      featured && (
+        <article
+          class="post-featured"
+          data-filter-row
+          data-tags={rowTags(featured.data.tags)}
+          data-title={featured.data.title}
+          data-lede={featured.data.lede}
+        >
+          {featured.data.cover && (
+            <a
+              class="featured-cover"
+              href={`/blog/${featured.id}`}
+              tabindex="-1"
+              aria-hidden="true"
+            >
+              <img
+                src={featured.data.cover}
+                alt={featured.data.coverAlt}
+                width="1200"
+                height="600"
+                loading="eager"
+              />
+            </a>
+          )}
+          <div class="featured-body">
             <div class="post-meta">
-              <time datetime={post.data.date.toISOString().slice(0, 10)}>
-                {post.data.date.toISOString().slice(0, 10)}
+              <time datetime={featured.data.date.toISOString().slice(0, 10)}>
+                {featured.data.date.toISOString().slice(0, 10)}
               </time>
-              <span class="post-kind">{KIND_LABEL[post.data.kind]}</span>
-              {post.data.status === "draft" && (
+              <span class="post-kind">{KIND_LABEL[featured.data.kind]}</span>
+              <span class="post-flag">Featured</span>
+              {featured.data.status === "draft" && (
                 <span class="post-draft">Draft</span>
               )}
+              <span class="post-read">{readingMinutes(featured)} min read</span>
             </div>
-            <a class="post-row-title" href={`/blog/${post.id}`}>
-              {post.data.title}
+            <a class="featured-title" href={`/blog/${featured.id}`}>
+              {featured.data.title}
             </a>
-            <p class="post-lede">{post.data.lede}</p>
+            <p class="post-lede">{featured.data.lede}</p>
             <ul class="post-tags">
-              {post.data.tags.map(tag => (
-                <li class="post-tag">{tag}</li>
+              {featured.data.tags.map(tag => (
+                <li class="post-tag">
+                  <a href={`/blog/tag/${tag}/`}>{tag}</a>
+                </li>
               ))}
             </ul>
+          </div>
+        </article>
+      )
+    }
+
+    <ul class="post-list">
+      {
+        rows.map(post => (
+          <li
+            class:list={["post-row", {["has-cover"]: Boolean(post.data.cover)}]}
+            data-filter-row
+            data-tags={rowTags(post.data.tags)}
+            data-title={post.data.title}
+            data-lede={post.data.lede}
+          >
+            {post.data.cover && (
+              <a
+                class="row-cover"
+                href={`/blog/${post.id}`}
+                tabindex="-1"
+                aria-hidden="true"
+              >
+                <img
+                  src={post.data.cover}
+                  alt={post.data.coverAlt}
+                  width="1200"
+                  height="600"
+                  loading="lazy"
+                />
+              </a>
+            )}
+            <div class="row-body">
+              <div class="post-meta">
+                <time datetime={post.data.date.toISOString().slice(0, 10)}>
+                  {post.data.date.toISOString().slice(0, 10)}
+                </time>
+                <span class="post-kind">{KIND_LABEL[post.data.kind]}</span>
+                {post.data.status === "draft" && (
+                  <span class="post-draft">Draft</span>
+                )}
+                <span class="post-read">{readingMinutes(post)} min read</span>
+              </div>
+              <a class="post-row-title" href={`/blog/${post.id}`}>
+                {post.data.title}
+              </a>
+              <p class="post-lede">{post.data.lede}</p>
+              <ul class="post-tags">
+                {post.data.tags.map(tag => (
+                  <li class="post-tag">
+                    <a href={`/blog/tag/${tag}/`}>{tag}</a>
+                  </li>
+                ))}
+              </ul>
+            </div>
           </li>
         ))
       }
     </ul>
+
+    <p class="blog-empty" id="blog-empty" hidden>
+      No posts match. Clear the search or pick another tag.
+    </p>
   </div>
+
+  <script>
+    const chips = document.querySelectorAll<HTMLAnchorElement>(".tag-chip");
+    const input = document.getElementById(
+      "blog-search"
+    ) as HTMLInputElement | null;
+    const filterRows =
+      document.querySelectorAll<HTMLElement>("[data-filter-row]");
+    const empty = document.getElementById("blog-empty");
+
+    let activeTag: string | null = null;
+    let query = "";
+
+    function apply() {
+      const needle = query.trim().toLowerCase();
+      let visible = 0;
+      filterRows.forEach(row => {
+        const tags = (row.dataset.tags ?? "").split(" ").filter(Boolean);
+        const haystack = `${row.dataset.title ?? ""} ${
+          row.dataset.lede ?? ""
+        } ${tags.join(" ")}`
+          .trim()
+          .toLowerCase();
+        const tagOk = !activeTag || tags.includes(activeTag);
+        const queryOk = !needle || haystack.includes(needle);
+        const show = tagOk && queryOk;
+        row.hidden = !show;
+        if (show) visible += 1;
+      });
+      if (empty) empty.hidden = visible !== 0;
+    }
+
+    chips.forEach(chip => {
+      chip.addEventListener("click", event => {
+        event.preventDefault();
+        chips.forEach(other =>
+          other.classList.toggle("is-active", other === chip)
+        );
+        const tag = chip.dataset.tag;
+        activeTag = !tag || tag === "all" ? null : tag;
+        apply();
+      });
+    });
+
+    input?.addEventListener("input", () => {
+      query = input.value;
+      apply();
+    });
+  </script>
 </Base>

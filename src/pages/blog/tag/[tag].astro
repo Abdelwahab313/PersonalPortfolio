@@ -1,0 +1,77 @@
+---
+import Base from "../../../layouts/Base.astro";
+import {getCollection} from "astro:content";
+import {
+  publishedPosts,
+  allTags,
+  tagSlug,
+  readingMinutes
+} from "../../../lib/blog";
+import {breadcrumbSchema} from "../../../lib/schema";
+
+export async function getStaticPaths() {
+  const posts = publishedPosts(await getCollection("blog"));
+  return allTags(posts).map(tag => {
+    const slug = tagSlug(tag);
+    return {
+      params: {tag: slug},
+      props: {
+        tag,
+        posts: posts.filter(post => post.data.tags.includes(tag))
+      }
+    };
+  });
+}
+
+const {tag, posts} = Astro.props;
+
+const KIND_LABEL = {"case-study": "Case study", note: "Note"};
+const title = `#${tag} | Writing | Abdelwahab Mahmoud`;
+const description = `Posts tagged #${tag} on Abdelwahab Mahmoud's writing archive.`;
+
+const jsonLd = [
+  breadcrumbSchema([
+    {name: "Home", url: "https://abdelwahab.dev/"},
+    {name: "Blog", url: "https://abdelwahab.dev/blog"},
+    {name: `#${tag}`, url: `https://abdelwahab.dev/blog/tag/${tagSlug(tag)}`}
+  ])
+];
+---
+
+<Base {title} {description} {jsonLd}>
+  <div class="blog-main">
+    <a class="post-back" href="/blog">← All posts</a>
+    <header class="blog-head">
+      <h1 class="blog-title">#{tag}</h1>
+      <p class="blog-subtitle">
+        {posts.length}
+        {posts.length === 1 ? "post" : "posts"} tagged #{tag}.
+      </p>
+    </header>
+
+    <ul class="post-list">
+      {
+        posts.map(post => (
+          <li class="post-row">
+            <div class="post-meta">
+              <time datetime={post.data.date.toISOString().slice(0, 10)}>
+                {post.data.date.toISOString().slice(0, 10)}
+              </time>
+              <span class="post-kind">{KIND_LABEL[post.data.kind]}</span>
+              <span class="post-read">{readingMinutes(post)} min read</span>
+            </div>
+            <a class="post-row-title" href={`/blog/${post.id}`}>
+              {post.data.title}
+            </a>
+            <p class="post-lede">{post.data.lede}</p>
+            <ul class="post-tags">
+              {post.data.tags.map(item => (
+                <li class="post-tag">{item}</li>
+              ))}
+            </ul>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</Base>

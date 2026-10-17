@@ -302,3 +302,100 @@ export const openSource = {
     }
   ]
 };
+
+export const workChallenges = {
+  title: "What I work on",
+  subtitle:
+    "The problems I'm usually brought in for. Each card is backed by something I shipped; open one to see how I approached it.",
+  footer:
+    "More than the cards cover, when a product needs it: REST APIs, internal tools and the glue between systems.",
+  cards: [
+    {
+      id: "platform-migrations",
+      title: "Cloud migrations and platform moves",
+      summary:
+        "Applications and databases moved onto new infrastructure in one planned cutover, without breaking production.",
+      covers: [
+        "Moved a product off a single EC2 host onto ECS Fargate",
+        "Infrastructure as code with Terraform",
+        "Kept the database and autoscaling healthy through the move"
+      ],
+      project: {
+        name: "Private Translation Cloud",
+        url: "https://ptc.wpml.org/"
+      },
+      article: "fargate"
+    },
+    {
+      id: "event-driven-services",
+      title: "Event-driven services",
+      summary:
+        "Monoliths split into services that stay consistent when orders, money and data move between them.",
+      covers: [
+        "Real-time order service for a meal subscription platform",
+        "Moved a PHP monolith to event-driven services",
+        "Queues and streams with SQS and Kafka"
+      ],
+      project: {name: "Dailymealz", url: "https://dailymealz.com/"},
+      article: "fulfillment-extraction"
+    },
+    {
+      id: "llm-platforms",
+      title: "LLM platforms",
+      summary:
+        "Provider-agnostic LLM engines that fail over cleanly when a model degrades.",
+      covers: [
+        "Multi-provider engine over AWS Bedrock, OpenAI and Gemini",
+        "Agentic workflows and the Claude Agent SDK",
+        "Tracing and evals with Langfuse and MCP tooling"
+      ],
+      project: {
+        name: "Private Translation Cloud",
+        url: "https://ptc.wpml.org/"
+      },
+      article: "engine"
+    },
+    {
+      id: "zero-to-launch",
+      title: "Product from zero to launch",
+      summary:
+        "From the first MVP to a launched product, with the cloud and deploy pipelines behind it.",
+      covers: [
+        "Took a marketplace from first MVP to beta launch",
+        "Cloud infrastructure and deploy pipelines",
+        "Full-stack delivery across React and Ruby on Rails"
+      ],
+      project: {name: "Nformacy", url: "https://nformacy.com/"},
+      article: "zero-to-launch"
+    },
+    {
+      id: "mobile-apps",
+      title: "Mobile apps",
+      summary:
+        "React Native apps shipped together with the backend that feeds them.",
+      covers: [
+        "React Native driver app for live orders",
+        "Cross-platform health app built around a smart scale",
+        "One backend serving both mobile and web"
+      ],
+      project: {name: "Dailymealz", url: "https://dailymealz.com/"},
+      article: "mobile-backend"
+    },
+    {
+      id: "reliability",
+      title: "Reliability and observability",
+      summary:
+        "Keeping databases out of saturation and autoscaling that respects long-running jobs.",
+      covers: [
+        "Databases kept out of CPU saturation",
+        "Autoscaling that respects long-running jobs",
+        "Datadog and OpenTelemetry tracing"
+      ],
+      project: {
+        name: "Private Translation Cloud",
+        url: "https://ptc.wpml.org/"
+      },
+      article: "aurora"
+    }
+  ]
+};
