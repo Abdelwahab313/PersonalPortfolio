@@ -1,0 +1,416 @@
+- generic [active] [ref=e1]:
+  - link "Skip to main content" [ref=e2] [cursor=pointer]:
+    - /url: "#main-content"
+  - generic [ref=e4]:
+    - generic [ref=e7]: FA
+    - heading "Faiz Akram" [level=2] [ref=e8]
+  - banner [ref=e15]:
+    - navigation [ref=e16]:
+      - generic [ref=e17]:
+        - link "FA Faiz Akram" [ref=e18] [cursor=pointer]:
+          - /url: /
+          - generic [ref=e21]: FA
+          - generic [ref=e23]: Faiz Akram
+        - generic [ref=e24]:
+          - link "Home" [ref=e25] [cursor=pointer]:
+            - /url: /
+            - text: Home
+          - link "About" [ref=e26] [cursor=pointer]:
+            - /url: /about
+            - text: About
+          - link "Expertise" [ref=e27] [cursor=pointer]:
+            - /url: /expertise
+            - text: Expertise
+          - link "Projects" [ref=e28] [cursor=pointer]:
+            - /url: /projects
+            - text: Projects
+          - link "Blog" [ref=e29] [cursor=pointer]:
+            - /url: /blog
+            - text: Blog
+          - link "Contact" [ref=e30] [cursor=pointer]:
+            - /url: /contact
+            - text: Contact
+          - link "Let's Talk" [ref=e31] [cursor=pointer]:
+            - /url: /contact
+            - button "Let's Talk" [ref=e32]
+  - main [ref=e33]:
+    - generic [ref=e34]:
+      - article [ref=e35]:
+        - link "Back to Blog" [ref=e36] [cursor=pointer]:
+          - /url: /blog
+          - img [ref=e37]
+          - generic [ref=e39]: Back to Blog
+        - img "Reliable Saga Orchestration Patterns in Microservices with Temporal and Camunda" [ref=e41]
+        - generic [ref=e43]: Microservices
+        - heading "Reliable Saga Orchestration Patterns in Microservices with Temporal and Camunda" [level=1] [ref=e44]
+        - generic [ref=e45]:
+          - generic [ref=e46]:
+            - generic [ref=e47]: F
+            - generic [ref=e48]: Faiz Akram
+          - generic [ref=e49]:
+            - img [ref=e50]
+            - generic [ref=e52]: August 25, 2026
+          - generic [ref=e53]:
+            - img [ref=e54]
+            - generic [ref=e56]: 7 min read
+        - generic [ref=e58]:
+          - paragraph [ref=e59]: Modern microservices demand reliable coordination of long-running business workflows—but distributed transactions remain brittle, especially under failure. Reliable saga orchestration patterns are becoming essential for ensuring data consistency and fault tolerance in production cloud-native architectures, especially as systems scale and business logic grows in complexity.
+          - heading "What Is Saga Orchestration? (With a Real Workflow Example)" [level=2] [ref=e60]
+          - paragraph [ref=e61]:
+            - text: A
+            - strong [ref=e62]: saga orchestration
+            - text: is a pattern for managing distributed transactions in microservices by breaking a large, inconsistent transaction into a sequence of local transactions. Each local transaction updates a service and publishes an event or triggers the next. If a step fails, compensating actions are triggered to undo prior work, ensuring eventual consistency without locking resources across services.
+          - paragraph [ref=e63]: "Here's a real-world saga workflow using Temporal (version 1.22.3) and Go (v1.21):"
+          - code [ref=e65]:
+            - text: "package order import ( \"go.temporal.io/sdk/workflow\" ) type OrderSagaInput struct { OrderID string PaymentID string }"
+            - generic [ref=e66]: func OrderSaga(ctx workflow.Context, input OrderSagaInput)
+            - text: "error { // Step 1: Reserve Inventory err := workflow.ExecuteActivity(ctx, ReserveInventory, input.OrderID).Get(ctx, nil) if err != nil { return err } // Step 2: Process Payment err = workflow.ExecuteActivity(ctx, ProcessPayment, input.PaymentID).Get(ctx, nil) if err != nil { // Compensate Inventory Reservation _ = workflow.ExecuteActivity(ctx, CancelInventory, input.OrderID).Get(ctx, nil) return err } // Step 3: Ship Order err = workflow.ExecuteActivity(ctx, ShipOrder, input.OrderID).Get(ctx, nil) if err != nil { // Compensate Payment and Inventory _ = workflow.ExecuteActivity(ctx, RefundPayment, input.PaymentID).Get(ctx, nil) _ = workflow.ExecuteActivity(ctx, CancelInventory, input.OrderID).Get(ctx, nil) return err } return nil }"
+          - paragraph [ref=e67]: This example defines an order saga that reserves inventory, processes payment, and ships an order. Each step is isolated, and failures trigger compensating actions, all orchestrated programmatically.
+          - paragraph [ref=e68]:
+            - strong [ref=e69]: "Key insight:"
+            - text: Saga orchestration ensures eventual consistency in distributed systems without distributed locking or two-phase commit overhead.
+          - 'heading "Step 1: Choosing an Orchestration Engine (Temporal vs. Camunda vs. Alternatives)" [level=2] [ref=e70]'
+          - heading "Why You Need a Workflow Engine" [level=3] [ref=e71]
+          - paragraph [ref=e72]: "Manually orchestrating sagas with custom code or message brokers leads to hidden edge cases, poor observability, and brittle compensation logic. Production-grade orchestration engines like Temporal (open-source, scalable, and language-agnostic) and Camunda (BPMN-based, robust process modeling) provide:"
+          - list [ref=e73]:
+            - listitem [ref=e74]: Durable state management
+            - listitem [ref=e75]: Retries and timeouts
+            - listitem [ref=e76]: Compensation and error handling
+            - listitem [ref=e77]: Built-in observability
+          - heading "When to Use Temporal" [level=3] [ref=e78]
+          - list [ref=e79]:
+            - listitem [ref=e80]: Need code-first workflows in Go, Java, or TypeScript
+            - listitem [ref=e81]: High throughput (10,000s workflows/sec), strong fault tolerance
+            - listitem [ref=e82]: Multi-cloud or hybrid cloud deployments
+          - heading "When to Use Camunda" [level=3] [ref=e83]
+          - list [ref=e84]:
+            - listitem [ref=e85]: BPMN-based modeling is required for business stakeholders
+            - listitem [ref=e86]: Visual workflow design and editing
+            - listitem [ref=e87]: Integration with legacy BPM systems
+          - 'heading "Example: Deploying Temporal with Kubernetes" [level=3] [ref=e88]'
+          - paragraph [ref=e89]: "A production-ready Temporal cluster (v1.22.3) on Kubernetes uses Helm charts:"
+          - code [ref=e91]: "# values.yaml (Temporal Helm chart) server: replicas: 4 persistence: defaultStore: sql: driver: postgres host: my-temporal-db port: 5432 user: temporal password: \"${TEMPORAL_DB_PASSWORD}\" visibilityStore: sql: driver: postgres metrics: prometheus: enabled: true"
+          - paragraph [ref=e92]: "Deploy with:"
+          - code [ref=e94]: helm repo add temporal https://charts.temporal.io helm install temporaltest temporal/temporal -f values.yaml
+          - paragraph [ref=e95]:
+            - strong [ref=e96]: "Key insight:"
+            - text: Dedicated workflow engines dramatically reduce operational and reliability risks compared to hand-rolled orchestration code.
+          - 'heading "Step 2: Defining Sagas and Compensation Logic" [level=2] [ref=e97]'
+          - heading "Modeling Complex Business Workflows" [level=3] [ref=e98]
+          - paragraph [ref=e99]: Start by mapping out the end-to-end workflow and identifying all points of potential failure. For each compensating action, implement idempotency—so repeated invocations don’t cause side effects. In Temporal, activities (steps) are retried on failure unless marked as non-retryable.
+          - paragraph [ref=e100]:
+            - strong [ref=e101]: "Sample compensation logic for a payment service (Java, Camunda 8, v8.3.0):"
+          - code [ref=e103]:
+            - text: "@ZeebeWorker(type = \"ProcessPayment\") public void processPayment"
+            - generic [ref=e104]: (final JobClient client, final ActivatedJob job)
+            - text: "{ try { paymentService.charge(job.getVariables().get(\"paymentId\")); client.newCompleteCommand(job.getKey()).send().join(); } catch (Exception e) { // Compensation: refund if charged paymentService.refund(job.getVariables().get(\"paymentId\")); client.newFailCommand(job.getKey()).retries(0).errorMessage(e.getMessage()).send().join(); } }"
+          - heading "Testing Compensation Flows" [level=3] [ref=e105]
+          - paragraph [ref=e106]: Automate end-to-end tests to simulate partial failures at every step. Use Temporal's "fail activity" feature or Camunda's test coverage tools to inject faults and verify correct compensation.
+          - list [ref=e107]:
+            - listitem [ref=e108]:
+              - text: "Temporal:"
+              - code [ref=e109]: tctl workflow terminate --workflow-id <id>
+              - text: to simulate abrupt failures
+            - listitem [ref=e110]: "Camunda: Use the Test Coverage Plugin to inject BPMN errors"
+          - paragraph [ref=e111]:
+            - strong [ref=e112]: "Key insight:"
+            - text: Explicit, idempotent compensation logic is critical for safe retries and failure recovery in distributed workflows.
+          - 'heading "Step 3: Observability, Monitoring, and Alerting for Sagas" [level=2] [ref=e113]'
+          - heading "Tracing and Metrics" [level=3] [ref=e114]
+          - paragraph [ref=e115]: "Without deep visibility, debugging failed sagas is nearly impossible at scale. Both Temporal and Camunda expose rich telemetry:"
+          - list [ref=e116]:
+            - listitem [ref=e117]:
+              - strong [ref=e118]: "Temporal:"
+              - text: Native Prometheus metrics (
+              - code [ref=e119]: temporal_workflow_started
+              - text: ","
+              - code [ref=e120]: temporal_activity_failed_total
+              - text: )
+            - listitem [ref=e121]:
+              - strong [ref=e122]: "Camunda:"
+              - text: Micrometer integration, ELK stack support, and Zeebe Operate UI
+          - paragraph [ref=e123]:
+            - strong [ref=e124]: "Prometheus scrape config for Temporal (Kubernetes):"
+          - code [ref=e126]: "- job_name: 'temporal' kubernetes_sd_configs: - role: pod relabel_configs: - source_labels: [__meta_kubernetes_pod_label_app] action: keep regex: temporal"
+          - heading "Alerting Patterns" [level=3] [ref=e127]
+          - list [ref=e128]:
+            - listitem [ref=e129]:
+              - text: Alert on excessive saga retries (
+              - code [ref=e130]: temporal_activity_retry_count > 5
+              - text: )
+            - listitem [ref=e131]:
+              - text: Alert on compensation actions triggered (
+              - code [ref=e132]: temporal_activity_compensate_total > 0
+              - text: )
+            - listitem [ref=e133]: Alert on workflow duration anomalies (p90 latency)
+          - heading "Distributed Tracing Integration" [level=3] [ref=e134]
+          - paragraph [ref=e135]: Instrument activities with OpenTelemetry (v1.18.0+). For example, wrap Temporal activities with trace spans and propagate context headers across service boundaries.
+          - paragraph [ref=e136]:
+            - strong [ref=e137]: "Key insight:"
+            - text: End-to-end tracing and metrics are non-negotiable for root cause analysis and SLA monitoring in orchestrated sagas.
+          - 'heading "Step 4: Handling Upgrades, Schema Evolution, and Backward Compatibility" [level=2] [ref=e138]'
+          - heading "Versioning Sagas Safely" [level=3] [ref=e139]
+          - paragraph [ref=e140]: "As business logic evolves, live sagas may straddle old and new code. Both engines support workflow versioning:"
+          - list [ref=e141]:
+            - listitem [ref=e142]:
+              - strong [ref=e143]: "Temporal:"
+              - code [ref=e144]: workflow.GetVersion
+              - text: to branch on version
+            - listitem [ref=e145]:
+              - strong [ref=e146]: "Camunda:"
+              - text: Multiple BPMN process definitions can be deployed side by side
+          - paragraph [ref=e147]:
+            - strong [ref=e148]: "Temporal versioning example:"
+          - code [ref=e150]: "version := workflow.GetVersion(ctx, \"OrderSagaStep1\", workflow.DefaultVersion, 2) if version == 1 { // Old logic } else { // New logic }"
+          - heading "Database Schema Evolution" [level=3] [ref=e151]
+          - paragraph [ref=e152]:
+            - text: Schema changes must be backward compatible while in-flight sagas exist. Use the
+            - strong [ref=e153]: Expand-Contract
+            - text: "pattern:"
+          - list [ref=e154]:
+            - listitem [ref=e155]: "Expand: Add new columns, keep old ones"
+            - listitem [ref=e156]: Deploy new saga logic
+            - listitem [ref=e157]: Decommission old fields after all old workflows complete
+          - heading "Rolling Upgrades" [level=3] [ref=e158]
+          - list [ref=e159]:
+            - listitem [ref=e160]: Stagger workflow engine and worker upgrades
+            - listitem [ref=e161]: Ensure compensation logic is compatible with both versions
+            - listitem [ref=e162]: Automate smoke tests for both active and completed workflow instances
+          - paragraph [ref=e163]:
+            - strong [ref=e164]: "Key insight:"
+            - text: Proper versioning and schema strategies prevent catastrophic failures during business logic evolution in distributed sagas.
+          - 'heading "Step 5: Preventing Common Pitfalls—Retries, Idempotency, and Deadlocks" [level=2] [ref=e165]'
+          - heading "Retry Storms and Backoff" [level=3] [ref=e166]
+          - paragraph [ref=e167]: "Unbounded retries during dependent service outages can swamp systems. Temporal and Camunda allow:"
+          - list [ref=e168]:
+            - listitem [ref=e169]:
+              - strong [ref=e170]: Exponential backoff
+              - text: (e.g.,
+              - code [ref=e171]: "InitialInterval: 5s, BackoffCoefficient: 2.0"
+              - text: )
+            - listitem [ref=e172]:
+              - strong [ref=e173]: Maximum attempts
+              - text: (
+              - code [ref=e174]: "MaximumAttempts: 5"
+              - text: )
+          - paragraph [ref=e175]:
+            - strong [ref=e176]: "Temporal activity options example:"
+          - code [ref=e178]: "activityOptions := workflow.ActivityOptions{ StartToCloseTimeout: time.Minute, RetryPolicy: &temporal.RetryPolicy{ InitialInterval: time.Second * 5, BackoffCoefficient: 2.0, MaximumAttempts: 5, }, }"
+          - heading "Ensuring Idempotency" [level=3] [ref=e179]
+          - paragraph [ref=e180]: Compensating actions must be safe to invoke multiple times. Use unique business keys, deduplication tokens, or transactional outbox patterns to guarantee at-least-once but only-once semantics.
+          - heading "Deadlock and Resource Contention" [level=3] [ref=e181]
+          - paragraph [ref=e182]: Never block on synchronous downstream calls in orchestrators. Design all saga steps to be asynchronous and independently retryable.
+          - paragraph [ref=e183]:
+            - strong [ref=e184]: "Key insight:"
+            - text: Strict idempotency, controlled retries, and async steps are foundational for safe, scalable saga orchestration.
+          - 'heading "Tool Comparison: Temporal vs. Camunda vs. Netflix Conductor" [level=2] [ref=e185]'
+          - table [ref=e186]:
+            - rowgroup [ref=e187]:
+              - row "Feature Temporal (v1.22.3) Camunda 8 (v8.3.0) Netflix Conductor (v3.14.0)" [ref=e188]:
+                - columnheader "Feature" [ref=e189]
+                - columnheader "Temporal (v1.22.3)" [ref=e190]
+                - columnheader "Camunda 8 (v8.3.0)" [ref=e191]
+                - columnheader "Netflix Conductor (v3.14.0)" [ref=e192]
+            - rowgroup [ref=e193]:
+              - row "Workflow Modeling Code (Go/Java/TS) BPMN visual + code JSON/YAML + Java" [ref=e194]:
+                - cell "Workflow Modeling" [ref=e195]
+                - cell "Code (Go/Java/TS)" [ref=e196]
+                - cell "BPMN visual + code" [ref=e197]
+                - cell "JSON/YAML + Java" [ref=e198]
+              - row "Compensation/Retry Handling Built-in, robust Built-in, BPMN Manual, less robust" [ref=e199]:
+                - cell "Compensation/Retry Handling" [ref=e200]
+                - cell "Built-in, robust" [ref=e201]
+                - cell "Built-in, BPMN" [ref=e202]
+                - cell "Manual, less robust" [ref=e203]
+              - row "Observability Prometheus, native Micrometer, UI Prometheus, basic UI" [ref=e204]:
+                - cell "Observability" [ref=e205]
+                - cell "Prometheus, native" [ref=e206]
+                - cell "Micrometer, UI" [ref=e207]
+                - cell "Prometheus, basic UI" [ref=e208]
+              - row "Cloud Native Support Helm, K8s, AWS/GCP Helm, K8s, SaaS Docker, K8s" [ref=e209]:
+                - cell "Cloud Native Support" [ref=e210]
+                - cell "Helm, K8s, AWS/GCP" [ref=e211]
+                - cell "Helm, K8s, SaaS" [ref=e212]
+                - cell "Docker, K8s" [ref=e213]
+              - row "Throughput 10k+/sec 1k–5k/sec 2k–4k/sec" [ref=e214]:
+                - cell "Throughput" [ref=e215]
+                - cell "10k+/sec" [ref=e216]
+                - cell "1k–5k/sec" [ref=e217]
+                - cell "2k–4k/sec" [ref=e218]
+              - row "Language Support Go, Java, TS, PHP Java, JS, Python Java, Python, JS" [ref=e219]:
+                - cell "Language Support" [ref=e220]
+                - cell "Go, Java, TS, PHP" [ref=e221]
+                - cell "Java, JS, Python" [ref=e222]
+                - cell "Java, Python, JS" [ref=e223]
+              - row "Community/Enterprise Support Strong, OSS & paid Strong, OSS & paid OSS, Netflix maintained" [ref=e224]:
+                - cell "Community/Enterprise Support" [ref=e225]
+                - cell "Strong, OSS & paid" [ref=e226]
+                - cell "Strong, OSS & paid" [ref=e227]
+                - cell "OSS, Netflix maintained" [ref=e228]
+          - paragraph [ref=e229]:
+            - strong [ref=e230]: "Key insight:"
+            - text: Temporal leads in developer ergonomics and scalability; Camunda excels at BPMN and process modeling for business-facing workflows.
+          - heading "Frequently Asked Questions" [level=2] [ref=e231]
+          - paragraph [ref=e232]:
+            - strong [ref=e233]: "Q: What’s the difference between choreography and orchestration in sagas?"
+            - text: "A: Orchestration centralizes workflow control in a coordinator (e.g., Temporal, Camunda), ensuring strong consistency and explicit compensation. Choreography is event-based with no central controller, leading to looser coupling but harder compensation logic and observability."
+          - paragraph [ref=e234]:
+            - strong [ref=e235]: "Q: How do I ensure compensation steps are always run after a failure?"
+            - text: "A: Compensation steps must be explicitly modeled in the workflow definition. Engines like Temporal and Camunda guarantee compensation execution on failure, even after restarts, by persisting workflow state and retrying until success or manual intervention."
+          - paragraph [ref=e236]:
+            - strong [ref=e237]: "Q: Can saga orchestrators handle millions of workflows in production?"
+            - text: "A: Yes. Temporal (v1.22.3) and Camunda 8 (v8.3.0) are proven at 10k+ concurrent workflows/sec, with large enterprises running millions of workflows per day. Proper sharding, worker scaling, and persistent storage tuning are required."
+          - heading "Key Takeaways" [level=2] [ref=e238]
+          - list [ref=e239]:
+            - listitem [ref=e240]: Rely on workflow engines like Temporal or Camunda instead of homegrown orchestration to achieve reliability, scalability, and observability.
+            - listitem [ref=e241]: Always model explicit, idempotent compensation logic for each saga step to ensure safe failure recovery.
+            - listitem [ref=e242]: Integrate Prometheus, OpenTelemetry, and alerting for real-time saga monitoring and root cause analysis.
+            - listitem [ref=e243]:
+              - text: Use versioning patterns (e.g., Temporal’s
+              - code [ref=e244]: GetVersion
+              - text: ", Camunda’s process definitions) to support safe upgrades and evolving business logic."
+            - listitem [ref=e245]: Configure backoff, max retries, and async steps to prevent retry storms and deadlocks in large-scale distributed workflows.
+            - listitem [ref=e246]: Test compensation and failure scenarios as rigorously as happy paths to avoid production surprises.
+        - generic [ref=e247]:
+          - generic [ref=e248]:
+            - img [ref=e249]
+            - heading "Tags" [level=3] [ref=e251]
+          - generic [ref=e252]:
+            - generic [ref=e253]: microservices
+            - generic [ref=e254]: saga orchestration
+            - generic [ref=e255]: temporal
+            - generic [ref=e256]: camunda
+            - generic [ref=e257]: distributed transactions
+            - generic [ref=e258]: cloud
+        - generic [ref=e259]:
+          - heading "Share this article" [level=3] [ref=e260]
+          - paragraph [ref=e261]: Found it helpful? Share it with your network.
+          - generic [ref=e262]:
+            - link "X / Twitter" [ref=e263] [cursor=pointer]:
+              - /url: https://twitter.com/intent/tweet?text=Reliable%20Saga%20Orchestration%20Patterns%20in%20Microservices%20with%20Temporal%20and%20Camunda&url=https%3A%2F%2Ffaizakram.com%2Fblog%2Freliable-saga-orchestration-patterns-in-microservices-with-temporal-and-camunda
+              - img [ref=e264]
+              - generic [ref=e266]: X / Twitter
+            - link "LinkedIn" [ref=e267] [cursor=pointer]:
+              - /url: https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Ffaizakram.com%2Fblog%2Freliable-saga-orchestration-patterns-in-microservices-with-temporal-and-camunda
+              - img [ref=e268]
+              - generic [ref=e270]: LinkedIn
+            - link "Facebook" [ref=e271] [cursor=pointer]:
+              - /url: https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Ffaizakram.com%2Fblog%2Freliable-saga-orchestration-patterns-in-microservices-with-temporal-and-camunda
+              - img [ref=e272]
+              - generic [ref=e274]: Facebook
+            - link "WhatsApp" [ref=e275] [cursor=pointer]:
+              - /url: https://wa.me/?text=Reliable%20Saga%20Orchestration%20Patterns%20in%20Microservices%20with%20Temporal%20and%20Camunda%20%E2%80%94%20https%3A%2F%2Ffaizakram.com%2Fblog%2Freliable-saga-orchestration-patterns-in-microservices-with-temporal-and-camunda
+              - img [ref=e276]
+              - generic [ref=e278]: WhatsApp
+            - button "Copy Link" [ref=e279] [cursor=pointer]:
+              - img [ref=e280]
+              - generic [ref=e282]: Copy Link
+      - generic [ref=e284]:
+        - heading "Related Articles" [level=2] [ref=e285]
+        - paragraph [ref=e286]: More on Microservices and related topics
+        - generic [ref=e287]:
+          - generic [ref=e289]:
+            - generic [ref=e290]:
+              - 'img "Microservice Data Consistency: Outbox and Inbox Patterns in Production" [ref=e292]'
+              - generic [ref=e293]: Microservices
+            - generic [ref=e294]:
+              - generic [ref=e295]:
+                - generic [ref=e296]:
+                  - img [ref=e297]
+                  - generic [ref=e299]: October 9, 2026
+                - generic [ref=e300]:
+                  - img [ref=e301]
+                  - generic [ref=e303]: 7 min read
+              - 'heading "Microservice Data Consistency: Outbox and Inbox Patterns in Production" [level=3] [ref=e304]'
+              - paragraph [ref=e305]: Learn how to ensure reliable data consistency in microservices using Outbox and Inbox patterns, with production-ready configs, tool comparisons, and real-world steps.
+              - generic [ref=e306]:
+                - generic [ref=e307]: microservices
+                - generic [ref=e308]: distributed systems
+                - generic [ref=e309]: data consistency
+              - link "Read More" [ref=e310] [cursor=pointer]:
+                - /url: /blog/microservice-data-consistency-outbox-and-inbox-patterns-in-production
+                - generic [ref=e311]:
+                  - generic [ref=e312]: Read More
+                  - img [ref=e314]
+          - generic [ref=e317]:
+            - generic [ref=e318]:
+              - 'img "Event Sourcing in Microservices: Patterns, Tools, and Production Pitfalls" [ref=e320]'
+              - generic [ref=e321]: Microservices
+            - generic [ref=e322]:
+              - generic [ref=e323]:
+                - generic [ref=e324]:
+                  - img [ref=e325]
+                  - generic [ref=e327]: October 1, 2026
+                - generic [ref=e328]:
+                  - img [ref=e329]
+                  - generic [ref=e331]: 8 min read
+              - 'heading "Event Sourcing in Microservices: Patterns, Tools, and Production Pitfalls" [level=3] [ref=e332]'
+              - paragraph [ref=e333]: Master event sourcing for microservices with real-world patterns, production configs, and tool comparisons. Learn trade-offs, benchmarks, and best practices.
+              - generic [ref=e334]:
+                - generic [ref=e335]: event sourcing
+                - generic [ref=e336]: microservices
+                - generic [ref=e337]: cloud
+              - link "Read More" [ref=e338] [cursor=pointer]:
+                - /url: /blog/event-sourcing-in-microservices-patterns-tools-and-production-pitfalls
+                - generic [ref=e339]:
+                  - generic [ref=e340]: Read More
+                  - img [ref=e342]
+          - generic [ref=e345]:
+            - generic [ref=e346]:
+              - 'img "Microservice Resilience Patterns: Circuit Breakers, Retries, and Timeouts in Production" [ref=e348]'
+              - generic [ref=e349]: Microservices
+            - generic [ref=e350]:
+              - generic [ref=e351]:
+                - generic [ref=e352]:
+                  - img [ref=e353]
+                  - generic [ref=e355]: September 25, 2026
+                - generic [ref=e356]:
+                  - img [ref=e357]
+                  - generic [ref=e359]: 7 min read
+              - 'heading "Microservice Resilience Patterns: Circuit Breakers, Retries, and Timeouts in Production" [level=3] [ref=e360]'
+              - paragraph [ref=e361]: Learn how to implement production-grade microservice resilience using circuit breakers, retries, and timeouts with real code, configs, and tool comparisons.
+              - generic [ref=e362]:
+                - generic [ref=e363]: microservices
+                - generic [ref=e364]: resilience patterns
+                - generic [ref=e365]: circuit breaker
+              - link "Read More" [ref=e366] [cursor=pointer]:
+                - /url: /blog/microservice-resilience-patterns-circuit-breakers-retries-and-timeouts-in-produc
+                - generic [ref=e367]:
+                  - generic [ref=e368]: Read More
+                  - img [ref=e370]
+  - contentinfo [ref=e372]:
+    - generic [ref=e375]:
+      - generic [ref=e376]:
+        - generic [ref=e377]:
+          - generic [ref=e378]:
+            - generic [ref=e380]: FA
+            - generic [ref=e381]: Faiz Akram
+          - paragraph [ref=e382]: Senior Technical Architect specializing in enterprise-grade solutions, cloud architecture, and modern development practices.
+        - generic [ref=e383]:
+          - heading "Quick Links" [level=3] [ref=e384]
+          - generic [ref=e385]:
+            - link "Privacy Policy" [ref=e386] [cursor=pointer]:
+              - /url: /privacy-policy
+            - link "Terms of Service" [ref=e387] [cursor=pointer]:
+              - /url: /terms-of-service
+            - link "Blog" [ref=e388] [cursor=pointer]:
+              - /url: /blog
+        - generic [ref=e389]:
+          - heading "Connect" [level=3] [ref=e390]
+          - generic [ref=e391]:
+            - link "GitHub" [ref=e392] [cursor=pointer]:
+              - /url: https://github.com/faizakram
+              - img [ref=e393]
+            - link "LinkedIn" [ref=e395] [cursor=pointer]:
+              - /url: https://www.linkedin.com/in/faizkrm/
+              - img [ref=e396]
+            - link "YouTube" [ref=e398] [cursor=pointer]:
+              - /url: https://www.youtube.com/@faiz1449
+              - img [ref=e399]
+            - link "Email" [ref=e401] [cursor=pointer]:
+              - /url: mailto:faiz.krm@gmail.com
+              - img [ref=e402]
+      - paragraph [ref=e406]: © 2026 Faiz Akram. All rights reserved.
+    - button "Scroll back to top" [ref=e407] [cursor=pointer]:
+      - img [ref=e408]
+  - alert [ref=e410]

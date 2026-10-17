@@ -1,0 +1,498 @@
+- generic [active] [ref=e1]:
+  - banner [ref=e2]:
+    - generic [ref=e3]:
+      - link "~/ abdelwahab" [ref=e4] [cursor=pointer]:
+        - /url: /
+        - generic [ref=e6]: ~/
+        - text: abdelwahab
+      - navigation "Primary" [ref=e7]:
+        - link "About" [ref=e8] [cursor=pointer]:
+          - /url: /#about
+        - link "Work" [ref=e9] [cursor=pointer]:
+          - /url: /work
+        - link "Experience" [ref=e10] [cursor=pointer]:
+          - /url: /#experience
+        - link "Products" [ref=e11] [cursor=pointer]:
+          - /url: /#products
+        - link "Skills" [ref=e12] [cursor=pointer]:
+          - /url: /#skills
+        - link "Blog" [ref=e13] [cursor=pointer]:
+          - /url: /blog
+        - link "Contact" [ref=e14] [cursor=pointer]:
+          - /url: /#contact
+        - button "Toggle theme" [ref=e15] [cursor=pointer]: dark
+  - main [ref=e16]:
+    - generic [ref=e17]:
+      - heading "Abdelwahab Mahmoud" [level=1] [ref=e18]
+      - paragraph [ref=e19]: Senior Software Engineer · Full-stack & Platform
+      - paragraph [ref=e20]: I build and operate production systems, mostly on AWS. Eight years across Rails, Node.js and Go, lately LLM platforms over Bedrock, OpenAI and Gemini, with the reliability work that keeps them boring.
+      - list [ref=e21]:
+        - listitem [ref=e22]: Cairo, Egypt · UTC+3
+        - listitem [ref=e23]: English · Arabic (native)
+        - listitem [ref=e24]: 8+ years
+      - generic [ref=e25]:
+        - link "Resume" [ref=e26] [cursor=pointer]:
+          - /url: /resume.pdf
+          - text: Resume
+          - img [ref=e28]
+        - link "GitHub" [ref=e31] [cursor=pointer]:
+          - /url: https://github.com/abdelwahab313
+        - link "LinkedIn" [ref=e32] [cursor=pointer]:
+          - /url: https://www.linkedin.com/in/abdelwahab313/
+        - link "Email" [ref=e33] [cursor=pointer]:
+          - /url: "#contact"
+      - generic [ref=e34]:
+        - generic [ref=e35]: Recently shipped
+        - list [ref=e36]:
+          - listitem [ref=e37]:
+            - link "Private Translation Cloud" [ref=e38] [cursor=pointer]:
+              - /url: https://ptc.wpml.org/
+              - text: Private Translation Cloud
+              - img [ref=e40]
+          - listitem [ref=e43]:
+            - link "Dailymealz" [ref=e44] [cursor=pointer]:
+              - /url: https://dailymealz.com/
+              - text: Dailymealz
+              - img [ref=e46]
+          - listitem [ref=e49]:
+            - link "Shapa" [ref=e50] [cursor=pointer]:
+              - /url: https://shapahealth.com/
+              - text: Shapa
+              - img [ref=e52]
+    - generic [ref=e55]:
+      - heading "About" [level=2] [ref=e57]
+      - generic [ref=e58]:
+        - generic [ref=e59]:
+          - paragraph [ref=e60]: I'm a senior software engineer based in Cairo. For eight years I've built and operated real products end to end, with backend and platform as my home ground.
+          - paragraph [ref=e61]: "Most of my work is the unglamorous kind that keeps a product standing: keeping a database out of CPU saturation, replacing autoscaling that killed long-running jobs, and making an LLM engine fail over cleanly when a provider degrades. I like owning a system from the architecture decision to the incident at 3am."
+          - paragraph [ref=e62]: I've worked on a meal subscription platform serving 100K daily users, a US health product, and the AI translation platform behind WPML.
+        - complementary "Quick facts" [ref=e63]:
+          - heading "At a glance" [level=3] [ref=e64]
+          - generic [ref=e65]:
+            - generic [ref=e66]: Location
+            - generic [ref=e67]: Cairo, Egypt
+          - generic [ref=e68]:
+            - generic [ref=e69]: Timezone
+            - generic [ref=e70]: UTC+3
+          - generic [ref=e71]:
+            - generic [ref=e72]: Focus
+            - generic [ref=e73]: Full-stack & Platform
+          - generic [ref=e74]:
+            - generic [ref=e75]: Experience
+            - generic [ref=e76]: 8+ years
+          - generic [ref=e77]:
+            - generic [ref=e78]: Languages
+            - generic [ref=e79]: English, Arabic
+    - generic [ref=e80]:
+      - heading "What I work on" [level=2] [ref=e82]
+      - paragraph [ref=e83]: The problems I'm usually brought in for. Each card is backed by something I shipped; open one to see how I approached it.
+      - list [ref=e84]:
+        - listitem [ref=e85]:
+          - button "Cloud migrations and platform moves Applications and databases moved onto new infrastructure in one planned cutover, without breaking production. How I approach it →" [ref=e86] [cursor=pointer]:
+            - heading "Cloud migrations and platform moves" [level=3] [ref=e87]
+            - paragraph [ref=e88]: Applications and databases moved onto new infrastructure in one planned cutover, without breaking production.
+            - generic [ref=e89]:
+              - text: How I approach it
+              - generic [ref=e90]: →
+        - listitem [ref=e91]:
+          - button "Event-driven services Monoliths split into services that stay consistent when orders, money and data move between them. How I approach it →" [ref=e92] [cursor=pointer]:
+            - heading "Event-driven services" [level=3] [ref=e93]
+            - paragraph [ref=e94]: Monoliths split into services that stay consistent when orders, money and data move between them.
+            - generic [ref=e95]:
+              - text: How I approach it
+              - generic [ref=e96]: →
+        - listitem [ref=e97]:
+          - button "LLM platforms Provider-agnostic LLM engines that fail over cleanly when a model degrades. How I approach it →" [ref=e98] [cursor=pointer]:
+            - heading "LLM platforms" [level=3] [ref=e99]
+            - paragraph [ref=e100]: Provider-agnostic LLM engines that fail over cleanly when a model degrades.
+            - generic [ref=e101]:
+              - text: How I approach it
+              - generic [ref=e102]: →
+        - listitem [ref=e103]:
+          - button "Product from zero to launch From the first MVP to a launched product, with the cloud and deploy pipelines behind it. How I approach it →" [ref=e104] [cursor=pointer]:
+            - heading "Product from zero to launch" [level=3] [ref=e105]
+            - paragraph [ref=e106]: From the first MVP to a launched product, with the cloud and deploy pipelines behind it.
+            - generic [ref=e107]:
+              - text: How I approach it
+              - generic [ref=e108]: →
+        - listitem [ref=e109]:
+          - button "Mobile apps React Native apps shipped together with the backend that feeds them. How I approach it →" [ref=e110] [cursor=pointer]:
+            - heading "Mobile apps" [level=3] [ref=e111]
+            - paragraph [ref=e112]: React Native apps shipped together with the backend that feeds them.
+            - generic [ref=e113]:
+              - text: How I approach it
+              - generic [ref=e114]: →
+        - listitem [ref=e115]:
+          - button "Reliability and observability Keeping databases out of saturation and autoscaling that respects long-running jobs. How I approach it →" [ref=e116] [cursor=pointer]:
+            - heading "Reliability and observability" [level=3] [ref=e117]
+            - paragraph [ref=e118]: Keeping databases out of saturation and autoscaling that respects long-running jobs.
+            - generic [ref=e119]:
+              - text: How I approach it
+              - generic [ref=e120]: →
+      - paragraph [ref=e121]:
+        - text: "More than the cards cover, when a product needs it: REST APIs, internal tools and the glue between systems."
+        - link "Browse all work" [ref=e122] [cursor=pointer]:
+          - /url: /work
+        - link "Tell me what you're building." [ref=e123] [cursor=pointer]:
+          - /url: "#contact"
+    - generic [ref=e124]:
+      - heading "Writing" [level=2] [ref=e126]
+      - generic [ref=e127]:
+        - link "Case study Pulling fulfillment out of the monolith Fulfillment came out of a PHP monolith one piece at a time, over SQS behind a REST contract, because a team of six could not freeze features. 2026-10-14 · architecture · sqs · redis" [ref=e128] [cursor=pointer]:
+          - /url: /blog/fulfillment-extraction
+          - generic [ref=e129]: Case study
+          - heading "Pulling fulfillment out of the monolith" [level=3] [ref=e130]
+          - paragraph [ref=e131]: Fulfillment came out of a PHP monolith one piece at a time, over SQS behind a REST contract, because a team of six could not freeze features.
+          - generic [ref=e132]: 2026-10-14 · architecture · sqs · redis
+        - 'link "Case study From empty repo to beta launch A marketplace from nothing to beta: React and Rails, calendar integrations, and CI pipelines from the first week, not as a cleanup later. 2026-10-13 · rails · react · ci" [ref=e133] [cursor=pointer]':
+          - /url: /blog/zero-to-launch
+          - generic [ref=e134]: Case study
+          - heading "From empty repo to beta launch" [level=3] [ref=e135]
+          - paragraph [ref=e136]: "A marketplace from nothing to beta: React and Rails, calendar integrations, and CI pipelines from the first week, not as a cleanup later."
+          - generic [ref=e137]: 2026-10-13 · rails · react · ci
+        - link "Case study One backend, drivers on the road React Native apps fed by one Node.js backend. Live orders reach drivers on phones and the same state reaches the web, over Socket.IO. 2026-10-12 · react-native · node · realtime" [ref=e138] [cursor=pointer]:
+          - /url: /blog/mobile-backend
+          - generic [ref=e139]: Case study
+          - heading "One backend, drivers on the road" [level=3] [ref=e140]
+          - paragraph [ref=e141]: React Native apps fed by one Node.js backend. Live orders reach drivers on phones and the same state reaches the web, over Socket.IO.
+          - generic [ref=e142]: 2026-10-12 · react-native · node · realtime
+        - link "Note Draining, not stopping ECS scale-in was killing 2-hour translation jobs. So workers drain before they stop. 2026-10-05 · aws · ecs · terraform" [ref=e143] [cursor=pointer]:
+          - /url: /blog/fargate
+          - generic [ref=e144]: Note
+          - heading "Draining, not stopping" [level=3] [ref=e145]
+          - paragraph [ref=e146]: ECS scale-in was killing 2-hour translation jobs. So workers drain before they stop.
+          - generic [ref=e147]: 2026-10-05 · aws · ecs · terraform
+      - link "Read all writing →" [ref=e149] [cursor=pointer]:
+        - /url: /blog
+        - text: Read all writing
+        - generic [ref=e150]: →
+    - generic [ref=e151]:
+      - heading "Experience" [level=2] [ref=e153]
+      - list [ref=e154]:
+        - listitem [ref=e155]:
+          - paragraph [ref=e156]:
+            - generic [ref=e157]: December 2024 – September 2026
+            - text: 1 yr 9 mo · Remote (Hong Kong)
+          - generic [ref=e158]:
+            - heading "OnTheGoSystems (WPML — WordPress plugins)" [level=3] [ref=e159]
+            - paragraph [ref=e160]: Senior Software Engineer
+            - paragraph [ref=e161]: Worked on Private Translation Cloud (PTC), an AI translation platform from the team behind WPML, the multilingual plugin that powers 1.5M+ WordPress sites. Full-stack product work in Rails and React, with the AWS platform underneath it.
+            - list [ref=e162]:
+              - listitem [ref=e163]: "Built the multi-provider translation LLM engine behind WPML (Bedrock, OpenAI, Gemini): fallback chains, JSON repair and rate-limit retries keep translations flowing when a provider degrades."
+              - listitem [ref=e164]: "Built the guardrails agents run behind: an MCP server exposing live databases, logs and selected APIs through authenticated, monitored access, adopted as the team's standard agent integration path."
+              - listitem [ref=e165]: Owned credits and billing correctness for a metered LLM product; one authorization architecture to replace scattered permission checks.
+            - group [ref=e166]:
+              - generic "» Show 7 more" [ref=e167] [cursor=pointer]
+            - list "Tech at job" [ref=e168]:
+              - listitem [ref=e169]: Ruby on Rails
+              - listitem [ref=e170]: React
+              - listitem [ref=e171]: ECS Fargate
+              - listitem [ref=e172]: Lambda
+              - listitem [ref=e173]: Terraform
+              - listitem [ref=e174]: Aurora
+              - listitem [ref=e175]: Bedrock
+              - listitem [ref=e176]: DynamoDB
+        - listitem [ref=e177]:
+          - paragraph [ref=e178]:
+            - generic [ref=e179]: December 2021 – December 2024
+            - text: 3 yrs · Riyadh
+          - generic [ref=e180]:
+            - heading "Dailymealz" [level=3] [ref=e181]
+            - paragraph [ref=e182]: Senior Software Engineer
+            - paragraph [ref=e183]: Built and scaled a meal subscription platform serving customers across Saudi Arabia, with full-stack work across React Native and Node.js services.
+            - list [ref=e184]:
+              - listitem [ref=e185]: "Built the real-time order service behind a 100K daily-user delivery product: kitchen, driver and delivery status pushed to mobile and web clients over Node.js and Socket.IO."
+              - listitem [ref=e186]: Cut Mean Time To Resolve by 30% by instrumenting order, driver and kitchen flows with Datadog and OpenTelemetry.
+              - listitem [ref=e187]: Decomposed the fulfillment component out of the PHP/Laravel monolith into a standalone service in a distributed event-driven architecture, passing state changes over AWS SQS behind a REST API contract.
+            - group [ref=e188]:
+              - generic "» Show 4 more" [ref=e189] [cursor=pointer]
+            - list "Tech at job" [ref=e190]:
+              - listitem [ref=e191]: React Native
+              - listitem [ref=e192]: Node.js
+              - listitem [ref=e193]: AWS
+              - listitem [ref=e194]: Datadog
+              - listitem [ref=e195]: Redis
+        - listitem [ref=e196]:
+          - paragraph [ref=e197]:
+            - generic [ref=e198]: October 2020 – December 2021
+            - text: 1 yr 2 mo · Cairo
+          - generic [ref=e199]:
+            - heading "Nformacy" [level=3] [ref=e200]
+            - paragraph [ref=e201]: Full-Stack Developer
+            - paragraph [ref=e202]: Built Nformacy, a knowledge marketplace that connects business advisors with companies that need their expertise. Full-stack work in React and Ruby on Rails, from the first MVP to the beta launch, plus the cloud infrastructure and deploy pipelines.
+            - list [ref=e203]:
+              - listitem [ref=e204]: Led full-stack features from requirements to deployment, and moved the web apps to a SaaS model.
+              - listitem [ref=e205]: Built mentor calendar booking with Zoom, ClickUp and calendar integrations.
+              - listitem [ref=e206]: Wrote BDD tests and managed CI/CD pipelines.
+            - list "Tech at job" [ref=e207]:
+              - listitem [ref=e208]: React
+              - listitem [ref=e209]: Ruby on Rails
+        - listitem [ref=e210]:
+          - paragraph [ref=e211]:
+            - generic [ref=e212]: January 2018 – October 2020
+            - text: 2 yrs 9 mo · Cairo
+          - generic [ref=e213]:
+            - heading "DevSquads (formerly Fikr Labs)" [level=3] [ref=e214]
+            - paragraph [ref=e215]: Software Engineer
+            - paragraph [ref=e216]: "First job in tech, at a Cairo venture studio that became DevSquads, an agile consultancy that takes XP seriously: TDD, pair programming and continuous delivery. Delivered products for international clients, including Shapa, a US health tech platform (React, React Native, Node.js, Java Spring)."
+            - list [ref=e217]:
+              - listitem [ref=e218]: Built software in self-organizing Extreme Programming teams with TDD, thin vertical slices and test-covered refactoring of legacy code, across React Native, Ruby on Rails, Java Spring and React.
+              - listitem [ref=e219]: "Mentored teams adopting XP and Agile practices: pairing, code review discipline and iterative planning."
+            - list "Tech at job" [ref=e220]:
+              - listitem [ref=e221]: React
+              - listitem [ref=e222]: React Native
+              - listitem [ref=e223]: Node.js
+              - listitem [ref=e224]: Java Spring
+              - listitem [ref=e225]: TDD
+    - generic [ref=e226]:
+      - heading "Products" [level=2] [ref=e228]
+      - generic [ref=e229]:
+        - article [ref=e230]:
+          - generic [ref=e231]: PTC
+          - heading "Private Translation Cloud" [level=3] [ref=e232]
+          - paragraph [ref=e233]: AI translation platform from the team behind WPML.
+          - generic [ref=e234]:
+            - generic [ref=e235]:
+              - term [ref=e236]: Overview
+              - definition [ref=e237]: I worked on the AWS platform and the multi-provider LLM engine that translates websites automatically, moving the product onto ECS Fargate and keeping its database and autoscaling healthy.
+            - generic [ref=e238]:
+              - term [ref=e239]: Scale
+              - definition [ref=e240]: 1.5M+ WordPress sites
+            - generic [ref=e241]:
+              - term [ref=e242]: Time
+              - definition [ref=e243]: Dec 2024 – Sep 2026
+            - generic [ref=e244]:
+              - term [ref=e245]: Stack
+              - definition [ref=e246]:
+                - list "Product stack" [ref=e247]:
+                  - listitem [ref=e248]: Ruby on Rails
+                  - listitem [ref=e249]: React
+                  - listitem [ref=e250]: AWS
+                  - listitem [ref=e251]: Terraform
+                  - listitem [ref=e252]: Bedrock
+          - link "Visit website" [ref=e254] [cursor=pointer]:
+            - /url: https://ptc.wpml.org/
+            - text: Visit website
+            - img [ref=e256]
+        - article [ref=e259]:
+          - generic [ref=e260]: DM
+          - heading "Dailymealz" [level=3] [ref=e261]
+          - paragraph [ref=e262]: Meal subscription platform for customers across Saudi Arabia.
+          - generic [ref=e263]:
+            - generic [ref=e264]:
+              - term [ref=e265]: Overview
+              - definition [ref=e266]: I spent three years building the real-time order service, the React Native driver app, and the move from a PHP monolith to event-driven services.
+            - generic [ref=e267]:
+              - term [ref=e268]: Scale
+              - definition [ref=e269]: 100K daily users
+            - generic [ref=e270]:
+              - term [ref=e271]: Time
+              - definition [ref=e272]: Dec 2021 – Dec 2024
+            - generic [ref=e273]:
+              - term [ref=e274]: Stack
+              - definition [ref=e275]:
+                - list "Product stack" [ref=e276]:
+                  - listitem [ref=e277]: React Native
+                  - listitem [ref=e278]: Node.js
+                  - listitem [ref=e279]: AWS
+                  - listitem [ref=e280]: Redis
+          - link "Visit website" [ref=e282] [cursor=pointer]:
+            - /url: https://dailymealz.com/
+            - text: Visit website
+            - img [ref=e284]
+        - article [ref=e287]:
+          - generic [ref=e288]: SH
+          - heading "Shapa" [level=3] [ref=e289]
+          - paragraph [ref=e290]: US health product built around a numberless smart scale and a behavior change program.
+          - generic [ref=e291]:
+            - generic [ref=e292]:
+              - term [ref=e293]: Overview
+              - definition [ref=e294]: I built the mobile app and the backend behind it as part of the DevSquads XP team.
+            - generic [ref=e295]:
+              - term [ref=e296]: Time
+              - definition [ref=e297]: 2018 – 2020
+            - generic [ref=e298]:
+              - term [ref=e299]: Stack
+              - definition [ref=e300]:
+                - list "Product stack" [ref=e301]:
+                  - listitem [ref=e302]: React
+                  - listitem [ref=e303]: React Native
+                  - listitem [ref=e304]: Node.js
+                  - listitem [ref=e305]: Java Spring
+          - link "Visit website" [ref=e307] [cursor=pointer]:
+            - /url: https://shapahealth.com/
+            - text: Visit website
+            - img [ref=e309]
+        - article [ref=e312]:
+          - generic [ref=e313]: NF
+          - heading "Nformacy" [level=3] [ref=e314]
+          - paragraph [ref=e315]: Knowledge marketplace connecting business advisors with companies.
+          - generic [ref=e316]:
+            - generic [ref=e317]:
+              - term [ref=e318]: Overview
+              - definition [ref=e319]: I built it from the first MVP to the beta launch, plus the cloud infrastructure and deploy pipelines.
+            - generic [ref=e320]:
+              - term [ref=e321]: Time
+              - definition [ref=e322]: Oct 2020 – Dec 2021
+            - generic [ref=e323]:
+              - term [ref=e324]: Stack
+              - definition [ref=e325]:
+                - list "Product stack" [ref=e326]:
+                  - listitem [ref=e327]: React
+                  - listitem [ref=e328]: Ruby on Rails
+          - link "Visit website" [ref=e330] [cursor=pointer]:
+            - /url: https://nformacy.com/
+            - text: Visit website
+            - img [ref=e332]
+    - generic [ref=e335]:
+      - heading "Open source" [level=2] [ref=e337]
+      - list [ref=e338]:
+        - listitem [ref=e339]:
+          - link "◇ ecs-drain-scaler" [ref=e340] [cursor=pointer]:
+            - /url: https://github.com/abdelwahab313/ecs-drain-scaler
+          - generic [ref=e341]: Lambda-based ECS autoscaler that drains long-running jobs before scale-in. Author · Prevents mid-job termination on Fargate Spot/scale-in.
+          - generic [ref=e342]: Go · AWS · Terraform
+        - listitem [ref=e343]:
+          - link "◇ focusflow" [ref=e344] [cursor=pointer]:
+            - /url: https://github.com/abdelwahab313/focusflow
+          - generic [ref=e345]: Time and task focus app. Author · Minimalist flow tracking.
+          - generic [ref=e346]: TypeScript · PocketBase
+        - listitem [ref=e347]:
+          - link "◇ handoff-mcp-server" [ref=e348] [cursor=pointer]:
+            - /url: https://github.com/abdelwahab313/handoff-mcp-server
+          - generic [ref=e349]: MCP server for authenticated access to logs, DB, and APIs. Author · Standardized agent access path.
+          - generic [ref=e350]: TypeScript · MCP
+        - listitem [ref=e351]:
+          - link "◇ egy-finance-radar" [ref=e352] [cursor=pointer]:
+            - /url: https://github.com/abdelwahab313/egy-finance-radar
+          - generic [ref=e353]: Egyptian finance data radar. Author · Aggregates signals for analysis.
+          - generic [ref=e354]: Python · PostgreSQL · Next.js
+    - generic [ref=e355]:
+      - heading "Skills" [level=2] [ref=e357]
+      - paragraph [ref=e358]: "Backend and platform first: Ruby on Rails, AWS and the database under it. LLM systems over Bedrock, OpenAI and Gemini, with the reliability work that makes them boring. React and Hotwire when the feature needs a front end."
+      - generic [ref=e359]:
+        - generic [ref=e360]:
+          - heading "Languages" [level=4] [ref=e361]
+          - list [ref=e362]:
+            - listitem [ref=e363]: PHP
+            - listitem [ref=e364]: TypeScript
+            - listitem [ref=e365]: JavaScript
+            - listitem [ref=e366]: Go
+            - listitem [ref=e367]: Ruby
+            - listitem [ref=e368]: Java (Spring)
+            - listitem [ref=e369]: Python
+            - listitem [ref=e370]: SQL
+        - generic [ref=e371]:
+          - heading "Backend" [level=4] [ref=e372]
+          - list [ref=e373]:
+            - listitem [ref=e374]: Ruby on Rails
+            - listitem [ref=e375]: Node.js
+            - listitem [ref=e376]: REST API design
+            - listitem [ref=e377]: service-oriented architecture
+            - listitem [ref=e378]: SQS
+            - listitem [ref=e379]: Kafka
+        - generic [ref=e380]:
+          - heading "Frontend" [level=4] [ref=e381]
+          - list [ref=e382]:
+            - listitem [ref=e383]: Next.js
+            - listitem [ref=e384]: React
+            - listitem [ref=e385]: Redux
+            - listitem [ref=e386]: Hotwire (Turbo & Stimulus)
+            - listitem [ref=e387]: React Native
+            - listitem [ref=e388]: Tailwind CSS
+        - generic [ref=e389]:
+          - heading "AI & LLM" [level=4] [ref=e390]
+          - list [ref=e391]:
+            - listitem [ref=e392]: AWS Bedrock
+            - listitem [ref=e393]: OpenAI
+            - listitem [ref=e394]: Gemini
+            - listitem [ref=e395]: agentic workflows
+            - listitem [ref=e396]: Claude Agent SDK
+            - listitem [ref=e397]: MCP
+            - listitem [ref=e398]: Langfuse
+            - listitem [ref=e399]: evals
+        - generic [ref=e400]:
+          - heading "Cloud & Infrastructure" [level=4] [ref=e401]
+          - list [ref=e402]:
+            - listitem [ref=e403]: AWS (ECS Fargate, Lambda, SQS, Step Functions, CloudWatch, S3, IAM)
+            - listitem [ref=e404]: Kubernetes
+            - listitem [ref=e405]: Terraform
+            - listitem [ref=e406]: Docker
+            - listitem [ref=e407]: GitHub Actions
+            - listitem [ref=e408]: GitLab CI
+        - generic [ref=e409]:
+          - heading "Observability" [level=4] [ref=e410]
+          - list [ref=e411]:
+            - listitem [ref=e412]: Datadog
+            - listitem [ref=e413]: OpenTelemetry
+            - listitem [ref=e414]: AWS CloudWatch
+            - listitem [ref=e415]: Langfuse tracing
+        - generic [ref=e416]:
+          - heading "Databases" [level=4] [ref=e417]
+          - list [ref=e418]:
+            - listitem [ref=e419]: PostgreSQL
+            - listitem [ref=e420]: MySQL
+            - listitem [ref=e421]: Aurora
+            - listitem [ref=e422]: Redis
+            - listitem [ref=e423]: DynamoDB
+            - listitem [ref=e424]: ClickHouse
+        - generic [ref=e425]:
+          - heading "Testing" [level=4] [ref=e426]
+          - list [ref=e427]:
+            - listitem [ref=e428]: TDD
+            - listitem [ref=e429]: Spec-driven development
+            - listitem [ref=e430]: RSpec
+            - listitem [ref=e431]: Capybara
+            - listitem [ref=e432]: Playwright
+            - listitem [ref=e433]: Cypress
+            - listitem [ref=e434]: Jest
+            - listitem [ref=e435]: VCR
+        - generic [ref=e436]:
+          - heading "WordPress & Compatibility" [level=4] [ref=e437]
+          - list [ref=e438]:
+            - listitem [ref=e439]: WPML ecosystem
+            - listitem [ref=e440]: plugin update safety
+            - listitem [ref=e441]: backwards compatibility
+            - listitem [ref=e442]: i18n
+        - generic [ref=e443]:
+          - heading "Spoken Languages" [level=4] [ref=e444]
+          - list [ref=e445]:
+            - listitem [ref=e446]: English
+            - listitem [ref=e447]: Arabic (native)
+    - generic [ref=e448]:
+      - heading "Education" [level=2] [ref=e450]
+      - generic [ref=e451]:
+        - img "Faculty of Science Cairo University logo" [ref=e452]
+        - generic [ref=e453]:
+          - heading "Faculty of Science Cairo University" [level=3] [ref=e454]
+          - paragraph [ref=e455]: BSc in Geophysics
+        - generic [ref=e456]: Sep 2012 – Jun 2016
+    - generic [ref=e458]:
+      - paragraph [ref=e459]: Contact
+      - heading "Contact me" [level=2] [ref=e460]
+      - paragraph [ref=e461]: Hiring for a senior backend or platform role, or stuck on a production problem? Email me.
+      - link "abdelwahabahmed93@gmail.com" [ref=e462] [cursor=pointer]:
+        - /url: mailto:abdelwahabahmed93@gmail.com
+      - generic [ref=e463]:
+        - link "Resume" [ref=e464] [cursor=pointer]:
+          - /url: /resume.pdf
+          - text: Resume
+          - img [ref=e466]
+        - link "LinkedIn" [ref=e469] [cursor=pointer]:
+          - /url: https://www.linkedin.com/in/abdelwahab313/
+        - link "GitHub" [ref=e470] [cursor=pointer]:
+          - /url: https://github.com/abdelwahab313
+      - generic [ref=e471]:
+        - generic [ref=e472]:
+          - text: github →
+          - link "https://github.com/abdelwahab313" [ref=e473] [cursor=pointer]:
+            - /url: https://github.com/abdelwahab313
+        - generic [ref=e474]:
+          - text: linkedin →
+          - link "https://www.linkedin.com/in/abdelwahab313/" [ref=e475] [cursor=pointer]:
+            - /url: https://www.linkedin.com/in/abdelwahab313/
+        - generic [ref=e476]: timezone → UTC+3
+  - contentinfo [ref=e477]:
+    - generic [ref=e478]:
+      - generic [ref=e479]: © 2026 Abdelwahab Mahmoud
+      - generic [ref=e480]: built with astro · hosted on github pages

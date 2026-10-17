@@ -5,6 +5,11 @@ export default defineConfig({
   site: "https://abdelwahab.dev",
   integrations: [sitemap()],
   markdown: {
-    smartypants: false
+    smartypants: false,
+    shikiConfig: {
+      themes: {light: "github-light", dark: "github-dark-dimmed"},
+      defaultColor: false,
+      wrap: false
+    }
   }
 });

@@ -1777,22 +1777,125 @@ a:hover .arrow svg {
   margin-top: 2rem;
 }
 
-.post-body h2 {
+.post-body h2,
+.post-body h3 {
   margin: 2rem 0 0.6rem;
   font-family: var(--font-serif);
   font-size: 20px;
   font-weight: 600;
+  scroll-margin-top: 5rem;
+}
+
+.post-body h3 {
+  margin-top: 1.5rem;
+  font-size: 17px;
 }
 
 .post-body h2:first-child {
   margin-top: 0;
 }
 
-.post-body p {
-  margin: 0 0 0.85rem;
+.post-body p,
+.post-body li {
   font-size: 16px;
   line-height: 1.65;
   color: var(--body);
+}
+
+.post-body p,
+.post-body ul,
+.post-body ol {
+  margin: 0 0 0.85rem;
+}
+
+.post-body ul,
+.post-body ol {
+  padding-left: 1.25rem;
+}
+
+.post-body li + li {
+  margin-top: 0.3rem;
+}
+
+.post-body pre.astro-code {
+  overflow-x: auto;
+  max-width: 100%;
+  margin: 0 0 1.1rem;
+  padding: 1rem 1.25rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  font-family: var(--font-mono);
+  font-size: 0.875rem;
+  line-height: 1.6;
+  tab-size: 2;
+}
+
+.post-body pre.astro-code code {
+  font-family: inherit;
+}
+
+html[data-theme="dark"] .astro-code,
+html[data-theme="dark"] .astro-code span {
+  color: var(--shiki-dark);
+  background-color: var(--shiki-dark-bg);
+}
+
+html[data-theme="light"] .astro-code,
+html[data-theme="light"] .astro-code span {
+  color: var(--shiki-light);
+  background-color: var(--shiki-light-bg);
+}
+
+.post-body p code,
+.post-body li code,
+.post-body td code {
+  padding: 2px 5px;
+  border-radius: 4px;
+  background: var(--surface);
+  font-family: var(--font-mono);
+  font-size: 0.9em;
+}
+
+.post-body table {
+  display: block;
+  overflow-x: auto;
+  width: 100%;
+  margin: 0 0 1.1rem;
+  border-collapse: collapse;
+  font-size: 15px;
+}
+
+.post-body th,
+.post-body td {
+  padding: 0.5rem 0.75rem;
+  white-space: nowrap;
+  border-bottom: 1px solid var(--border);
+  text-align: left;
+  vertical-align: top;
+  color: var(--body);
+}
+
+.post-body th {
+  font-weight: 600;
+  color: var(--ink);
+  border-bottom-color: var(--border-strong);
+}
+
+.post-body img {
+  max-width: 100%;
+  height: auto;
+}
+
+.post-body blockquote {
+  margin: 0 0 1.1rem;
+  padding: 0.1rem 0 0.1rem 1rem;
+  border-left: 3px solid var(--accent);
+  color: var(--muted);
+  font-style: normal;
+}
+
+.post-body blockquote p {
+  color: inherit;
 }
 
 .post-nav {

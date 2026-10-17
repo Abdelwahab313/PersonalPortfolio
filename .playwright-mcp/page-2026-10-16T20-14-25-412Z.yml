@@ -1,0 +1,405 @@
+- generic [active] [ref=e1]:
+  - link "Skip to content" [ref=e2] [cursor=pointer]:
+    - /url: "#main"
+  - banner [ref=e3]:
+    - navigation "Main" [ref=e4]:
+      - link "Shahid Yousuf, home" [ref=e5] [cursor=pointer]:
+        - /url: /
+        - generic [ref=e6]: <
+        - generic [ref=e7]: ShahidYousuf
+        - generic [ref=e8]: />
+      - generic [ref=e9]:
+        - list [ref=e10]:
+          - listitem [ref=e11]:
+            - link "Blog" [ref=e12] [cursor=pointer]:
+              - /url: /blog/
+          - listitem [ref=e13]:
+            - link "Work" [ref=e14] [cursor=pointer]:
+              - /url: /work/
+          - listitem [ref=e15]:
+            - link "Book a call" [ref=e16] [cursor=pointer]:
+              - /url: /book/
+          - listitem [ref=e17]:
+            - link "About" [ref=e18] [cursor=pointer]:
+              - /url: /about/
+          - listitem [ref=e19]:
+            - link "Hire me" [ref=e20] [cursor=pointer]:
+              - /url: /contact/
+        - button "Toggle dark mode" [pressed] [ref=e21]:
+          - img [ref=e22]
+  - main [ref=e25]:
+    - region "Real problems. Reliable software." [ref=e26]:
+      - img
+      - generic [ref=e27]:
+        - generic [ref=e28]:
+          - generic [ref=e29]:
+            - img "Shahid Yousuf" [ref=e30]
+            - paragraph [ref=e31]:
+              - generic [ref=e32]: Shahid Yousuf
+              - text: Senior Software Engineer
+          - list "Focus areas" [ref=e33]:
+            - listitem [ref=e34]: Frontend
+            - listitem [ref=e35]: Backend
+            - listitem [ref=e36]: Distributed Systems
+            - listitem [ref=e37]: Databases
+            - listitem [ref=e38]: Observability
+            - listitem [ref=e39]: AWS Cloud
+            - listitem [ref=e40]: AI-Enabled Apps
+          - heading "Real problems. Reliable software." [level=1] [ref=e41]
+          - paragraph [ref=e42]: Building software end to end for 10+ years across Frontend, Backend, Distributed Systems, Databases, Observability, AWS Cloud and AI-Enabled Applications.
+          - generic [ref=e43]:
+            - link "Hire me" [ref=e44] [cursor=pointer]:
+              - /url: /contact/
+              - text: Hire me
+              - img [ref=e45]
+            - link "Schedule a meeting with me" [ref=e47] [cursor=pointer]:
+              - /url: /book/
+          - generic [ref=e48]:
+            - paragraph [ref=e49]: Recently shipped
+            - list [ref=e50]:
+              - listitem [ref=e51]:
+                - img [ref=e52]
+                - generic [ref=e54]:
+                  - link "RajyaPrep" [ref=e55] [cursor=pointer]:
+                    - /url: https://rajyaprep.com
+                  - text: – Daily Exam Platform
+              - listitem [ref=e56]:
+                - img [ref=e57]
+                - generic [ref=e59]:
+                  - link "AWS Governance" [ref=e60] [cursor=pointer]:
+                    - /url: /work/aws-multi-account-governance/
+                  - text: – Cybersecurity MSP
+              - listitem [ref=e61]:
+                - img [ref=e62]
+                - generic [ref=e64]:
+                  - link "Zuni" [ref=e65] [cursor=pointer]:
+                    - /url: /work/zuni-voice-assistant/
+                  - text: – Personal AI Voice Assistant
+        - generic [ref=e66]:
+          - generic [ref=e67]:
+            - figure "A typical project team 6 handoffs" [ref=e68]:
+              - generic [ref=e69]:
+                - generic [ref=e70]: A typical project team
+                - generic [ref=e71]: 6 handoffs
+              - list "Path of a request through a typical project team" [ref=e72]:
+                - listitem [ref=e73]: You
+                - listitem [ref=e74]
+                - listitem [ref=e76]: Account manager
+                - listitem [ref=e77]
+                - listitem [ref=e79]: Project manager
+                - listitem [ref=e80]
+                - listitem [ref=e82]: Designer
+                - listitem [ref=e83]
+                - listitem [ref=e85]: Developers
+                - listitem [ref=e86]
+                - listitem [ref=e88]: QA
+                - listitem [ref=e89]
+                - listitem [ref=e91]: DevOps
+              - paragraph [ref=e94]: Context lost at every handoff
+            - figure "Working with me 0 handoffs" [ref=e95]:
+              - generic [ref=e96]:
+                - generic [ref=e97]: Working with me
+                - generic [ref=e98]: 0 handoffs
+              - list "Path of a request when working with me directly" [ref=e99]:
+                - listitem [ref=e100]: You
+                - listitem [ref=e101]
+                - listitem [ref=e104]:
+                  - generic [ref=e105]:
+                    - generic [ref=e107]:
+                      - img [ref=e110]
+                      - img [ref=e115]
+                      - img [ref=e121]
+                      - img [ref=e126]
+                      - img [ref=e133]
+                      - img [ref=e137]
+                    - img [ref=e139]
+                  - generic [ref=e140]: Shahid
+                  - generic [ref=e141]: ", working with AI coding agents, AI code review, Automated tests, CI/CD pipelines, Infrastructure as code and Observability"
+                - listitem [ref=e142]
+                - listitem [ref=e145]: Your product
+              - paragraph [ref=e146]: The right engineer, with modern AI tools, workflows, processes and capabilities, delivering with you and your team.
+              - list "What that means for you" [ref=e147]:
+                - listitem [ref=e148]:
+                  - img [ref=e150]
+                  - paragraph [ref=e153]: Saves time
+                  - paragraph [ref=e154]: No handoff delays
+                - listitem [ref=e155]:
+                  - img [ref=e157]
+                  - paragraph [ref=e161]: Saves money
+                  - paragraph [ref=e162]: No resource waste
+                - listitem [ref=e163]:
+                  - img [ref=e165]
+                  - paragraph [ref=e168]: Better product
+                  - paragraph [ref=e169]: No outdated processes
+          - link "4,315 GitHub contributions in the last year, view profile" [ref=e170] [cursor=pointer]:
+            - /url: https://github.com/ShahidYousuf
+            - generic [ref=e171]:
+              - paragraph [ref=e172]:
+                - img [ref=e173]
+                - text: Live on GitHub
+              - paragraph [ref=e175]: 4,315
+              - paragraph [ref=e176]: contributions, last year
+            - img "Contribution heatmap for the last 26 weeks" [ref=e177]
+      - img [ref=e359]
+    - region "How I can help your business" [ref=e362]:
+      - generic [ref=e364]:
+        - generic [ref=e365]:
+          - heading "How I can help your business" [level=2] [ref=e366]
+          - paragraph [ref=e367]: I help businesses design, build and run the software they depend on, from the first version of a product to the systems that keep it fast, secure and reliable as it grows.
+          - paragraph [ref=e368]: "Bring me in as a freelance engineer to build it, or as a consultant to review your architecture, plan a migration or guide your team. Either way, you work directly with me across the full lifecycle: understanding your goals and product requirements, planning and estimation, development workflows and CI/CD, secure deployments, observability, and ongoing maintenance and support."
+          - link "See past work" [ref=e369] [cursor=pointer]:
+            - /url: /work/
+        - generic [ref=e370]:
+          - generic [ref=e371]:
+            - term [ref=e372]: Web Applications
+            - definition [ref=e373]: Responsive, accessible and SEO-friendly web applications, from customer-facing sites and SaaS products to internal tools and dashboards.
+          - generic [ref=e374]:
+            - term [ref=e375]: AI Applications and Workflows
+            - definition [ref=e376]: LLM-powered assistants, AI agents, retrieval-augmented search (RAG) and workflow automation built on your own data, with accuracy and cost kept in check.
+          - generic [ref=e377]:
+            - term [ref=e378]: APIs and Integrations
+            - definition [ref=e379]: REST and event-driven APIs, backend services and third-party integrations, built in the language and framework that suits your stack, with data kept consistent across systems.
+          - generic [ref=e380]:
+            - term [ref=e381]: Database Systems
+            - definition [ref=e382]: Data modelling, query tuning, replication and safe migrations across relational databases, caches and event streams, with backups you can restore.
+          - generic [ref=e383]:
+            - term [ref=e384]: Cloud Infrastructure
+            - definition [ref=e385]: AWS architecture and migrations, multi-account governance and landing zones, with compute, messaging, storage and serverless services defined as infrastructure as code and costs under control.
+          - generic [ref=e386]:
+            - term [ref=e387]: Security
+            - definition [ref=e388]: Application, infrastructure and data security, from identity and access management, threat detection and secrets management to secure workflows, development processes and compliance guardrails.
+    - region "The gaps between people cost more than the code" [ref=e389]:
+      - generic [ref=e390]:
+        - heading "The gaps between people cost more than the code" [level=2] [ref=e391]
+        - generic [ref=e392]:
+          - paragraph [ref=e393]: "Most software delays come from handoffs: a brief rewritten for the next person, context lost between roles, a decision waiting on the next meeting. With AI and modern tooling now covering much of the work that used to need extra hands, one experienced engineer can take a well-scoped project from the first conversation to production without those gaps."
+          - paragraph [ref=e394]: "I work with AI-enabled software engineering workflows: AI-assisted development and code review alongside automated tests, infrastructure as code and CI/CD, which take care of the repetitive work. My time goes on the decisions. When a project genuinely needs more people, I will say so at the start and help you plan for it."
+    - region "Recent writing" [ref=e395]:
+      - generic [ref=e396]:
+        - heading "Recent writing" [level=2] [ref=e397]
+        - link "All posts" [ref=e398] [cursor=pointer]:
+          - /url: /blog/
+      - article [ref=e399]:
+        - img [ref=e401]
+        - generic [ref=e402]:
+          - paragraph [ref=e403]: Featured, 8 Oct 2026
+          - heading "AWS Security Checklist for Small Teams" [level=3] [ref=e404]:
+            - link "AWS Security Checklist for Small Teams" [ref=e405] [cursor=pointer]:
+              - /url: /blog/aws-security-checklist/
+          - paragraph [ref=e406]: "An AWS security checklist for small teams, built on the AWS Startup Security Baseline: 19 controls in three tiers, each with a command, a verify step and its cost."
+      - generic [ref=e407]:
+        - article [ref=e408]:
+          - time [ref=e409]: 13 Oct 2026
+          - generic [ref=e410]:
+            - 'heading "How to Migrate from GCP to AWS: GKE to EKS Step by Step" [level=3] [ref=e411]':
+              - 'link "How to Migrate from GCP to AWS: GKE to EKS Step by Step" [ref=e412] [cursor=pointer]':
+                - /url: /blog/gcp-to-aws-migration-cutover/
+            - paragraph [ref=e413]: "Plan a GCP to AWS migration around a short, rehearsed cutover: the service map, the data sync, re-encrypting Vault data, old URL redirects and a clean GCP teardown."
+            - paragraph [ref=e414]:
+              - generic [ref=e415]: AWS
+              - text: 21 min read
+          - img [ref=e417]
+        - article [ref=e418]:
+          - time [ref=e419]: 12 Oct 2026
+          - generic [ref=e420]:
+            - heading "How to Implement Idempotency Keys in Go with PostgreSQL" [level=3] [ref=e421]:
+              - link "How to Implement Idempotency Keys in Go with PostgreSQL" [ref=e422] [cursor=pointer]:
+                - /url: /blog/idempotency-keys-go-postgresql/
+            - paragraph [ref=e423]: "A tested, step-by-step Go tutorial: reproduce a retried payment charging the card twice, then make idempotency keys in PostgreSQL hold up under races, crashes and load."
+            - paragraph [ref=e424]:
+              - generic [ref=e425]: Distributed Systems
+              - text: 31 min read
+          - img [ref=e427]
+        - article [ref=e428]:
+          - time [ref=e429]: 9 Oct 2026
+          - generic [ref=e430]:
+            - heading "Distributed Locks in Redis with Go" [level=3] [ref=e431]:
+              - link "Distributed Locks in Redis with Go" [ref=e432] [cursor=pointer]:
+                - /url: /blog/redis-distributed-locks-go/
+            - paragraph [ref=e433]: "A tested, step-by-step Go tutorial: reproduce two requests spending the same balance, fix it with a Redis lock, then make the fix hold up when things go wrong."
+            - paragraph [ref=e434]:
+              - generic [ref=e435]: Distributed Systems
+              - text: 29 min read
+          - img [ref=e437]
+        - article [ref=e438]:
+          - time [ref=e439]: 6 Oct 2026
+          - generic [ref=e440]:
+            - heading "GitHub Actions OIDC Trust Policy for AWS" [level=3] [ref=e441]:
+              - link "GitHub Actions OIDC Trust Policy for AWS" [ref=e442] [cursor=pointer]:
+                - /url: /blog/github-actions-oidc-aws-trust-policy/
+            - paragraph [ref=e443]: GitHub now issues two OIDC subject formats. Here is a trust policy that accepts both, a way to prove it against every repository, and a safe order for retiring keys.
+            - paragraph [ref=e444]:
+              - generic [ref=e445]: AWS
+              - text: 14 min read
+          - img [ref=e447]
+    - region "Selected work" [ref=e448]:
+      - heading "Selected work" [level=2] [ref=e449]
+      - generic [ref=e450]:
+        - article [ref=e451]:
+          - img [ref=e453]
+          - generic [ref=e454]:
+            - paragraph [ref=e455]: My own product, 2026
+            - heading "RajyaPrep, a daily practice platform for competitive exams" [level=3] [ref=e456]:
+              - link "RajyaPrep, a daily practice platform for competitive exams" [ref=e457] [cursor=pointer]:
+                - /url: /work/rajyaprep/
+            - paragraph [ref=e458]: A paid daily practice platform for UPSC, State PSC, SSC, banking, railways and defence aspirants. I designed, built, launched and operate the whole product myself.
+            - list [ref=e459]:
+              - listitem [ref=e460]:
+                - img [ref=e461]
+                - text: A 30-question daily paper, with every option explained and the source of every question named
+              - listitem [ref=e463]:
+                - img [ref=e464]
+                - text: Subject tests across eleven subjects, mapped to more than thirty named exams
+              - listitem [ref=e466]:
+                - img [ref=e467]
+                - text: One-time plans from a single paper to a full year, with no auto-renewal
+            - paragraph [ref=e469]:
+              - generic [ref=e470]: Product Design
+              - generic [ref=e471]: Full-Stack Web Application
+              - generic [ref=e472]: AI-Assisted Content
+              - generic [ref=e473]: Online Payments
+              - generic [ref=e474]: SEO
+              - generic [ref=e475]: Core Web Vitals
+              - generic [ref=e476]: Mobile-First Design
+        - article [ref=e477]:
+          - img [ref=e479]
+          - generic [ref=e480]:
+            - paragraph [ref=e481]: Cybersecurity managed services provider, 2026
+            - heading "AWS governance and security for a cybersecurity provider" [level=3] [ref=e482]:
+              - link "AWS governance and security for a cybersecurity provider" [ref=e483] [cursor=pointer]:
+                - /url: /work/aws-multi-account-governance/
+            - paragraph [ref=e484]: For a cybersecurity managed services provider, I set up AWS Control Tower over a live multi-account estate, rolled out preventive guardrails and CIS security monitoring, cleaned up identity and access, and built a safe method for moving accounts between AWS organizations.
+            - list [ref=e485]:
+              - listitem [ref=e486]:
+                - img [ref=e487]
+                - text: AWS Control Tower set up over a live estate, with every account the client controls in its main organization enrolled
+              - listitem [ref=e489]:
+                - img [ref=e490]
+                - text: Baseline guardrail policies on nearly every enrolled account, rolled out from a test unit outward with no production incidents
+              - listitem [ref=e492]:
+                - img [ref=e493]
+                - text: CIS security monitoring across the centrally managed workload accounts in every Region in use
+            - paragraph [ref=e495]:
+              - generic [ref=e496]: AWS Control Tower
+              - generic [ref=e497]: AWS Organizations
+              - generic [ref=e498]: Service Control Policies
+              - generic [ref=e499]: Resource Control Policies
+              - generic [ref=e500]: Declarative Policies
+              - generic [ref=e501]: IAM Identity Center
+              - generic [ref=e502]: AWS Security Hub
+              - generic [ref=e503]: CIS Benchmark
+              - generic [ref=e504]: AWS Config
+              - generic [ref=e505]: IAM Access Analyzer
+              - generic [ref=e506]: CloudTrail
+              - generic [ref=e507]: CloudFormation StackSets
+              - generic [ref=e508]: Terraform
+              - generic [ref=e509]: GitHub OIDC
+              - generic [ref=e510]: Python
+        - article [ref=e511]:
+          - img [ref=e513]
+          - generic [ref=e514]:
+            - paragraph [ref=e515]: Clinical trial recruitment software company, 2022
+            - heading "Multi-tenant clinical trial recruitment platform" [level=3] [ref=e516]:
+              - link "Multi-tenant clinical trial recruitment platform" [ref=e517] [cursor=pointer]:
+                - /url: /work/clinical-trial-recruitment-platform/
+            - paragraph [ref=e518]: At a clinical trial recruitment software company, I worked across the full stack of one Django platform serving several leading US clinical research institutions, each with its own database, features and branding.
+            - list [ref=e519]:
+              - listitem [ref=e520]:
+                - img [ref=e521]
+                - text: One codebase served several leading US clinical research institutions, each with its own database, features and branding
+              - listitem [ref=e523]:
+                - img [ref=e524]
+                - text: Trial listings imported and refreshed from ClinicalTrials.gov by NCT ID
+              - listitem [ref=e526]:
+                - img [ref=e527]
+                - text: Matching that weighed every facet of a trial, including condition, age, gender and location
+            - paragraph [ref=e529]:
+              - generic [ref=e530]: Python
+              - generic [ref=e531]: Django
+              - generic [ref=e532]: Django templates
+              - generic [ref=e533]: JavaScript
+              - generic [ref=e534]: jQuery
+              - generic [ref=e535]: React
+              - generic [ref=e536]: PostgreSQL
+              - generic [ref=e537]: Apache Solr
+              - generic [ref=e538]: Apache HTTP Server
+              - generic [ref=e539]: ClinicalTrials.gov
+              - generic [ref=e540]: Gmail
+      - link "Read more case studies" [ref=e541] [cursor=pointer]:
+        - /url: /work/#case-studies
+    - region "Have a project in mind?" [ref=e542]:
+      - generic [ref=e543]:
+        - img
+        - generic [ref=e545]:
+          - generic [ref=e546]:
+            - heading "Have a project in mind?" [level=2] [ref=e547]
+            - paragraph [ref=e548]: Share your goals, timeline and any constraints, whether you need it built or want expert advice. I read every message myself, as the engineer who would build it, and reply with a clear view on approach, scope and next steps.
+          - link "Hire me" [ref=e549] [cursor=pointer]:
+            - /url: /contact/
+  - contentinfo [ref=e550]:
+    - img [ref=e551]
+    - generic [ref=e554]:
+      - generic [ref=e555]:
+        - generic [ref=e556]:
+          - paragraph [ref=e557]: Shahid Yousuf
+          - paragraph [ref=e558]: Senior Software Engineer building secure, scalable web applications, AI solutions and cloud infrastructure for businesses worldwide.
+          - paragraph [ref=e559]:
+            - link "shahidyousuf.dev@gmail.com" [ref=e560] [cursor=pointer]:
+              - /url: mailto:shahidyousuf.dev@gmail.com
+          - list "Social profiles" [ref=e561]:
+            - listitem [ref=e562]:
+              - link "Shahid Yousuf on GitHub" [ref=e563] [cursor=pointer]:
+                - /url: https://github.com/ShahidYousuf
+                - img [ref=e564]
+            - listitem [ref=e566]:
+              - link "Shahid Yousuf on LinkedIn" [ref=e567] [cursor=pointer]:
+                - /url: https://www.linkedin.com/in/shahidyousuf
+                - img [ref=e568]
+            - listitem [ref=e570]:
+              - link "Shahid Yousuf on X" [ref=e571] [cursor=pointer]:
+                - /url: https://x.com/ShahidYousuf_
+                - img [ref=e572]
+            - listitem [ref=e574]:
+              - link "Shahid Yousuf on Facebook" [ref=e575] [cursor=pointer]:
+                - /url: https://www.facebook.com/shahidyousuf.dev
+                - img [ref=e576]
+        - generic [ref=e578]:
+          - list [ref=e579]:
+            - listitem [ref=e580]:
+              - link "Blog" [ref=e581] [cursor=pointer]:
+                - /url: /blog/
+            - listitem [ref=e582]:
+              - link "Work" [ref=e583] [cursor=pointer]:
+                - /url: /work/
+            - listitem [ref=e584]:
+              - link "Book a call" [ref=e585] [cursor=pointer]:
+                - /url: /book/
+            - listitem [ref=e586]:
+              - link "About" [ref=e587] [cursor=pointer]:
+                - /url: /about/
+            - listitem [ref=e588]:
+              - link "Contact" [ref=e589] [cursor=pointer]:
+                - /url: /contact/
+          - list [ref=e590]:
+            - listitem [ref=e591]:
+              - link "RSS feed" [ref=e592] [cursor=pointer]:
+                - /url: /blog/feed/
+            - listitem [ref=e593]:
+              - link "Refund policy" [ref=e594] [cursor=pointer]:
+                - /url: /refunds/
+            - listitem [ref=e595]:
+              - link "Privacy" [ref=e596] [cursor=pointer]:
+                - /url: /privacy/
+            - listitem [ref=e597]:
+              - button "Cookie settings" [ref=e598]
+      - generic [ref=e599]: © 2026 Shahid Yousuf. Built with Django in Srinagar, Kashmir, India.
+  - status
+  - dialog "Cookie preferences" [ref=e600]:
+    - paragraph [ref=e601]: Cookie preferences
+    - paragraph [ref=e602]:
+      - text: This site uses Google Analytics cookies to understand how visitors use it. Analytics loads only if you accept, and the data is never used for advertising or sold.
+      - link "Privacy notice" [ref=e603] [cursor=pointer]:
+        - /url: /privacy/
+    - generic [ref=e604]:
+      - button "Decline" [ref=e605]
+      - button "Accept" [ref=e606]

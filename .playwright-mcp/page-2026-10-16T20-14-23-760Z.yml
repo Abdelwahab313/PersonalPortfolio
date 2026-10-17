@@ -1,0 +1,114 @@
+- generic [active] [ref=e1]:
+  - banner [ref=e2]:
+    - generic [ref=e3]:
+      - link "~/ abdelwahab" [ref=e4] [cursor=pointer]:
+        - /url: /
+        - generic [ref=e6]: ~/
+        - text: abdelwahab
+      - navigation "Primary" [ref=e7]:
+        - link "About" [ref=e8] [cursor=pointer]:
+          - /url: /#about
+        - link "Work" [ref=e9] [cursor=pointer]:
+          - /url: /work
+        - link "Experience" [ref=e10] [cursor=pointer]:
+          - /url: /#experience
+        - link "Products" [ref=e11] [cursor=pointer]:
+          - /url: /#products
+        - link "Skills" [ref=e12] [cursor=pointer]:
+          - /url: /#skills
+        - link "Blog" [ref=e13] [cursor=pointer]:
+          - /url: /blog
+        - link "Contact" [ref=e14] [cursor=pointer]:
+          - /url: /#contact
+        - button "Toggle theme" [ref=e15] [cursor=pointer]: dark
+  - main [ref=e16]:
+    - article [ref=e17]:
+      - navigation "Breadcrumb" [ref=e18]:
+        - link "Blog" [ref=e19] [cursor=pointer]:
+          - /url: /blog
+        - generic [ref=e20]: /
+        - link "#aurora" [ref=e21] [cursor=pointer]:
+          - /url: /blog/tag/aurora
+      - generic [ref=e22]:
+        - generic [ref=e23]:
+          - time [ref=e24]: 2026-10-05
+          - generic [ref=e25]: Note
+          - generic [ref=e26]: ·2 min read
+        - heading "7.33M rows per call" [level=1] [ref=e27]
+        - figure [ref=e28]:
+          - img "Line drawing of a heavy query hitting a database cylinder." [ref=e29]
+        - paragraph [ref=e30]: One status broadcast ran 1,013 queries and pinned Aurora at 100% CPU. The fix was not an index. EXPLAIN showed each call scanning 7.33M rows.
+        - list [ref=e31]:
+          - listitem [ref=e32]:
+            - text: "#"
+            - link "aurora" [ref=e33] [cursor=pointer]:
+              - /url: /blog/tag/aurora
+          - listitem [ref=e34]:
+            - text: "#"
+            - link "mysql" [ref=e35] [cursor=pointer]:
+              - /url: /blog/tag/mysql
+          - listitem [ref=e36]:
+            - text: "#"
+            - link "performance" [ref=e37] [cursor=pointer]:
+              - /url: /blog/tag/performance
+      - navigation "On this page" [ref=e38]:
+        - text: On this page
+        - list [ref=e39]:
+          - listitem [ref=e40]:
+            - link "A database pinned at 100%" [ref=e41] [cursor=pointer]:
+              - /url: "#a-database-pinned-at-100"
+          - listitem [ref=e42]:
+            - link "A broadcast doing too much work" [ref=e43] [cursor=pointer]:
+              - /url: "#a-broadcast-doing-too-much-work"
+          - listitem [ref=e44]:
+            - link "The obvious fixes were all wrong" [ref=e45] [cursor=pointer]:
+              - /url: "#the-obvious-fixes-were-all-wrong"
+          - listitem [ref=e46]:
+            - link "Read the plan first" [ref=e47] [cursor=pointer]:
+              - /url: "#read-the-plan-first"
+          - listitem [ref=e48]:
+            - link "Drop the join, throttle the caller" [ref=e49] [cursor=pointer]:
+              - /url: "#drop-the-join-throttle-the-caller"
+          - listitem [ref=e50]:
+            - link "What changed" [ref=e51] [cursor=pointer]:
+              - /url: "#what-changed"
+          - listitem [ref=e52]:
+            - link "Lesson" [ref=e53] [cursor=pointer]:
+              - /url: "#lesson"
+      - generic [ref=e55]:
+        - generic [ref=e56]:
+          - heading "A database pinned at 100%" [level=2] [ref=e57]
+          - paragraph [ref=e58]: Aurora MySQL sat at 100% CPU and stayed there. Requests that were fine before started queuing, and the whole product felt it, not just the feature behind the load.
+          - paragraph [ref=e59]: "One endpoint was behind it: a status broadcast that pushed state out to a lot of clients. Each time it ran, it called the database 1,013 times."
+        - generic [ref=e60]:
+          - heading "A broadcast doing too much work" [level=2] [ref=e61]
+          - paragraph [ref=e62]: The broadcast looked harmless. It read the current state and fanned it out. But each call read more than it should have, and there were over a thousand of them.
+          - paragraph [ref=e63]: All I had was a database pinned at full CPU and one caller running a thousand queries a broadcast. I did not yet know why it mattered.
+        - generic [ref=e64]:
+          - heading "The obvious fixes were all wrong" [level=2] [ref=e65]
+          - paragraph [ref=e66]: "The instinct was to tune the query: add an index, raise the instance size, cache harder. All three were guesses."
+          - paragraph [ref=e67]: An index does nothing if the query is not using one, and a bigger instance buys time by hiding the real cause. I also could not take the broadcast down. Clients needed fresh status. The goal was to keep the system up for everyone, not to protect the database by breaking a feature.
+        - generic [ref=e68]:
+          - heading "Read the plan first" [level=2] [ref=e69]
+          - paragraph [ref=e70]: I ran EXPLAIN on the broadcast query instead of guessing. The plan examined 7.33 million rows per call.
+          - paragraph [ref=e71]: That number changed the problem. This was not a missing index. The query scanned and joined a large set every time it ran, more than a thousand times per broadcast.
+        - generic [ref=e72]:
+          - heading "Drop the join, throttle the caller" [level=2] [ref=e73]
+          - paragraph [ref=e74]: Two changes, in order of impact. I dropped the join that forced the scan and let the broadcast read only the rows it needed. Then I throttled the caller so it could not fan out 1,013 times in a burst.
+          - paragraph [ref=e75]: "Throttling had a visible cost: some clients got a slightly staler broadcast. That was the trade. Freshness for a subset, in exchange for a database that stayed reachable for everyone."
+        - generic [ref=e76]:
+          - heading "What changed" [level=2] [ref=e77]
+          - paragraph [ref=e78]: Calls dropped from 1,013 to about 100 per broadcast, and CPU came back to baseline. The feature stayed up. No instance resize, no new cache layer, no guessing.
+          - paragraph [ref=e79]: The data behind the dropped join was not worth a full scan a thousand times over.
+        - generic [ref=e80]:
+          - heading "Lesson" [level=2] [ref=e81]
+          - paragraph [ref=e82]: When a query looks suspicious, run EXPLAIN first. An index is one possible answer. A plan that scans 7.33 million rows per call is a different problem, and you only see it by reading the plan.
+      - navigation [ref=e83]:
+        - link "← One engine, three providers" [ref=e84] [cursor=pointer]:
+          - /url: /blog/engine
+        - link "The verdict lives in code, not the prompt →" [ref=e85] [cursor=pointer]:
+          - /url: /blog/triage
+  - contentinfo [ref=e86]:
+    - generic [ref=e87]:
+      - generic [ref=e88]: © 2026 Abdelwahab Mahmoud
+      - generic [ref=e89]: built with astro · hosted on github pages
